@@ -1,0 +1,12 @@
+{
+  "name": "sprint-release-selector",
+  "dependencies": {
+    "jquery": null
+  },
+  "devDependencies": {},
+  "exportsOverride": {
+    "jquery": {
+      "js": "dist/jquery.min.js"
+    }
+  }
+}

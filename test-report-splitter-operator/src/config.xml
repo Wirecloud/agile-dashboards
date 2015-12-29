@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="test-report-splitter" version="0.1.0">
+    <details>
+        <title>&lt;Test Report&gt; Splitter</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Álvaro Arranz</authors>
+        <email>aarranz@fi.upm.es</email>
+        <description>Slipts build information into several endpoints</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+    </details>
+
+    <wiring>
+        <inputendpoint name="test-report-list" type="text" label="&lt;Test Report&gt; List" friendcode="test-report-list"/>
+        <outputendpoint name="duration-list" type="text" label="Duration List" friendcode="duration-list"/>
+        <outputendpoint name="fail-count-list" type="text" label="Fail Count List" friendcode="fail-count-list"/>
+        <outputendpoint name="pass-count-list" type="text" label="Pass Count List" friendcode="pass-count-list"/>
+        <outputendpoint name="skip-count-list" type="text" label="Skip Count List" friendcode="skip-count-list"/>
+        <outputendpoint name="causes-list" type="text" label="Causes List" friendcode="causes-list"/>
+        <outputendpoint name="name-list" type="text" label="Name List" friendcode="name-list"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>

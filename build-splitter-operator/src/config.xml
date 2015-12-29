@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="build-splitter" version="0.1.0">
+    <details>
+        <title>&lt;Build&gt; Splitter</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Álvaro Arranz</authors>
+        <email>aarranz@fi.upm.es</email>
+        <description>Slipts build information into several endpoints</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+    </details>
+
+    <wiring>
+        <inputendpoint name="build-list" type="text" label="Build List" friendcode="build-list"/>
+        <outputendpoint name="build-id-list" type="text" label="Build Id List" friendcode="build-id-list"/>
+        <outputendpoint name="changes-list" type="text" label="Changes List" friendcode="changes-list"/>
+        <outputendpoint name="cause-list" type="text" label="Cause List" friendcode="cause-list"/>
+        <outputendpoint name="revision-list" type="text" label="Revision List" friendcode="revision-list"/>
+        <outputendpoint name="test-report-list" type="text" label="Test Report List" friendcode="test-report-list"/>
+        <outputendpoint name="timestamp-list" type="text" label="Timestamp List" friendcode="timestamp-list"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>

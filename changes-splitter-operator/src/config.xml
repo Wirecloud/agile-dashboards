@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="changes-splitter" version="0.1.0">
+    <details>
+        <title>&lt;Changes&gt; Splitter</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Álvaro Arranz</authors>
+        <email>aarranz@fi.upm.es</email>
+        <description>Slipts build information into several endpoints</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+    </details>
+
+    <wiring>
+        <inputendpoint name="changes-list" type="text" label="Changes List" friendcode="changes-list"/>
+        <outputendpoint name="commit-id-list" type="text" label="Changes List" friendcode="commit-id-list"/>
+        <outputendpoint name="author-list" type="text" label="Author List" friendcode="author-list"/>
+        <outputendpoint name="comment-list" type="text" label="Comment List" friendcode="comment-list"/>
+        <outputendpoint name="date-list" type="text" label="Date List" friendcode="date-list"/>
+        <outputendpoint name="id-list" type="text" label="Id List" friendcode="id-list"/>
+        <outputendpoint name="message-list" type="text" label="Message List" friendcode="message-list"/>
+        <outputendpoint name="affected-file-matrix" type="text" label="Affected-File Matrix" friendcode="affected-file-matrix"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>

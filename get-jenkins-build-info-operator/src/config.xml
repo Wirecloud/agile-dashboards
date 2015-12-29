@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="{get-jenkins-build-info" version="0.1.0">
+    <details>
+        <title>Get Build Information</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa.git</homepage>
+        <authors>Álvaro Arranz</authors>
+        <email>aarranz@fi.upm.es</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Get build info from jenkins</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+        <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa/issues</issuetracker>
+    </details>
+
+    
+    <requirements>
+        
+    </requirements>
+    
+
+    <preferences>
+    </preferences>
+
+    <wiring>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
