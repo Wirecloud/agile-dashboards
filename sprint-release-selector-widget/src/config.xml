@@ -1,28 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="sprint-release-selector" version="0.1.0">
-<details>
-  <title>Sprint/Release Selector</title>
-  <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
-  <authors>Álvaro Arranz</authors>
-  <email>aarranz@fi.upm.es</email>
-  <image></image>
-  <smartphoneimage></smartphoneimage>
-  <description>The best project ever.</description>
-  <longdescription>DESCRIPTION.md</longdescription>
-  <changelog>doc/changelog.md</changelog>
-  <doc>doc/index.md</doc>
-  <license>Apache2</license>
-  <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
-</details>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="sprint-release-selector" version="0.1.1">
+    <details>
+        <title>Sprint/Release Selector</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Álvaro Arranz</authors>
+        <email>aarranz@fi.upm.es</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>The best project ever.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+        <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
+    </details>
 
-<requirements>
-  
-</requirements>
+    <requirements>
+        <feature name="StyledElements"/>
+    </requirements>
 
-<preferences>
-</preferences>
-<wiring>
-</wiring>
-<contents src="index.html"/>
-<rendering height="47" width="10"/>
+    <preferences>
+    </preferences>
+
+    <wiring>
+        <outputendpoint name="build-filter-list" label="TimeRange" type="text" friendcode="build-filter-list" />
+    </wiring>
+
+    <contents src="index.html" useplatformstyle="true"/>
+    <rendering height="47" width="10"/>
 </widget>

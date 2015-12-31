@@ -5,18 +5,6 @@ var JenkinsProjectBuildList = (function () {
 
     "use strict";
 
-    /*********************************************************
-     ************************CONSTANTS*************************
-     *********************************************************/
-
-    /*********************************************************
-     ************************VARIABLES*************************
-     *********************************************************/
-
-    /********************************************************/
-    /**********************CONSTRUCTOR***********************/
-    /********************************************************/
-
     var JenkinsProjectBuildList = function JenkinsProjectBuildList () {
 
         /* Context */
@@ -26,6 +14,13 @@ var JenkinsProjectBuildList = (function () {
             }
         }.bind(this));
 
+        MashupPlatform.wiring.registerCallback("build-filter-list", function (data) {
+            this.filters = data;
+            this.filter();
+        }.bind(this));
+
+        this.filters = '';
+        this.build_info = [];
         this.layout = null;
         this.table = null;
     };
@@ -39,6 +34,27 @@ var JenkinsProjectBuildList = (function () {
         this.layout.repaint();
 
         this.reload();
+    };
+
+    JenkinsProjectBuildList.prototype.filter = function filter() {
+        var i, filtered = [];
+
+        if (this.filters !== '') {
+            for (i = 0; i < this.build_info.length; i++) {
+                if (this.build_info[i].timestamp < this.filters.timerange.start) {
+                    continue;
+                } else if (this.build_info[i].timestamp > this.filters.timerange.end) {
+                    break;
+                }
+
+                filtered.push(this.build_info[i]);
+            }
+        } else {
+            filtered = this.build_info.slice(0);
+        }
+
+        this.table.source.changeElements(filtered);
+        MashupPlatform.wiring.pushEvent("build-list", filtered);
     };
 
     JenkinsProjectBuildList.prototype.reload = function reload() {
@@ -87,8 +103,8 @@ var JenkinsProjectBuildList = (function () {
                     });
                 }
 
-                this.table.source.changeElements(build_info);
-                MashupPlatform.wiring.pushEvent("build-list", build_info);
+                this.build_info = build_info.sort(function (a, b) {return a.timestamp - b.timestamp;});
+                this.filter();
             }.bind(this),
             onFailure: function () {
             },
@@ -97,10 +113,6 @@ var JenkinsProjectBuildList = (function () {
             }.bind(this)
         });
     };
-
-    /*********************************************************
-     **************************PRIVATE*************************
-     *********************************************************/
 
     var onRowClick = function onRowClick(row) {
         //MashupPlatform.wiring.pushEvent('selected-row', row);

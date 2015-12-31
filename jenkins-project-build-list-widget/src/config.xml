@@ -24,7 +24,7 @@
 
     <wiring>
         <outputendpoint name="build-list" type="text" label="Build List" description="Build list" friendcode="build-list"/>
-        <outputendpoint name="filter_conditions" type="text" label="Condition List" description="Build list" friendcode="jenkins-build-filter-list"/>
+        <inputendpoint name="build-filter-list" type="text" label="Filter conditions" description="Filter conditions" friendcode="build-filter-list"/>
     </wiring>
 
     <contents src="index.html" useplatformstyle="true" />

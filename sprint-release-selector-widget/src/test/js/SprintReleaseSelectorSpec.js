@@ -21,7 +21,6 @@
 
         beforeEach(function () {
             MashupPlatform.reset();
-            widget = new SprintReleaseSelector();
         });
 
         it("Dummy test", function () {
