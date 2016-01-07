@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="calculate-tendency" version="0.1.0">
+    <details>
+        <title>Calculate Tendency</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Álvaro Arranz</authors>
+        <email>aarranz@fi.upm.es</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>The best project ever.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+        <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
+    </details>
+
+    <requirements>
+        <feature name="DashboardManagement" />
+    </requirements>
+    
+    <wiring>
+        <inputendpoint name="value-list" label="Value List" description="List of values" type="text" friendcode="" />
+        <outputendpoint name="minimum" label="Minimum" description="Minimum value of the serie" type="text" friendcode="panel-value" />
+        <outputendpoint name="maximum" label="Maximum" description="Maximum value of the serie" type="text" friendcode="panel-value" />
+        <outputendpoint name="arithmetic-mean" label="Arithmetic Mean" description="Arithmetic mean value of the serie" type="text" friendcode="panel-value" />
+        <outputendpoint name="median" label="Median" description="Median value of the serie" type="text" friendcode="panel-value" />
+        <outputendpoint name="mode" label="Mode" description="Mode value of the serie" type="text" friendcode="panel-value" />
+        <outputendpoint name="standard-deviation" label="Standard Deviation" description="Standard Deviation of the serie" type="text" friendcode="panel-value" />
+        <outputendpoint name="count" label="Count" description="Number of values provided in the list" type="text" friendcode="panel-value" />
+        <outputendpoint name="sum" label="Sum" description="Sum of the serie" type="text" friendcode="panel-value" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
