@@ -131,7 +131,15 @@ var JenkinsProjectBuildList = (function () {
             pageSize: 0,
             'class': 'table-striped',
             initialSortColumn: 'id',
-            initialDescendingOrder: true
+            initialDescendingOrder: true,
+            stateFunc: function (entry) {
+                switch (entry.result) {
+                case "SUCCESS":
+                    return "success";
+                case "FAILURE":
+                    return "danger";
+                }
+            }
         });
         this.table.addEventListener("click", onRowClick);
         this.table.reload();
