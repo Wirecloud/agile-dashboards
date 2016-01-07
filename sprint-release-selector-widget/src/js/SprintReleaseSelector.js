@@ -27,8 +27,12 @@ var SprintReleaseSelector = (function () {
     };
 
     var SprintReleaseSelector = function SprintReleaseSelector() {
+        var title;
 
         moment.locale(MashupPlatform.context.get('language'));
+
+        title = new StyledElements.Fragment('<h4>Project</h4>');
+        title.insertInto(document.body);
 
         this.project_select = new StyledElements.Select({
             initialEntries: [
@@ -36,6 +40,9 @@ var SprintReleaseSelector = (function () {
             ]
         });
         this.project_select.insertInto(document.body);
+
+        title = new StyledElements.Fragment('<h4>Release/Sprint</h4>');
+        title.insertInto(document.body);
 
         this.release_select = new StyledElements.Select({
             initialEntries: [
