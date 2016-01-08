@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-file-coverage-jenkins" version="0.1.0">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-file-coverage-jenkins" version="0.1.1">
     <details>
         <title>Get File Coverage (Jenkins)</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
         <authors>Álvaro Arranz</authors>
         <email>aarranz@fi.upm.es</email>
-        <image></image>
+        <image>images/catalogue.png</image>
         <smartphoneimage></smartphoneimage>
-        <description>The best project ever.</description>
+        <description>Gets the coverage report of a given file.</description>
         <longdescription>DESCRIPTION.md</longdescription>
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>

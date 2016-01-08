@@ -1,3 +1,3 @@
-This widget allows you to [...]
+This widget shows a list of items in a tabular mode.
 
 ## References
