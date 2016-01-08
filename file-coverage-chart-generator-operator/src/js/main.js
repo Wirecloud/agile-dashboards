@@ -14,7 +14,7 @@
         var key, data = [];
 
         for (key in values) {
-            data.push({x: key, y: values[key][attr]});
+            data.push(values[key][attr]);
         }
 
         return data;
@@ -35,20 +35,32 @@
             xAxis: {
                 categories: Object.keys(values),
                 title: {
-                    text: 'File'
+                    text: ''
+                }
+            },
+            yAxis: {
+                title: {
+                    text: ''
                 }
             },
             tooltip: {
-                headerFormat: '',
-                pointFormat: '{point.x:%e. %b}: {point.y:.2f}'
+                borderColor: '#7cb5ec',
+                headerFormat: '<b>{point.key}</b><br />',
+                pointFormat: '<b style="color:{series.color}">{series.name}</b>: <b>{point.y}</b> lines ({point.percentage:.0f}%)<br/>',
+                shared: true
             },
             plotOptions: {
                 column: {
-                    stacking: 'normal',
+                    stacking: 'percent'
                 }
             },
             series: [{
+                name: 'Missing',
+                color: 'rgb(158, 39, 35)',
+                data: build_serie('missing', values)
+            }, {
                 name: 'Covered',
+                color: 'rgb(53, 121, 53)',
                 data: build_serie('covered', values)
             }]
         };
