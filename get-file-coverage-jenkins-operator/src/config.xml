@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-file-coverage-jenkins" version="0.1.0">
+    <details>
+        <title>Get File Coverage (Jenkins)</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Álvaro Arranz</authors>
+        <email>aarranz@fi.upm.es</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>The best project ever.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+        <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="jenkins_server" type="text" label="Jenkins URL" description="URL of the Jenkins instance to use" default="https://build.conwet.fi.upm.es/jenkins/" />
+        <preference name="job_id" type="text" label="Job Id" description="Job Id" default="wirecloud-pip-develop-python2.7" />
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="revision-list" label="Revision List" type="text" description="" friendcode="build-revision-list"/>
+        <inputendpoint name="affected-file-matrix" label="Affected File Matrix" type="text" description="" friendcode="affected-file-matrix"/>
+        <outputendpoint name="coverage-report-matrix" label="Coverage Report Matrix" type="text" description="" friendcode="coverage-report-matrix"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
