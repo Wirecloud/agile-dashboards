@@ -1,3 +1,3 @@
-This operator allows you to [...]
+This operator allows you to get Coverage Reports from Jenkins.
 
 ## References
