@@ -15,16 +15,9 @@
         <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
-
-    <requirements>
-
-    </requirements>
-
-
-    <preferences>
-    </preferences>
-
     <wiring>
+        <outputendpoint name="issue-list" label="Issue List" type="text" friendcode="issue-list" />
+        <outputendpoint name="commit-list" label="Commit List" type="text" friendcode="commit-list" />
     </wiring>
 
     <scripts>

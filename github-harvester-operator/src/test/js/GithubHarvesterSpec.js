@@ -21,7 +21,6 @@
 
         beforeEach(function () {
             MashupPlatform.reset();
-            widget = new GithubHarvester();
         });
 
         it("Dummy test", function () {

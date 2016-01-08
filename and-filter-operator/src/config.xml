@@ -15,16 +15,10 @@
         <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
-
-    <requirements>
-
-    </requirements>
-
-
-    <preferences>
-    </preferences>
-
     <wiring>
+        <inputendpoint name="original-list" label="Original List" type="text" friendcode="list" />
+        <inputendpoint name="condition-list" label="Condition List" type="text" friendcode="build-filter-list" />
+        <outputendpoint name="filtered-list" label="Filtered List" type="text" friendcode="list" />
     </wiring>
 
     <scripts>

@@ -21,7 +21,6 @@
 
         beforeEach(function () {
             MashupPlatform.reset();
-            widget = new AndFilter();
         });
 
         it("Dummy test", function () {

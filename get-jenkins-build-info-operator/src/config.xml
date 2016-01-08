@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="{get-jenkins-build-info" version="0.1.4">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-jenkins-build-info" version="0.1.5a">
     <details>
         <title>Get Build Information</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa.git</homepage>
@@ -15,16 +15,13 @@
         <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa/issues</issuetracker>
     </details>
 
-
-    <requirements>
-
-    </requirements>
-
-
     <preferences>
+        <preference name="jenkins_server" type="text" label="Jenkins URL" description="URL of the Jenkins instance to use" default="https://build.conwet.fi.upm.es/jenkins/" />
+        <preference name="job_id" type="text" label="Job Id" description="Job Id" default="wirecloud-pip-develop-python2.7" />
     </preferences>
 
     <wiring>
+        <outputendpoint name="build-list" type="text" label="Build List" description="Build list" friendcode="build-list"/>
     </wiring>
 
     <scripts>

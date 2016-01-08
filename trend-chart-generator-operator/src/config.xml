@@ -23,7 +23,7 @@
 
     <wiring>
         <inputendpoint name="data-serie" label="Data Serie" description="Data series" type="text" friendcode="serie" />
-        <inputendpoint name="timestamps" label="Timestamp List" description="Data timestamps" type="text" friendcode="serie" />
+        <inputendpoint name="timestamps" label="Timestamp List" description="Data timestamps" type="text" friendcode="timestamp-list" />
         <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-data" />
     </wiring>
 

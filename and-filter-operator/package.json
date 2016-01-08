@@ -16,5 +16,6 @@
     "grunt-strip-code": "^0.1.2",
     "grunt-text-replace": "~0.4.0"
   },
-  "vendor": "CoNWeT"
+  "vendor": "CoNWeT",
+  "version": "0.1.4"
 }
