@@ -43,12 +43,12 @@
         coverage_info = new Array(build_list.length);
         current_count = data.length;
         for (i = 0; i < build_list.length; i++) {
-            MashupPlatform.http.makeRequest(MashupPlatform.prefs.get('jenkins_server') + 'job/' + MashupPlatform.prefs.get('job_id') + '/' + build_list[i] + '/cobertura/api/json', {
+            current_requests.push(MashupPlatform.http.makeRequest(MashupPlatform.prefs.get('jenkins_server') + 'job/' + MashupPlatform.prefs.get('job_id') + '/' + build_list[i] + '/cobertura/api/json', {
                 method: 'GET',
                 parameters: {depth: 2},
                 onSuccess: addCoverageReport.bind(null, i),
                 onComplete: onComplete
-            });
+            }));
         }
 
     }.bind(this));

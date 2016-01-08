@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="{get-file-coverage-coveralls" version="0.1.1">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-file-coverage-coveralls" version="0.1.1">
     <details>
         <title>Get File Coverage (coveralls)</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -15,16 +15,10 @@
         <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
-
-    <requirements>
-
-    </requirements>
-
-
-    <preferences>
-    </preferences>
-
     <wiring>
+        <inputendpoint name="revision-list" label="Revision List" type="text" description="" friendcode="build-revision-list"/>
+        <inputendpoint name="affected-file-matrix" label="Affected File Matrix" type="text" description="" friendcode="affected-file-matrix"/>
+        <outputendpoint name="coverage-report-matrix" label="Coverage Report Matrix" type="text" description="" friendcode="coverage-report-matrix"/>
     </wiring>
 
     <scripts>

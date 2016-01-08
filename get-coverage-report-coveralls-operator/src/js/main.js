@@ -40,9 +40,15 @@
         }
 
         revision_list = data;
+
+        if (revision_list.length === 0) {
+            MashupPlatform.wiring.pushEvent('coverage-report-list', []);
+            return;
+        }
+
         current_requests = [];
         coverage_info = new Array(revision_list.length);
-        current_count = data.length;
+        current_count = revision_list.length;
         for (i = 0; i < revision_list.length; i++) {
             MashupPlatform.http.makeRequest('https://coveralls.io/builds/' + revision_list[i] + '.json', {
                 method: 'GET',

@@ -21,7 +21,6 @@
 
         beforeEach(function () {
             MashupPlatform.reset();
-            widget = new GetFileCoverageCoveralls();
         });
 
         it("Dummy test", function () {

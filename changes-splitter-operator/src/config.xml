@@ -15,7 +15,7 @@
 
     <wiring>
         <inputendpoint name="changes-list" type="text" label="Changes List" friendcode="changes-list"/>
-        <outputendpoint name="commit-id-list" type="text" label="Changes List" friendcode="commit-id-list"/>
+        <outputendpoint name="commit-id-list" type="text" label="Commit Id List" friendcode="commit-id-list"/>
         <outputendpoint name="author-list" type="text" label="Author List" friendcode="author-list"/>
         <outputendpoint name="comment-list" type="text" label="Comment List" friendcode="comment-list"/>
         <outputendpoint name="date-list" type="text" label="Date List" friendcode="date-list"/>

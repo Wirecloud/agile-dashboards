@@ -17,8 +17,8 @@
         <inputendpoint name="build-list" type="text" label="Build List" friendcode="build-list"/>
         <outputendpoint name="build-id-list" type="text" label="Build Id List" friendcode="build-id-list"/>
         <outputendpoint name="changes-list" type="text" label="Changes List" friendcode="changes-list"/>
-        <outputendpoint name="cause-list" type="text" label="Cause List" friendcode="cause-list"/>
-        <outputendpoint name="revision-list" type="text" label="Revision List" friendcode="revision-list"/>
+        <outputendpoint name="cause-list" type="text" label="Cause List" friendcode="build-cause-list"/>
+        <outputendpoint name="revision-list" type="text" label="Revision List" friendcode="build-revision-list"/>
         <outputendpoint name="test-report-list" type="text" label="Test Report List" friendcode="test-report-list"/>
         <outputendpoint name="timestamp-list" type="text" label="Timestamp List" friendcode="timestamp-list"/>
     </wiring>
