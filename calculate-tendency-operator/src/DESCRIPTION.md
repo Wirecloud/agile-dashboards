@@ -2,15 +2,11 @@ This operator allows you to calculate different trend tendencies from a list of 
 
 It supports:
 
-* Maximum
-* Minimum
-* Arithmetic mean
-* Median
-* Mode
-* Standard Deviation
-* Count
-* Sum
-
-
-
-## References
+- Maximum
+- Minimum
+- Arithmetic mean
+- Median
+- Mode
+- Standard Deviation
+- Count
+- Sum

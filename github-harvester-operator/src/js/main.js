@@ -14,48 +14,49 @@
 
         if (MashupPlatform.operator.outputs['issue-list'].connected) {
 
-            if (filters !== '') {
-                MashupPlatform.http.makeRequest("https://api.github.com/repos/Wirecloud/wirecloud/issues", {
-                    method: 'GET',
-                    supportsAccessControl: true,
-                    parameters: {
-                        state: 'all',
-                        milestone: filters.timerange.id,
-                        per_page: 100
-                    },
-                    requestHeaders: {
-                        Accept: "application/vnd.github.v3.html+json"
-                    },
-                    onSuccess: function (response) {
-                        MashupPlatform.wiring.pushEvent("issue-list", JSON.parse(response.responseText));
-                    }
-                });
-            } else {
-                MashupPlatform.wiring.pushEvent("issue-list", []);
-            }
+            MashupPlatform.http.makeRequest("https://api.github.com/repos/Wirecloud/wirecloud/issues", {
+                method: 'GET',
+                supportsAccessControl: true,
+                parameters: {
+                    state: 'all',
+                    per_page: 100
+                },
+                requestHeaders: {
+                    Accept: "application/vnd.github.v3.html+json"
+                },
+                onSuccess: function (response) {
+                    var issues = JSON.parse(response.responseText);
+                    issues.forEach(function (issue) {
+                        issue.closed_at = Date.parse(issue.closed_at);
+                        if (issue.assignee != null) {
+                            issue.assignee = issue.assignee.login;
+                        }
+                        if (issue.milestone != null) {
+                            issue.milestone = issue.milestone.title;
+                        }
+                    });
+                    MashupPlatform.wiring.pushEvent("issue-list", issues);
+                }
+            });
+
         }
 
         if (MashupPlatform.operator.outputs['commit-list'].connected) {
-            if (filters !== '') {
-                MashupPlatform.http.makeRequest("https://api.github.com/repos/Wirecloud/wirecloud/commits", {
-                    method: 'GET',
-                    supportsAccessControl: true,
-                    parameters: {
-                        since: filters.timerange.start,
-                        until: filters.timerange.end
-                        per_page: 100
-                    },
-                    requestHeaders: {
-                        Accept: "application/vnd.github.v3.html+json"
-                    },
-                    onSuccess: function (response) {
-                        MashupPlatform.wiring.pushEvent("commit-list", JSON.parse(response.responseText));
-                    }
-                });
-            } else {
-                MashupPlatform.wiring.pushEvent("issue-list", []);
-            }
+            MashupPlatform.http.makeRequest("https://api.github.com/repos/Wirecloud/wirecloud/commits", {
+                method: 'GET',
+                supportsAccessControl: true,
+                parameters: {
+                    per_page: 100
+                },
+                requestHeaders: {
+                    Accept: "application/vnd.github.v3.html+json"
+                },
+                onSuccess: function (response) {
+                    MashupPlatform.wiring.pushEvent("commit-list", JSON.parse(response.responseText));
+                }
+            });
         }
-    }
+    };
 
+    request_github_info();
 })();

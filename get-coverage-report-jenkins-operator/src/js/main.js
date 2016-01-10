@@ -30,26 +30,25 @@
         }
     };
 
-    MashupPlatform.wiring.registerCallback("build-list", function (data) {
+    MashupPlatform.wiring.registerCallback("build-id-list", function (data) {
 
-        var i;
+        // Abort current requests
+        current_count = 0;
+        current_requests.forEach(function (request) {request.abort();});
 
-        for (i = 0; i < current_requests.length; i++) {
-            current_requests[i].abort();
-        }
-
+        // Make the required requests for obtaining the coverage
         build_list = data;
         current_requests = [];
         coverage_info = new Array(build_list.length);
         current_count = data.length;
-        for (i = 0; i < build_list.length; i++) {
-            current_requests.push(MashupPlatform.http.makeRequest(MashupPlatform.prefs.get('jenkins_server') + 'job/' + MashupPlatform.prefs.get('job_id') + '/' + build_list[i] + '/cobertura/api/json', {
+        build_list.forEach(function (build, i) {
+            current_requests.push(MashupPlatform.http.makeRequest(MashupPlatform.prefs.get('jenkins_server') + 'job/' + MashupPlatform.prefs.get('job_id') + '/' + build + '/cobertura/api/json', {
                 method: 'GET',
                 parameters: {depth: 2},
                 onSuccess: addCoverageReport.bind(null, i),
                 onComplete: onComplete
             }));
-        }
+        });
 
     }.bind(this));
 

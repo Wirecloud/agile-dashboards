@@ -10,12 +10,16 @@
 
     "use strict";
 
-    MashupPlatform.prefs.registerCallback(function (new_preferences) {
+    var plot_chart = function plot_chart() {
+        
+    };
 
-    }.bind(this));
+    MashupPlatform.wiring.registerCallback("issue-data-series", function (issues) {
 
-    /* test-code */
+    });
 
-    /* end-test-code */
+    MashupPlatform.wiring.registerCallback("commit-data-series", function (commits) {
+
+    });
 
 })();

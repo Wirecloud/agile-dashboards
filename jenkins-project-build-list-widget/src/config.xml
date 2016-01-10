@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="jenkins-project-build-list" version="0.1.4">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="jenkins-project-build-list" version="0.1.6">
     <details>
         <title>Jenkins Project Build List</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa.git</homepage>
@@ -18,14 +18,9 @@
         <feature name="StyledElements"/>
     </requirements>
 
-    <preferences>
-        <preference name="jenkins_server" type="text" label="Jenkins URL" description="URL of the Jenkins instance to use" default="https://build.conwet.fi.upm.es/jenkins/" />
-        <preference name="job_id" type="text" label="Job Id" description="Job Id" default="wirecloud-pip-develop-python2.7" />
-    </preferences>
-
     <wiring>
-        <outputendpoint name="build-list" type="text" label="Build List" description="Build list" friendcode="build-list"/>
-        <inputendpoint name="build-filter-list" type="text" label="Filter conditions" description="Filter conditions" friendcode="build-filter-list"/>
+        <inputendpoint name="build-list" type="text" label="Build List" description="" friendcode="build-filter-list"/>
+        <outputendpoint name="condition-list" type="text" label="Condition List" description="List of filters/conditions" friendcode="condition-list"/>
     </wiring>
 
     <contents src="index.html" useplatformstyle="true" />

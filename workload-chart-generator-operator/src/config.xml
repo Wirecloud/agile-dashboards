@@ -15,16 +15,10 @@
         <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
-    
-    <requirements>
-        
-    </requirements>
-    
-
-    <preferences>
-    </preferences>
-
     <wiring>
+        <inputendpoint name="issue-data-series" label="Issue Data Series" type="text" friendcode="issue-list" />
+        <inputendpoint name="commit-data-series" label="Commit Data Series" type="text" friendcode="commit-list" />
+        <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-data" />
     </wiring>
 
     <scripts>

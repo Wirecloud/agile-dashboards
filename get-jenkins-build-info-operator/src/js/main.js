@@ -9,7 +9,7 @@
             method: 'GET',
             parameters: {"depth": 1},
             onSuccess: function (response) {
-                var i, j, build_info, build, data, testResults, revision;
+                var i, j, build_info, build, data, user, testResults, revision;
 
                 data = JSON.parse(response.responseText);
 
@@ -23,16 +23,18 @@
 
                     testResults = {passCount: 0, failCount: 0, skipCount: 0, totalCount: 0};
                     revision = null;
+                    user = 'aarranz';
                     for (j = 0; j < build.actions.length; j++) {
-                        if ('failCount' in build.actions[j]) {
+                        if ('causes' in build.actions[j] && 'userId' in build.actions[j].causes[0]) {
+                            user = build.actions[j].causes[0].userId;
+                        } else if ('failCount' in build.actions[j]) {
                             testResults = {
                                 passCount: build.actions[j].totalCount - build.actions[j].failCount - build.actions[j].skipCount,
                                 failCount: build.actions[j].failCount,
                                 skipCount: build.actions[j].skipCount,
                                 totalCount: build.actions[j].totalCount
                             };
-                        }
-                        if ('lastBuiltRevision' in build.actions[j]) {
+                        } else if ('lastBuiltRevision' in build.actions[j]) {
                             revision = build.actions[j].lastBuiltRevision.SHA1;
                         }
                     }
@@ -42,6 +44,7 @@
                         result: build.result,
                         timestamp: build.timestamp,
                         revision: revision,
+                        user: user,
                         changes: build.changeSet.items,
                         testResults: testResults
                     });
@@ -53,7 +56,7 @@
         });
     };
 
-    MashupPlatform.wiring.registerStatusCallback(get_build_info);
+    //MashupPlatform.wiring.registerStatusCallback(get_build_info);
     get_build_info();
 
 })();

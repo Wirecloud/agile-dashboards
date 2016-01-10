@@ -1,5 +1,5 @@
 /*
- * get-file-coverage-coveralls
+ * get-file-coverage-jenkins
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
  * Copyright (c) 2015 CoNWeT
