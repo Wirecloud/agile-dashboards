@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="reliability-chart-generator" version="0.1.6">
+    <details>
+        <title>Reliability Chart Generator</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Álvaro Arranz &lt;aarranz@fi.upm.es&gt;</authors>
+        <email>aarranz@fi.upm.es</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>The best project ever.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>Apache2</license>
+        <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="title" type="text" label="Chart Title" description="Title used for the chart" default=""/>
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="issues-list" label="Issue List" type="text" friendcode="issue-list" />
+        <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-data" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
