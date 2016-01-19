@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-jenkins-build-info" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-jenkins-harvester" version="0.1.7">
     <details>
         <title>Get Build Information</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa.git</homepage>
