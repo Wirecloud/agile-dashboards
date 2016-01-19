@@ -22,7 +22,8 @@
                     per_page: 100
                 },
                 requestHeaders: {
-                    Accept: "application/vnd.github.v3.html+json"
+                    Accept: "application/vnd.github.v3.html+json",
+                    Authorization: 'token ' + MashupPlatform.prefs.get('oauth2-token')
                 },
                 onSuccess: function (response) {
                     var issues = JSON.parse(response.responseText);
@@ -49,7 +50,8 @@
                     per_page: 100
                 },
                 requestHeaders: {
-                    Accept: "application/vnd.github.v3.html+json"
+                    Accept: "application/vnd.github.v3.html+json",
+                    Authorization: 'token ' + MashupPlatform.prefs.get('oauth2-token')
                 },
                 onSuccess: function (response) {
                     MashupPlatform.wiring.pushEvent("commit-list", JSON.parse(response.responseText));
@@ -59,4 +61,6 @@
     };
 
     request_github_info();
+    MashupPlatform.wiring.registerStatusCallback(request_github_info);
+
 })();

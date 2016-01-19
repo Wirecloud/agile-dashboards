@@ -56,7 +56,7 @@
         });
     };
 
-    //MashupPlatform.wiring.registerStatusCallback(get_build_info);
     get_build_info();
+    MashupPlatform.wiring.registerStatusCallback(get_build_info);
 
 })();

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="sprint-release-selector" version="0.1.6">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="set-filter-conditions" version="0.1.7">
     <details>
-        <title>Sprint/Release Selector</title>
+        <title>Set Filter Conditions</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
         <authors>Álvaro Arranz</authors>
         <email>aarranz@fi.upm.es</email>
@@ -20,8 +20,8 @@
     </requirements>
 
     <wiring>
-        <outputendpoint name="build-filter-list" label="Build Filter" type="text" friendcode="build-filter-list" />
-        <outputendpoint name="issue-filter" label="Issue Filter" type="text" friendcode="issue-filter" />
+        <outputendpoint name="build-filter-list" label="Build Filter" description="Provides the condition list for filtering builds using the selected sprints and the selected user" type="text" friendcode="build-filter-list" />
+        <outputendpoint name="issue-filter" label="Issue Filter" description="Provides the condition list for filtering issues using the selected sprints and the selected user" type="text" friendcode="issue-filter" />
     </wiring>
 
     <contents src="index.html" useplatformstyle="true"/>

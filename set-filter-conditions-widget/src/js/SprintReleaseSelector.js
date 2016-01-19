@@ -1,5 +1,5 @@
 /*
- * sprint-release-selector
+ * set-filter-conditions
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
  * Copyright (c) 2015 CoNWeT
