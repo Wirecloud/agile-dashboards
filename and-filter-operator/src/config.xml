@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="and-filter" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="and-filter" version="0.1.8">
     <details>
         <title>AND Filter</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -16,9 +16,9 @@
     </details>
 
     <wiring>
-        <inputendpoint name="original-list" label="Original List" type="text" friendcode="list" />
-        <inputendpoint name="condition-list" label="Condition List" type="text" friendcode="condition-list" />
-        <outputendpoint name="filtered-list" label="Filtered List" type="text" friendcode="list" />
+        <inputendpoint name="original-list" label="Original List" type="text" description="List with the original values" friendcode="list" />
+        <inputendpoint name="condition-list" label="Condition List" type="text" description="List of conditions to be fulfilled by the values of the original list to pass the filter" friendcode="condition-list" />
+        <outputendpoint name="filtered-list" label="Filtered List" type="text" description="This endpoint provides a list with the values of &quot;Original List&quot; passing the conditions indicated by the &quot;Condition List&quot; endpoint" friendcode="list" />
     </wiring>
 
     <scripts>

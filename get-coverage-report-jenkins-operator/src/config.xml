@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-coverage-report-jenkins" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-coverage-report-jenkins" version="0.1.8">
     <details>
         <title>Get Coverage Report (Jenkins)</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -21,8 +21,8 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="build-id-list" label="Build Id List" type="text" description="" friendcode="build-id-list"/>
-        <outputendpoint name="coverage-report-list" label="Coverage Report List" type="text" description="" friendcode="coverage-report-list"/>
+        <inputendpoint name="build-id-list" label="Build Id List" type="text" description="List of build ids to use for retrieving coverage information" friendcode="build-id-list"/>
+        <outputendpoint name="coverage-report-list" label="Coverage Report List" type="text" description="Coverage Ratios for the builds received on the Build Id List endpoint" friendcode="coverage-report-list data-serie"/>
     </wiring>
 
     <scripts>

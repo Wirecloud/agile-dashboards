@@ -12,6 +12,15 @@
 
     var request_github_info = function request_github_info() {
 
+        var requestHeaders = {
+            Accept: "application/vnd.github.v3.html+json"
+        };
+
+        var oauth2_token = MashupPlatform.prefs.get('oauth2-token').trim();
+        if (oauth2_token !== '') {
+            requestHeaders.Authorization = 'token ' + oauth2_token;
+        }
+
         if (MashupPlatform.operator.outputs['issue-list'].connected) {
 
             MashupPlatform.http.makeRequest("https://api.github.com/repos/Wirecloud/wirecloud/issues", {
@@ -21,10 +30,7 @@
                     state: 'all',
                     per_page: 100
                 },
-                requestHeaders: {
-                    Accept: "application/vnd.github.v3.html+json",
-                    Authorization: 'token ' + MashupPlatform.prefs.get('oauth2-token')
-                },
+                requestHeaders: requestHeaders,
                 onSuccess: function (response) {
                     var issues = JSON.parse(response.responseText);
                     issues.forEach(function (issue) {
@@ -49,10 +55,7 @@
                 parameters: {
                     per_page: 100
                 },
-                requestHeaders: {
-                    Accept: "application/vnd.github.v3.html+json",
-                    Authorization: 'token ' + MashupPlatform.prefs.get('oauth2-token')
-                },
+                requestHeaders: requestHeaders,
                 onSuccess: function (response) {
                     MashupPlatform.wiring.pushEvent("commit-list", JSON.parse(response.responseText));
                 }

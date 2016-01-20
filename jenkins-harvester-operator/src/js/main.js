@@ -42,6 +42,7 @@
                     build_info.push({
                         id: build.id,
                         result: build.result,
+                        duration: build.duration || 0,
                         timestamp: build.timestamp,
                         revision: revision,
                         user: user,

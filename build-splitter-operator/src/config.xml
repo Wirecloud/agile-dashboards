@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="build-splitter" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="build-splitter" version="0.1.8">
     <details>
         <title>&lt;Build&gt; Splitter</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -14,13 +14,14 @@
     </details>
 
     <wiring>
-        <inputendpoint name="build-list" type="text" label="Build List" friendcode="build-list"/>
-        <outputendpoint name="build-id-list" type="text" label="Build Id List" friendcode="build-id-list"/>
-        <outputendpoint name="changes-list" type="text" label="Changes List" friendcode="changes-list"/>
-        <outputendpoint name="cause-list" type="text" label="Cause List" friendcode="build-cause-list"/>
-        <outputendpoint name="revision-list" type="text" label="Revision List" friendcode="build-revision-list"/>
-        <outputendpoint name="test-report-list" type="text" label="Test Report List" friendcode="test-report-list"/>
-        <outputendpoint name="timestamp-list" type="text" label="Timestamp List" friendcode="timestamp-list"/>
+        <inputendpoint name="build-list" type="text" label="Build List" description="Build List" friendcode="build-list"/>
+        <outputendpoint name="build-id-list" type="text" label="Build Id List" description="List with the id of the builds" friendcode="build-id-list list"/>
+        <outputendpoint name="duration-list" type="text" label="Duration List" description="List with the duration of the builds" friendcode="build-duration-list list data-serie"/>
+        <outputendpoint name="changes-list" type="text" label="⊱Changes List" description="List with the changes made in the builds. Change information can be splitted using the &lt;Changes&gt; Splitter operator" friendcode="changes-list list"/>
+        <outputendpoint name="cause-list" type="text" label="Cause List" description="List with the causes for launching the builds" friendcode="build-cause-list list"/>
+        <outputendpoint name="revision-list" type="text" label="Revision List" description="List with the revision number of the last commit included in the builds" friendcode="build-revision-list list"/>
+        <outputendpoint name="test-report-list" type="text" label="⊱Test Report List" description="List with the test reports of the builds. Test report information can be splitted using the &lt;Test Report&gt; Splitter operator" friendcode="test-report-list list"/>
+        <outputendpoint name="timestamp-list" type="text" label="Timestamp List" description="List with the timestamp when the builds were launched" friendcode="timestamp-list list"/>
     </wiring>
 
     <scripts>

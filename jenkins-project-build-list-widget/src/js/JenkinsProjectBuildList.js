@@ -15,6 +15,10 @@ var JenkinsProjectBuildList = (function () {
         }.bind(this));
 
         MashupPlatform.wiring.registerCallback("build-list", function (data) {
+            if (!Array.isArray(data) || !data.every(is_build)) {
+                throw new MashupPlatform.wiring.EndpointTypeError('Expecting a build list');
+            }
+
             this.table.source.changeElements(data);
             this.layout.getCenterContainer().enable();
         }.bind(this));
@@ -32,6 +36,10 @@ var JenkinsProjectBuildList = (function () {
         this.layout.repaint();
 
         this.layout.getCenterContainer().disable();
+    };
+
+    var is_build = function is_build(build) {
+        return typeof build === 'object' && 'id' in build && 'duration' in build;
     };
 
     var onRowClick = function onRowClick(row) {

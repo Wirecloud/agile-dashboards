@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="jenkins-project-build-list" version="0.1.7">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="jenkins-project-build-list" version="0.1.8">
     <details>
         <title>Jenkins Project Build List</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa.git</homepage>
@@ -19,11 +19,11 @@
     </requirements>
 
     <wiring>
-        <inputendpoint name="build-list" type="text" label="Build List" description="" friendcode="build-filter-list"/>
-        <outputendpoint name="condition-list" type="text" label="Condition List" description="List of filters/conditions" friendcode="condition-list"/>
+        <inputendpoint name="build-list" type="text" label="Build List" description="List of builds to display inside the widget" friendcode="build-list"/>
+        <outputendpoint name="condition-list" type="text" label="Selected Build Filter" description="Conditions for filtering a build list using the selected build id (e.g. by connecting this endpoint to the Condition List endpoint of the AND Filter operator)" friendcode="condition-list"/>
     </wiring>
 
     <contents src="index.html" useplatformstyle="true" />
-    <rendering height="300px" width="200px"/>
+    <rendering height="300px" width="300px"/>
 
 </widget>

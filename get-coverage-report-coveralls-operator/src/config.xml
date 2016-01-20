@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-coverage-report-coveralls" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-coverage-report-coveralls" version="0.1.8">
     <details>
         <title>Get Coverage Report (Coveralls)</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -16,8 +16,8 @@
     </details>
 
     <wiring>
-        <inputendpoint name="revision-list" label="Revision List" type="text" description="" friendcode="revision-list"/>
-        <outputendpoint name="coverage-report-list" label="Coverage Report List" type="text" description="" friendcode="coverage-report-list"/>
+        <inputendpoint name="revision-list" label="Revision List" type="text" description="List of revision numbers  to use for retrieving coverage information" friendcode="revision-list"/>
+        <outputendpoint name="coverage-report-list" label="Coverage Report List" type="text" description="Coverage Ratios for the builds received on the Revision List endpoint" friendcode="coverage-report-list data-serie"/>
     </wiring>
 
     <scripts>

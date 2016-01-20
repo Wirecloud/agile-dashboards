@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="test-report-splitter" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="test-report-splitter" version="0.1.8">
     <details>
         <title>&lt;Test Report&gt; Splitter</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -14,13 +14,10 @@
     </details>
 
     <wiring>
-        <inputendpoint name="test-report-list" type="text" label="&lt;Test Report&gt; List" friendcode="test-report-list"/>
-        <outputendpoint name="duration-list" type="text" label="Duration List" friendcode="duration-list"/>
-        <outputendpoint name="fail-count-list" type="text" label="Fail Count List" friendcode="fail-count-list"/>
-        <outputendpoint name="pass-count-list" type="text" label="Pass Count List" friendcode="pass-count-list"/>
-        <outputendpoint name="skip-count-list" type="text" label="Skip Count List" friendcode="skip-count-list"/>
-        <outputendpoint name="causes-list" type="text" label="Causes List" friendcode="causes-list"/>
-        <outputendpoint name="name-list" type="text" label="Name List" friendcode="name-list"/>
+        <inputendpoint name="test-report-list" type="text" label="Test Report List" description="List of Test Reports to split" friendcode="test-report-list"/>
+        <outputendpoint name="fail-count-list" type="text" label="Fail Count List" description="List with the number of failed tests" friendcode="fail-count-list list data-serie"/>
+        <outputendpoint name="pass-count-list" type="text" label="Pass Count List" description="List with the number of passed tests" friendcode="pass-count-list list data-serie"/>
+        <outputendpoint name="skip-count-list" type="text" label="Skip Count List" description="List with the number of skipped tests" friendcode="skip-count-list list data-serie"/>
     </wiring>
 
     <scripts>

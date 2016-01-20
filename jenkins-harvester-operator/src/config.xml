@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="get-jenkins-harvester" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="jenkins-harvester" version="0.1.8">
     <details>
-        <title>Get Build Information</title>
+        <title>Jenkins Harvester</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa.git</homepage>
         <authors>Álvaro Arranz</authors>
         <email>aarranz@fi.upm.es</email>
@@ -21,7 +21,7 @@
     </preferences>
 
     <wiring>
-        <outputendpoint name="build-list" type="text" label="Build List" description="Build list" friendcode="build-list"/>
+        <outputendpoint name="build-list" type="text" label="⊱Build List" description="Build list. Build information can be splitted using the &lt;Build&gt; Splitter operator" friendcode="build-list list"/>
     </wiring>
 
     <scripts>

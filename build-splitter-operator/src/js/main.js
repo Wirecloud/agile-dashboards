@@ -11,6 +11,7 @@
 
     MashupPlatform.wiring.registerCallback("build-list", function (build_list) {
         var build_id_list = [],
+            duration_list = [],
             changes_list = [],
             cause_list = [],
             revision_list = [],
@@ -18,7 +19,12 @@
             timestamp_list = [];
 
         build_list.forEach(function (build) {
+            if (typeof build !== 'object' || !('id' in build) || !('duration' in build)) {
+                throw new MashupPlatform.wiring.EndpointTypeError('Expecting a build list');
+            }
+
             build_id_list.push(build.id);
+            duration_list.push(build.duration);
             changes_list.push(build.changes);
             cause_list.push(build.cause);
             revision_list.push(build.revision);
@@ -27,6 +33,7 @@
         });
 
         MashupPlatform.wiring.pushEvent("build-id-list", build_id_list);
+        MashupPlatform.wiring.pushEvent("duration-list", duration_list);
         MashupPlatform.wiring.pushEvent("changes-list", changes_list);
         MashupPlatform.wiring.pushEvent("cause-list", cause_list);
         MashupPlatform.wiring.pushEvent("revision-list", revision_list);

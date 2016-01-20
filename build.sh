@@ -11,7 +11,7 @@ Buiding ${i}
 
 
 EOF
-        grunt
+        grunt $1
         cd ..
     fi
 done

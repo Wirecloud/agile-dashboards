@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="trend-chart-generator" version="0.1.7">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="trend-chart-generator" version="0.1.8">
     <details>
         <title>Trend Chart Generator</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -22,9 +22,9 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="data-serie" label="Data Serie" description="Data series" type="text" friendcode="serie" />
+        <inputendpoint name="data-serie" label="Data Serie" description="Data series" type="text" friendcode="data-serie" />
         <inputendpoint name="timestamps" label="Timestamp List" description="Data timestamps" type="text" friendcode="timestamp-list" />
-        <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-data" />
+        <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
     </wiring>
 
     <scripts>
