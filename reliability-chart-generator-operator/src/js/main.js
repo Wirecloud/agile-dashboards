@@ -13,6 +13,7 @@
     var issue_list = null;
 
     var build_pie_chart = function build_pie_chart(done, failed) {
+        var total = done + failed;
         return {
             chart: {
                 type: 'pie'
@@ -24,8 +25,8 @@
                 enabled: false
             },
             series: [
-                {name: "Closed", data: [done]},
-                {name: "Pending", data: [failed]}
+                {name: "Closed", y: done / total},
+                {name: "Pending", y: failed / total}
             ]
         };
     };
