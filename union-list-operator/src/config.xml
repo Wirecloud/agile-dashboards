@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNwet" name="union-list" version="0.1.8">
+    <details>
+        <title>Union List Operator</title>
+        <homepage></homepage>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>The best project ever.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+   <wiring>
+        <inputendpoint name="list-A" label="List A" type="text" description="First list" friendcode="list" />
+        <inputendpoint name="list-B" label="List B" type="text" description="Second list" friendcode="list" />
+        <outputendpoint name="intersected-list" label="Intersected List" type="text" description="This endpoint provides a list with the unique items between the &quot;List A&quot; and &quot;List B&quot;" friendcode="list" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
