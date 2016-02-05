@@ -65,12 +65,12 @@
     //Bindea los endpoints para recibir los valores
     MashupPlatform.wiring.registerCallback("list-A", function (list) {
         list_A = list;
-        MashupPlatform.wiring.pushEvent("intersected-list", calculate_intersection(list_A));
+        MashupPlatform.wiring.pushEvent("intersected-list", calculate_intersection(list_A, list_B));
     });
     MashupPlatform.wiring.registerCallback("list-B", function (list) {
         list_B = list;
         //Envia la lista calculada
-        MashupPlatform.wiring.pushEvent("intersected-list", calculate_intersection(list_B));
+        MashupPlatform.wiring.pushEvent("intersected-list", calculate_intersection(list_A, list_B));
     });
 
     /* test-code */
