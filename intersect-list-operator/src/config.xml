@@ -17,7 +17,7 @@
     <wiring>
         <inputendpoint name="list-A" label="Original List A" type="text" description="First list" friendcode="list" />
         <inputendpoint name="list-B" label="Original List B" type="text" description="Second list" friendcode="list" />
-        <outputendpoint name="intersected-list" label="Intersected List" type="text" description="This endpoint provides a list with the items of &quot;Original List A&quot; that match the ones of &quot;Original List B&quot; endpoint" friendcode="list" />
+        <outputendpoint name="intersected-list" label="Intersected List" type="text" description="This endpoint provides a list with the items of &quot;Original List A&quot; that match the ones of &quot;Original List B&quot;" friendcode="list" />
     </wiring>
 
     <scripts>

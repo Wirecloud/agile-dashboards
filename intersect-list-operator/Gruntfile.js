@@ -15,8 +15,6 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
 
-
-
         jshint: {
             options: {
                 jshintrc: true
@@ -34,14 +32,6 @@ module.exports = function (grunt) {
                     src: ['Gruntfile.js']
                 }
             },
-            test: {
-                options: {
-                    jshintrc: '.jshintrc-jasmine'
-                },
-                files: {
-                    src: ['src/test/**/*.js', '!src/test/fixtures/']
-                }
-            }
         },
 
         jscs: {
@@ -156,7 +146,7 @@ module.exports = function (grunt) {
 
         jasmine: {
             test: {
-                src: ['src/js/*.js', '!src/js/main.js'],
+                src: ['src/js/*.js'],
                 options: {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],

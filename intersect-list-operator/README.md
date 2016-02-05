@@ -1,7 +1,9 @@
-AND Filter operator
+Intersect List operator
 ======================
 
-The AND Filter operator is a WireCloud operator that provides ...
+The Intersect List operator is a WireCloud operator that provides the ability to intersect two lists.
+
+The input lists may have nested lists.
 
 Build
 -----
@@ -42,23 +44,25 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+There are no preferences for this operator.
 
 ## Wiring
 
 
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
+"First list": <list> The first of the two lists to be intersected.
+
+"Second list": <list> The second of the two lists to be intersected.
 
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+"Intersected list": <list> The result of the two lists being intersected. 
 
 ## Usage
 
+When connected with two lists, calculates the intersection of both lists and pushes the result of the intersection to the "Intersected list" endpoint.
 
 ## Reference
 

@@ -6,7 +6,7 @@
  * Licensed under the Apache2 license.
  */
 
- (function () {
+(function () {
 
     "use strict";
 
@@ -14,16 +14,11 @@
     var list_B = [];
 
     //Comprueba si cosas son iguales recursivamente con busqueda por profundidad
-    function checkEqual(a, b) {
+    var checkEqual = function checkEqual(a, b) {
         /** a y b pueden ser arrays(lista), strings u objetos **/
 
-        //Si no son del mismo tipo no pueden ser iguales
-        if (a.constructor !== b.constructor) {
-            return false;
-        }
-
         // si es un array(lista)
-        if (a.constructor === Array && b.constructor === Array) {
+        if (Array.isArray(a) && Array.isArray(b)) {
             //Si no tienen el mismo tamaño no pueden ser iguales
             if (a.length !== b.length) {
                 return false;
@@ -37,43 +32,52 @@
             }
             // Si no ha detectado diferencias son iguales
             return true;
-        }
-        // Suponiendo que es un string lo compara sin mas
-        else {
+        } else {
+            // Suponiendo que es un string lo compara sin mas
             return a === b;
         }
-    }
+    };
 
     //Calcula la interseccion de dos listas
-    function calculate_intersection(){
+    var calculate_intersection = function calculate_intersection(listA, listB) {
         var result = [];
-
+        //Si uno de ellos no es una lista no existe la interseccion
+        if (!Array.isArray(listA) || !Array.isArray(listB)) {
+            //MashupPlatform.operator.log("Input endpoint is not a list");
+            return result;
+        }
         //Solo calcula la interseccion si ambas listas contienen valores
-        if (list_A.length !== 0 && list_B.length !== 0){
-            list_A.forEach(function(a){
-                list_B.some(function(b){//Busca cada elemento de list_A en list_B hasta que uno sea igual
+        if (listA.length !== 0 && listB.length !== 0) {
+            listA.forEach(function (a) {
+                listB.some(function (b) {//Busca cada elemento de listA en listB hasta que uno sea igual
                     //Si el elemento coincide es parte de la interseccion
-                    if(checkEqual(a,b)){
+                    if (checkEqual(a, b)) {
                         result.push(a);
-                        return true // Deja de buscar
+                        return true; // Deja de buscar
                     }
-                    return false //Sigue buscando
+                    return false; //Sigue buscando
                 });
             });
         }
-        
-        //Envia la lista calculada
-        MashupPlatform.wiring.pushEvent("intersected-list", result);
-    }
+        return result;
+    };
 
     //Bindea los endpoints para recibir los valores
     MashupPlatform.wiring.registerCallback("list-A", function (list) {
         list_A = list;
-        calculate_intersection();
+        MashupPlatform.wiring.pushEvent("intersected-list", calculate_intersection(list_A));
     });
     MashupPlatform.wiring.registerCallback("list-B", function (list) {
         list_B = list;
-        calculate_intersection();
+        //Envia la lista calculada
+        MashupPlatform.wiring.pushEvent("intersected-list", calculate_intersection(list_B));
     });
+
+    /* test-code */
+    /* exports checkEqual */
+    window.checkEqual = checkEqual;
+    /* exports calculate_intersection */
+    window.calculate_intersection = calculate_intersection;
+    /* end-test-code */
 
 })();
