@@ -41,12 +41,12 @@
 
     //Sends events through the connected outputs
     var pushInfo = function pushInfo() {
-        if (MashupPlatform.operator.outputs['issue-list'].connected) {
-            requestIssues();
-        }
-        if (MashupPlatform.operator.outputs['commit-list'].connected) {
-            requestCommits();
-        }
+        //if (MashupPlatform.operator.outputs['issue-list'].connected) {
+        requestIssues();
+        //}
+        //if (MashupPlatform.operator.outputs['commit-list'].connected) {
+        requestCommits();
+        //}
     };
 
     var getProjectId = function getProjectId(projectName) {
