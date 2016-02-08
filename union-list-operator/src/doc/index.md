@@ -1,6 +1,6 @@
 ## Introduction
 
-This operator helps you calculate the union of two lists.
+This operator helps you calculate the union between two lists.
 
 ## Settings
 

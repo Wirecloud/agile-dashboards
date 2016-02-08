@@ -54,7 +54,7 @@ No settings needed for this operator to work.
 
 ### Output Endpoints
 
-- `Union List`: This endpoint provides a list containing the union of `List A` and `List B` items.
+- `Union List`: This endpoint provides a list containing the union between `List A` and `List B` items.
 
 ## Usage
 

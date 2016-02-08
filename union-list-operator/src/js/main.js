@@ -36,15 +36,15 @@
         }
     };
 
-    //Calcula la interseccion de dos listas
+    //Calcula la union de dos listas
     var calculate_union = function calculate_union(listA, listB) {
         var result = [];
-        //Si uno de ellos no es una lista no existe la interseccion
+        //Si uno de ellos no es una lista no existe la union
         if (!Array.isArray(listA) || !Array.isArray(listB)) {
             //MashupPlatform.operator.log("Input endpoint is not a list");
             return result;
         }
-        //Solo calcula la interseccion si ambas listas contienen valores
+        //Solo calcula la union si ambas listas contienen valores
         if (listA.length !== 0 && listB.length !== 0) {
             //Añade los elementos de la listA a la solucion
             result = result.concat(listA);
@@ -73,7 +73,7 @@
     /* test-code */
     /* exports checkEqual */
     window.checkEqual = checkEqual;
-    /* exports calculate_intersection */
+    /* exports calculate_union */
     window.calculate_union = calculate_union;
     /* end-test-code */
 
