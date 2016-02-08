@@ -36,6 +36,19 @@
             expect(checkEqual("1", "1")).toBe(true);
         });
 
+        //OBJECT COMPARISON
+        it("Same Object comparison", function () {
+            expect(checkEqual({a: "1", b: "2"}, {a: "1", b: "2"})).toBe(true);
+        });
+
+        it("Different Object comparison", function () {
+            expect(checkEqual({a: "1", b: "2"}, {a: "1", b: "3"})).toBe(false);
+        });
+
+        it("Different keys Object comparison", function () {
+            expect(checkEqual({a: "1", c:"2"}, {a: "1", b:"2"})).toBe(false);
+        });
+
         //LIST COMPARISON
         it("Basic List", function () {
             expect(checkEqual(["1"], ["1"])).toBe(true);
@@ -57,6 +70,8 @@
         it("Nested lists with different lenghts", function () {
             expect(checkEqual(["1","2",["1","2"]], ["1","2",["1"]] )).toBe(false);
         });
+
+
 
 
         //BASIC INTERSECT
