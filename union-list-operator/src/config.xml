@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNwet" name="union-list" version="">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNwet" name="union-list" version="0.1.8">
     <details>
         <title>Union List Operator</title>
-        <homepage></homepage>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
         <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
         <email>alex.rodriguez@conwet.com</email>
         <image></image>
