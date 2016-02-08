@@ -46,14 +46,15 @@
         }
         //Solo calcula la interseccion si ambas listas contienen valores
         if (listA.length !== 0 && listB.length !== 0) {
-            listA.forEach(function (a) {
+            //Añade los elementos de la listA a la solucion
+            result = result.concat(listA);
+
+            listB.forEach(function (b) {
                 //Busca cada elemento de listA en listB hasta que uno sea igual
-                if (listB.every(function (b) { return !checkEqual(a, b); })) {
-                    result.push(a);
+                if (listA.every(function (a) { return !checkEqual(a, b); })) {
+                    result.push(b);
                 }
             });
-            //Añade los elementos unicos de la listB que queden
-            result = result.concat(listB);
         }
         return result;
     };
