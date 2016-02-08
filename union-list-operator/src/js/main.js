@@ -12,24 +12,42 @@
     var list_A = [];
     var list_B = [];
 
+    //Comprueba si cosas son iguales recursivamente con busqueda por profundidad
     var checkEqual = function checkEqual(a, b) {
         /** a y b pueden ser arrays(lista), strings u objetos **/
+        //Si no son del mismo tipo no pueden ser iguales
+        if (a.constructor !== b.constructor) {
+            return false;
+        }
+        if (typeof a === "object" && typeof b === "object") {
 
-        // si es un array(lista)
-        if (Array.isArray(a) && Array.isArray(b)) {
-            //Si no tienen el mismo tamaño no pueden ser iguales
-            if (a.length !== b.length) {
-                return false;
-            }
-            //Comara uno a uno los elementos de la lista
-            var i;
-            for (i = 0; i < a.length; i++) {
-                if (!checkEqual(a[i], b[i])) { //Podrian ser a su vez una lista
+            // si es un array(lista)
+            if (a.constructor === Array && b.constructor === Array) {
+                //Si no tienen el mismo tamaño no pueden ser iguales
+                if (a.length !== b.length) {
                     return false;
                 }
+                //Compara uno a uno los elementos de la lista
+                var i;
+                for (i = 0; i < a.length; i++) {
+                    if (!checkEqual(a[i], b[i])) { //Podrian ser a su vez una lista
+                        return false;
+                    }
+                }
+                // Si no ha detectado diferencias son iguales
+                return true;
+            } else {
+                //Son un objeto pero no array
+                if (!checkEqual(Object.keys(a), Object.keys(b))) {
+                    return false;
+                }
+                for (var k in a) {
+                    if (!checkEqual(a[k], b[k])) {
+                        return false;
+                    }
+                }
+                return true;
             }
-            // Si no ha detectado diferencias son iguales
-            return true;
         } else {
             // Suponiendo que es un string lo compara sin mas
             return a === b;
