@@ -18,7 +18,7 @@
    <wiring>
         <inputendpoint name="list-A" label="List A" type="text" description="First list" friendcode="list" />
         <inputendpoint name="list-B" label="List B" type="text" description="Second list" friendcode="list" />
-        <outputendpoint name="intersected-list" label="Intersected List" type="text" description="This endpoint provides a list with the unique items between the &quot;List A&quot; and &quot;List B&quot;" friendcode="list" />
+        <outputendpoint name="union-list" label="Union List" type="text" description="This endpoint provides a list containing the union of &quot;List A&quot; and &quot;List B&quot; items" friendcode="list" />
     </wiring>
 
     <scripts>

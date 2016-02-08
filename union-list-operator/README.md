@@ -1,7 +1,8 @@
 Union List Operator operator
 ======================
 
-The Union List Operator operator is a WireCloud operator that provides ...
+The Union List Operator operator is a WireCloud operator that provides the ability to calculate the union between two lists.
+The input lists may have nested elements.
 
 Build
 -----
@@ -42,23 +43,22 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+No settings needed for this operator to work.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+- `List A`: List to be joined with List B`
+- `List B`: List to be joined with List A`
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+- `Union List`: This endpoint provides a list containing the union of `List A` and `List B` items.
 
 ## Usage
 
+When connected with two lists, calculates the union of both lists and pushes the result to the "Union List" endpoint.
 
 ## Reference
 
