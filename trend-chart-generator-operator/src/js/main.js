@@ -47,7 +47,12 @@
                     year: '%b'
                 },
                 title: {
-                    text: 'Date'
+                    text: timestamps.metadata.verbose || "Date"
+                }
+            },
+            yAxis: {
+                title: {
+                    text: values.metadata.verbose || "Values"
                 }
             },
             tooltip: {

@@ -32,6 +32,16 @@
             timestamp_list.push(build.timestamp);
         });
 
+        //Adds metadata
+        build_id_list.metadata = {type: "build", tag: "Build"};
+        duration_list.metadata = {type: "number", tag: "Duration", "verbose": "Build duration"};
+        changes_list.metadata = {type: "number", tag: "Changes", "verbose": "Build changes"};
+        cause_list.metadata = {type: "text", tag: "Cause"};
+        revision_list.metadata = {type: "revision", tag: "Revision"};
+        test_report_list.metadata = {type: "test_report", tag: "Test report"};
+        timestamp_list.metadata = {type: "timestamp", tag: "Date", verbose: "Build date"};
+
+
         MashupPlatform.wiring.pushEvent("build-id-list", build_id_list);
         MashupPlatform.wiring.pushEvent("duration-list", duration_list);
         MashupPlatform.wiring.pushEvent("changes-list", changes_list);
