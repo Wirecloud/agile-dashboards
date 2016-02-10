@@ -16,12 +16,16 @@
             Accept: "application/json"
         };
 
+
+
+    ///rest/api/2/search?jql=project="Your Project Key"
+
     var init = function init() {
         //On preferences update
         MashupPlatform.prefs.registerCallback(function (new_preferences) {
             //Updates de OAUTH token
             if ("oauth2-token" in new_preferences) {
-                requestHeaders.Authorization = MashupPlatform.prefs.get("oauth2-token");
+                //TODO
             }
 
             //Updates de jira instance URI
