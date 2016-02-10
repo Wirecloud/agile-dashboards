@@ -1,7 +1,9 @@
 SetDifference List Operator operator
 ======================
 
-The SetDifference List Operator operator is a WireCloud operator that provides ...
+The Intersect List operator is a WireCloud operator that provides the ability to calculate the difference of two lists
+
+The input lists may have nested lists.
 
 Build
 -----
@@ -42,22 +44,25 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+There are no preferences for this operator.
 
 ## Wiring
 
 
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
+"Original list": The base list.
+
+"List B": <list> The list to be removed form the "Original list".
 
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+"Intersected list": The result of removing "List B" components from "Original list".
 
 ## Usage
+
+When connected with two lists, calculates the intersection of both lists and pushes the result of the intersection to the "Intersected list" endpoint.
 
 
 ## Reference
