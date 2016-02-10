@@ -19,6 +19,9 @@
     <preferences>
         <preference name="jira-url" label="Jira server URL" type="text" default="https://jira.atlassian.com" />
         <preference name="issue-key" label="Jira issue key" type="text" default="JRA-9" />
+        
+        <preference name="username" label="Jira username" type="text" default="" />
+        <preference name="passwd" label="Jira Password" type="text" default="" />
         <preference name="oauth2-token" label="OAuth2 Token" type="text" default="" />
     </preferences>
 

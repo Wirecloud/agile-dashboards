@@ -16,6 +16,9 @@
             Accept: "application/json"
         };
 
+    var token;
+    var oauth2Token;
+
 
 
     ///rest/api/2/search?jql=project="Your Project Key"
@@ -23,12 +26,18 @@
     var init = function init() {
         //On preferences update
         MashupPlatform.prefs.registerCallback(function (new_preferences) {
-            //Updates de OAUTH token
+            //Updates the OAUTH token
             if ("oauth2-token" in new_preferences) {
                 //TODO
             }
 
-            //Updates de jira instance URI
+            //Updates the Login credentials
+            if ("username" in new_preferences || "passwd" in new_preferences) {
+                token = atob(MashupPlatform.prefs.get("username") + ":" + MashupPlatform.prefs.get("passwd"));
+                requestHeaders.Authentication = token;
+            }
+
+            //Updates the jira instance URI
             if ("jira-url" in new_preferences) {
                 baseURI = MashupPlatform.prefs.get("jira-url") + "/rest/api/latest/";
             }
@@ -48,7 +57,7 @@
 
     //Request all the issues of the project
     var requestIssue = function requestIssue () {
-        MashupPlatform.http.makeRequest (baseURI + "issue/" + projectID + , {
+        MashupPlatform.http.makeRequest (baseURI + "search?jql=project=" + projectID , {
             method: 'GET',
             supportsAccessControl: true,
             parameters: {
@@ -57,9 +66,8 @@
             },
             requestHeaders: requestHeaders,
             onSuccess: function (response) {
-                var issue = JSON.parse(response.responseText);
-
-                MashupPlatform.wiring.pushEvent("issue-list", issue);
+                var issues = JSON.parse(response.responseText);
+                MashupPlatform.wiring.pushEvent("issue-list", issues);
             }
         });
     };
