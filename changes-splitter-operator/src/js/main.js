@@ -18,7 +18,7 @@
         changes_list.forEach(function (changes) {
             commit_id_list.push(changes.map(function (change) {return change.commitId;}));
             author_list.push(changes.map(function (change) {return change.author.fullName;}));
-            comment_list.push(changes.map(function (change) {return change.author.comment;}));
+            comment_list.push(changes.map(function (change) {return change.comment;}));
             files.push(changes.map(function (change) {return change.paths.map(function (path) {return path.file;});}));
         });
 
