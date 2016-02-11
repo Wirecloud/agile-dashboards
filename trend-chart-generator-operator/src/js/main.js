@@ -10,23 +10,64 @@
 
     "use strict";
 
-    var timestamps = null;
-    var values = null;
+    var timestamps = null; // Chart timestamps (X axis)
+    var values = null; // Chart data series (Y axis)
+    var xAxisUnit;
+    var series = [];
 
-    var build_serie = function build_serie() {
+    //Creates a serie from a list of data
+    var build_serie = function build_serie(serie) {
+        //Check if somethings wrong
+        if (serie.length != timestamps.length) {
+            return;
+        }
+        //Create the serie
         var i, data = [];
         for (i = 0; i < timestamps.length; i++) {
-            data.push({x: timestamps[i], y: values[i]});
+            data.push({x: timestamps[i], y: serie[i]});
         }
         return data;
     };
 
-    var plot = function plot() {
-        var options, max;
+    //Creates all series
+    var build_series = function build_series() {
+        //Wipes current series
+        series = [];
 
-        if (values == null || timestamps == null || values.length != timestamps.length) {
+        //Check if theres data
+        if (values === null || values.length === 0 || timestamps == null || timestamps.length === 0) {
             return;
         }
+
+        if (!Array.isArray(values[0])) {
+            //Single series
+            series.push ({name: getMetadataVerbose(values), data: build_serie(values)});
+            xAxisUnit = getMetadataVerbose(values);
+        } else {
+            //Multiple series
+            values.forEach (function (serie) {
+                series.push({name: getMetadataVerbose(serie), data: build_serie(serie)});
+                xAxisUnit = getMetadataTag(serie);
+            });
+        }
+
+        //If theres data --> redraw
+        if (series.length > 0) {
+            plot();
+        }
+    };
+
+    //Gets the metadata, if any
+    var getMetadataTag = function getMetadataTag(o) {
+        return o.metadata ? o.metadata.tag || "values" : "values";
+    };
+    var getMetadataVerbose = function getMetadataMsg(o) {
+        return o.metadata ? getMetadataTag(o) : "values";
+    };
+
+    //Draws the chart
+    var plot = function plot() {
+        var options, max;
 
         options = {
             chart: {
@@ -36,7 +77,7 @@
                 text: MashupPlatform.prefs.get('title')
             },
             legend: {
-                enabled: false
+                enabled: series.length === 1 ? false : true //Enable legend if there are more than 1 series
             },
             xAxis: {
                 type: 'datetime',
@@ -47,12 +88,12 @@
                     year: '%b'
                 },
                 title: {
-                    text: timestamps.metadata.verbose || "Date"
+                    text: getMetadataVerbose(timestamps)
                 }
             },
             yAxis: {
                 title: {
-                    text: values.metadata.verbose || "Values"
+                    text: xAxisUnit
                 }
             },
             tooltip: {
@@ -69,10 +110,7 @@
                     }
                 }
             },
-            series: [{
-                name: MashupPlatform.prefs.get('serie_title'),
-                data: build_serie(values)
-            }]
+            series: series
         };
 
         max = MashupPlatform.prefs.get('max').trim();
@@ -82,14 +120,14 @@
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };
 
+    //Callback for the endpoints
     MashupPlatform.wiring.registerCallback("timestamps", function (data) {
         timestamps = data;
-        plot();
+        build_series();
     });
-
     MashupPlatform.wiring.registerCallback("data-serie", function (data) {
         values = data;
-        plot();
+        build_series();
     });
 
 })();
