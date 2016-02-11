@@ -62,7 +62,7 @@
         return o.metadata ? o.metadata.tag || "values" : "values";
     };
     var getMetadataVerbose = function getMetadataMsg(o) {
-        return o.metadata ? getMetadataTag(o) : "values";
+        return o.metadata ? o.metadata.verbose || getMetadataTag(o) : "values";
     };
 
     //Draws the chart
