@@ -1,7 +1,7 @@
 Packlist operator operator
 ======================
 
-The Packlist operator operator is a WireCloud operator that provides ...
+The Packlist operator operator is a WireCloud operator that packs items into a list or appends items to a packed list. 
 
 Build
 -----
@@ -42,22 +42,24 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+- No settings needed
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
+- `First input`: Anything.
+- `Second inout`: Anything.
 
+## Output Endpoints
 
-### Output Endpoints
-
-
-`Write here the output wiring endpoints`
+- `Intersected List`: This endpoint provides a list with the items of `Original List A` that match the ones of `Original List B`
 
 ## Usage
+
+This operator creates a list of elements. Those elements can be any type.
+
+This operator can be used to draw multiple series of data on a single chart, for example.
 
 
 ## Reference
