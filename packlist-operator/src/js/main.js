@@ -21,7 +21,7 @@
     var pack = function pack(itemA, itemB) {
         var result;
         //If theres not two inputs waits
-        if (itemA == null && itemB == null) {
+        if (itemA == null || itemB == null) {
             return;
         }
 
