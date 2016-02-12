@@ -1,3 +1,3 @@
-This operator allows you to [...]
+This operator removes the duplicated items on a list.
 
 ## References

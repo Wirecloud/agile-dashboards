@@ -1,7 +1,8 @@
-Remove Duplicates List Operator operator
+Remove Duplicates List Operator
 ======================
 
-The Remove Duplicates List Operator operator is a WireCloud operator that provides ...
+The Remove Duplicates List Operator operator is a WireCloud operator that provides the ability to remove any duplicated item of a list.
+This operator can use any kind of list.
 
 Build
 -----
@@ -42,23 +43,21 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+No settings needed for this operator to work
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+-`Original list`: The list whose duplicates are to be removed.
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+-`Output list`: The `Original list` with no duplicated items. 
 
 ## Usage
 
+Plug&play
 
 ## Reference
 
