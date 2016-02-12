@@ -77,16 +77,34 @@
     };
 
     var calculate = function calculate(operation) {
+        var result = [];
+
         //Check if both are lists
         if (Array.isArray(inputA) && Array.isArray(inputB)) {
-            var result = [];
             inputA.forEach(function (a, i) {
                 result.push(operation(a, inputB[i]));
             });
 
             return result;
         }
-        //If they are not arrays the result is just the assigned operation
+        //If one of the inputs is a list but the other is not, it applies the operation to all the list
+
+        //If inputA is an array but inputB is not
+        if (Array.isArray(inputA)) {
+            inputA.forEach(function (a) {
+                result.push(operation(a, inputB));
+            });
+            return result;
+        } else {
+            //If inputB is an array but inputA is not
+            if (Array.isArray(inputB)) {
+                inputB.forEach(function (b) {
+                    result.push(operation(b, inputA));
+                });
+                return result;
+            }
+        }
+
         return operation(inputA, inputB);
     };
 
