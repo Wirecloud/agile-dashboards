@@ -16,13 +16,13 @@
     </details>
 
     <wiring>
-        <inputendpoint name="input-a" label="Input A" description="First input" type="text" />
-        <inputendpoint name="input-b" label="Input B" description="Second input" type="text" />
+        <inputendpoint name="input-a" label="Input A" description="First input" type="text" friendcode="list number text"/>
+        <inputendpoint name="input-b" label="Input B" description="Second input" type="text" friendcode="list number text"/>
 
-        <outputendpoint name="addition" label="Addition" description="The addition of both inputs" type="text" />
-        <outputendpoint name="subtraction" label="Subtraction" description="The subtraction of both inputs" type="text" />
-        <outputendpoint name="multiplication" label="Multiplication" description="The multiplication of both inputs" type="text" />
-        <outputendpoint name="division" label="Division" description="The division of both inputs" type="text" />
+        <outputendpoint name="addition" label="Addition" description="The addition of both inputs" type="text" friendcode="list number text"/>
+        <outputendpoint name="subtraction" label="Subtraction" description="The subtraction of both inputs" type="text" friendcode="list number text"/>
+        <outputendpoint name="multiplication" label="Multiplication" description="The multiplication of both inputs" type="text" friendcode="list number text"/>
+        <outputendpoint name="division" label="Division" description="The division of both inputs" type="text" friendcode="list number text"/>
     </wiring>
 
     <scripts>
