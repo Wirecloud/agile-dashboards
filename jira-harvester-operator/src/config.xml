@@ -17,16 +17,17 @@
 
     
     <preferences>
-        <preference name="jira-url" label="Jira server URL" type="text" default="https://jira.atlassian.com" />
-        <preference name="issue-key" label="Jira issue key" type="text" default="JRA-9" />
-        
+        <preference name="jira-url" label="Jira server URL" type="text"/>
+        <preference name="project-key" label="Jira project key" type="text"/>
+        <preference name="rapid-view" label="Jira board id" description="rapidview id. This can be found on the url of the chosen Jira board." type="text" />
+
         <preference name="username" label="Jira username" type="text" default="" />
         <preference name="passwd" label="Jira Password" type="text" default="" />
         <preference name="oauth2-token" label="OAuth2 Token" type="text" default="" />
     </preferences>
 
     <wiring>
-        <outputendpoint name="jira-issue" label="Jira List" description="Data about the target Jira issue" type="text" friendcode="jira-issue" />
+        <outputendpoint name="jira-sprints" label="Jira Sprints" description="List of Jira sprints and their issues" type="text" friendcode="jira-sprint-list list" />
     </wiring>
 
     <scripts>
