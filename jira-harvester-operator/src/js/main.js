@@ -9,19 +9,21 @@
 (function () {
     "use strict";
 
-    var baseURI = "https://mognom.atlassian.net";
+    var baseURI = "http://jira.fiware.org";
 
     var requestHeaders = {
             Accept: "application/json",
             "Content-Type": "Application/json",
-            Authorization: "Basic YWRtaW46Y29udHJhc2VuYQ=="
+            Authorization: "Basic cmZlcm5hbmRlejpDMG53M3Rf"
         };
 
     var token;
     var oauth2Token;
 
-    var projectId = "TES";
+    var projectId = "APP";
     var rapidViewId = "1";
+
+    var component = "Wirecloud";
 
 
 
@@ -38,13 +40,13 @@
 
             //Updates the Login credentials
             if ("username" in new_preferences || "passwd" in new_preferences) {
-                token = atob(MashupPlatform.prefs.get("username") + ":" + MashupPlatform.prefs.get("passwd"));
-                requestHeaders.Authorization = token;
+                //token = atob(MashupPlatform.prefs.get("username") + ":" + MashupPlatform.prefs.get("passwd"));
+                //requestHeaders.Authorization = token;
             }
 
             //Updates the jira instance URI
             if ("jira-url" in new_preferences) {
-                baseURI = MashupPlatform.prefs.get("jira-url");
+                //baseURI = MashupPlatform.prefs.get("jira-url");
             }
 
             //Updates the target issue
@@ -63,10 +65,58 @@
     //Sends events through the connected outputs
     var pushInfo = function pushInfo() {
         //requestIssue();
-        requestSprints();
+        //requestSprints();
 
-        requestProjectIssues();
+        //requestComponentIssues();
+        requestProjectVersions();
     };
+
+    var requestProjectVersions = function requestProjectVersions() {
+        // http://jira.fiware.org/rest/api/2/project/APP/versions
+        MashupPlatform.http.makeRequest (baseURI +"/rest/api/2/project/" + projectId + "/versions", {
+            method: 'GET',
+            supportsAccessControl: false,
+            requestHeaders: requestHeaders,
+            onSuccess: function (response) {
+                var data = JSON.parse(response.responseText);
+
+                requestComponentIssues(data);
+            }
+        });        
+    };
+
+    var requestComponentIssues = function requestComponentIssues(versions) {
+        //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
+
+        MashupPlatform.http.makeRequest (baseURI +"/rest/api/latest/search?jql=component%3D" + component + "&maxResults=1000", {
+            method: 'GET',
+            supportsAccessControl: false,
+
+            requestHeaders: requestHeaders,
+            onSuccess: function (response) {
+                var data = JSON.parse(response.responseText);
+                var msg = {
+                    versions: versions,
+                    issues: data.issues
+                };
+                MashupPlatform.wiring.pushEvent("jira-issues", msg);
+            }
+        });
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Request all the issues of the project
     var requestProjectIssues = function requestProjectIssues () {
