@@ -64,10 +64,8 @@
 
     //Sends events through the connected outputs
     var pushInfo = function pushInfo() {
-        //requestIssue();
-        //requestSprints();
 
-        //requestComponentIssues();
+        //Gets version info and all component issues
         requestProjectVersions();
     };
 
@@ -95,113 +93,27 @@
             requestHeaders: requestHeaders,
             onSuccess: function (response) {
                 var data = JSON.parse(response.responseText);
+                
+                var msg = data.issues;
+                msg.versions = versions;
+
+                for (var i = 0; i < msg.length; i++) {
+                    // Makes version info consistent
+                    msg[i].version = "";
+                    if(msg[i].fixVersions[0]) {
+                        msg[i].version = msg[i].fixVersions[0].name;
+                    } else if (msg[i].versions[0]) {
+                        msg[i].version = msg[i].versions[0].name;
+                    }
+                }
+                /*
                 var msg = {
                     versions: versions,
                     issues: data.issues
                 };
+
+                */
                 MashupPlatform.wiring.pushEvent("jira-issues", msg);
-            }
-        });
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //Request all the issues of the project
-    var requestProjectIssues = function requestProjectIssues () {
-        MashupPlatform.http.makeRequest (baseURI +"/rest/api/latest/search?jql=project=" + projectId , {
-            method: 'GET',
-            supportsAccessControl: true,
-            parameters: {
-                state: 'all',
-                per_page: 100
-            }, 
-            requestHeaders: requestHeaders,
-            onSuccess: function (response) {
-                var issues = JSON.parse(response.responseText);
-                MashupPlatform.wiring.pushEvent("issue-list", issues);
-            }
-        });
-    };
-
-
-    // https://mognom.atlassian.net/rest/greenhopper/1.0/rapidview
-
-
-    // https://mognom.atlassian.net/rest/greenhopper/latest/sprintquery/\1\?includeHistoricSprints\=true\&includeFutureSprints\=true
-    // https://mognom.atlassian.net/rest/greenhopper/latest/rapid/charts/sprintreport\?rapidViewId\=1\&sprintId\=2
-
-    // https://mognom.atlassian.net/rest/api/2/search\?jql\=project=TES%20AND%20Sprint=1
-
-    // Resulting sprint list
-    var sprintList = [];
-    var aux = 0; // Count of remaining sprints to be harvested
-
-
-    //Gets all the sprints of the rapid view
-    var requestSprints = function requestSprints () {
-        sprintList = [];
-        MashupPlatform.http.makeRequest (baseURI + "/rest/greenhopper/latest/sprintquery/" + rapidViewId + "\?includeHistoricSprints\=true\&includeFutureSprints\=true" , { //lol
-            method: 'GET',
-            supportsAccessControl: false,
-            requestHeaders: requestHeaders,
-            onSuccess: function (response) {
-                var data = JSON.parse(response.responseText);
-                
-                aux = data.sprints.length;
-
-                data.sprints.forEach(function (sprint) {
-                    requestSprintDates(sprint.id);
-                });
-            }
-        });
-    };
-
-    // Gets the start and end date of the sprint + brief of the sprint's issues
-    var requestSprintDates = function requestSprintDates(sprintId) {
-        MashupPlatform.http.makeRequest (baseURI + "/rest/greenhopper/latest/rapid/charts/sprintreport\?rapidViewId\=" + rapidViewId + "\&sprintId\=" + sprintId , { //lol2
-            method: 'GET',
-            supportsAccessControl: false,
-            requestHeaders: requestHeaders,
-            onSuccess: function (response) {
-                var data = JSON.parse(response.responseText);                
-
-                requestSprintIssues(data.sprint, sprintId);
-            }
-        });
-    };
-
-    // Gets detailed information of the issues associated to the sprint and project
-    var requestSprintIssues = function requestSprintIssues(sprintData, sprintId) {
-        MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search\?jql\=project=" + projectId + "%20AND%20Sprint=" + sprintId, { //lol5
-            method: 'GET',
-            supportsAccessControl: false,
-            requestHeaders: requestHeaders,
-            onSuccess: function (response) {
-                var data = JSON.parse(response.responseText);
-                
-                var sprint = {
-                    sprint: sprintData,
-                    issues: data.issues
-                };
-
-                sprintList.push(sprint);
-
-                aux --;
-                if (aux === 0) {
-                    MashupPlatform.wiring.pushEvent("jira-sprints", sprintList);
-                }
             }
         });
     };
