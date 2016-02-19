@@ -99,20 +99,13 @@
 
                 for (var i = 0; i < msg.length; i++) {
                     // Makes version info consistent
-                    msg[i].version = "";
-                    if(msg[i].fixVersions[0]) {
-                        msg[i].version = msg[i].fixVersions[0].name;
-                    } else if (msg[i].versions[0]) {
-                        msg[i].version = msg[i].versions[0].name;
+                    msg[i].fields.version = "";
+                    if(msg[i].fields.fixVersions && msg[i].fields.fixVersions[0]) {
+                        msg[i].fields.version = msg[i].fields.fixVersions[0].name || ""; 
+                    } else if (msg[i].fields.versions && msg[i].fields.versions[0]) {
+                        msg[i].fields.version = msg[i].fields.versions[0].name || "";
                     }
                 }
-                /*
-                var msg = {
-                    versions: versions,
-                    issues: data.issues
-                };
-
-                */
                 MashupPlatform.wiring.pushEvent("jira-issues", msg);
             }
         });
