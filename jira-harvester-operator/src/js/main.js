@@ -101,11 +101,9 @@
                     msg[i].fields.version = {};
                     msg[i].fields.version.name = "";
                     if(msg[i].fields.fixVersions && msg[i].fields.fixVersions[0]) {
-                        msg[i].fields.version.name = msg[i].fields.fixVersions[0].name || ""; 
-                        msg[i].fields.version = msg[i].fields.fixVersions[0].name || "";
-                        msg[i].fields.version = msg[i].fields.fixVersions[0].name || "";
+                        msg[i].fields.version = msg[i].fields.fixVersions[0];
                     } else if (msg[i].fields.versions && msg[i].fields.versions[0]) {
-                        msg[i].fields.version.name = msg[i].fields.versions[0].name || "";
+                        msg[i].fields.version.name = msg[i].fields.versions[0];
                     }
 
                     //Add some metadata
