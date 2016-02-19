@@ -14,7 +14,11 @@
     var filters = [];
 
     var EQ_FILTER = function EQ_FILTER(attr, value, item) {
-        return item[attr] === value;
+        attr = attr.split(".");
+        for (var i = 0; i < attr.length; i++) {
+            item = item[attr[i]] ;
+        }
+        return item === value;
     };
 
     var IN_FILTER = function IN_FILTER(attr, values, item) {
@@ -54,6 +58,7 @@
             return;
         }
 
+        //Filter the list
         if (filters.length > 0) {
             original_list.forEach(function (item) {
                 if (filters.every(function (filter) {return filter(item);})) {
@@ -63,6 +68,9 @@
         } else {
             filtered = original_list.slice(0);
         }
+
+        //Save the metadata if any
+        filtered.metadata = original_list.metadata;
 
         MashupPlatform.wiring.pushEvent('filtered-list', filtered);
     };
