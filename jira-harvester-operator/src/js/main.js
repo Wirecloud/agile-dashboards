@@ -95,17 +95,27 @@
                 var data = JSON.parse(response.responseText);
                 
                 var msg = data.issues;
-                msg.versions = versions;
 
                 for (var i = 0; i < msg.length; i++) {
                     // Makes version info consistent
-                    msg[i].fields.version = "";
+                    msg[i].fields.version = {};
+                    msg[i].fields.version.name = "";
                     if(msg[i].fields.fixVersions && msg[i].fields.fixVersions[0]) {
-                        msg[i].fields.version = msg[i].fields.fixVersions[0].name || ""; 
+                        msg[i].fields.version.name = msg[i].fields.fixVersions[0].name || ""; 
+                        msg[i].fields.version = msg[i].fields.fixVersions[0].name || "";
+                        msg[i].fields.version = msg[i].fields.fixVersions[0].name || "";
                     } else if (msg[i].fields.versions && msg[i].fields.versions[0]) {
-                        msg[i].fields.version = msg[i].fields.versions[0].name || "";
+                        msg[i].fields.version.name = msg[i].fields.versions[0].name || "";
                     }
+
+                    //Add some metadata
+                    msg.metadata= {};
+                    msg.metadata.versions = versions; // :)
+                    msg.metadata.type = "list";
+                    msg.metadata.tag = "Issue";
+                    msg.metadata.verbose = "Jira issues";
                 }
+
                 MashupPlatform.wiring.pushEvent("jira-issues", msg);
             }
         });
