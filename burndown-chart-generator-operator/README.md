@@ -48,7 +48,7 @@ No preferences needed for this operator to work.
 
 ### Input Endpoints
 
--`Sprint`: The sprint you want to draw. 
+-`Jira Issues`: The issues associated to the sprint you want to draw
 
 ### Output Endpoints
 
@@ -56,7 +56,7 @@ No preferences needed for this operator to work.
 
 ## Usage
 
-Plug in a sprint harvested with the Jira Harvester operator to the `Sprint` endpoint, and then connect the output endpoint `Chart Data` to the Highcharts widget.
+Get a single sprint issues from the Jira harvester and the Jira issue filter and plug it into the Jira Issues endpoint. The connect the output to the Highcharts widget.
 
 ## Reference
 

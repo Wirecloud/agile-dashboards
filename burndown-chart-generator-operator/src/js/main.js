@@ -10,9 +10,6 @@
 
     "use strict";
 
-    var timestamps = null;
-    var values = null;
-
     var dayLength = 86400000;
 
     var sprint = null;
@@ -22,51 +19,46 @@
 
     var version = null;
 
-    var verId = null;
-
-
-
-
-
-    function calculateInterval(days, issuesCount) {
+    // Calculates the reference data series
+    var calculateInterval = function calculateInterval(days, issuesCount) {
         var serie = [];
 
-        var factor = issuesCount / (days.length -1);
+        var factor = issuesCount / (days.length - 1);
 
-        days.forEach(function(d, index) {
+        days.forEach(function (d, index) {
             serie.push([index, issuesCount - factor * index]);
         });
 
         return serie;
-    }
+    };
 
-    function calculateProgress(days, issues) {
+    // Calculates the data series of the actual progress made during the sprint
+    var calculateProgress = function calculateProgress(days, issues) {
         var serie = [];
         var total = issues.length;
         var count = 0;
         var today = new Date();
-        days.forEach(function(day, index) {
-            if(day > today) {
+        days.forEach(function (day, index) {
+            //There cant be any issues completed in the future
+            if (day > today) {
                 return;
             }
 
+            for (var i = 0; i < issues.length; i++) {
 
-            for (var i = 0; i < issues.length; i++){
-
-                if (day >= Date.parse(issues[i].fields.resolutiondate) - dayLength +1 ) {
+                if (day >= Date.parse(issues[i].fields.resolutiondate) - dayLength + 1) {
                     count++;
-                    issues.splice(i, 1);
+                    issues.splice(i, 1); //Removes it
                     i--;
                 }
             }
-            
             serie.push([index, total - count]);
         });
         return serie;
-    }
+    };
 
     // Get the timestamps of each day of the sprint
-    function getDays(start, end) {
+    var getDays = function getDays(start, end) {
         var result = [];
         var aux = start;
         result.push(aux);
@@ -75,18 +67,17 @@
             result.push(aux);
         }
         return result;
-    }
+    };
 
 
 
     var plot = function plot() {
 
         //Check if there's missing data
-        if(endDate === null || sprint === null) {
+        if (endDate === null || sprint === null) {
             return;
         }
-        
-
+        //Calculates the day interval of the sprint
         var days = getDays(Date.parse(startDate), Date.parse(endDate));
 
         if (sprint == null) {
@@ -118,21 +109,21 @@
 
     var cleanPlot = function cleanPlot() {
         var options = {};
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));  
+        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };
 
     MashupPlatform.wiring.registerCallback("issues", function (data) {
         sprint = data;
         version = null;
 
-        if(sprint.length === 0) {
+        if (sprint.length === 0) {
             cleanPlot();
             return;
         }
 
         version = sprint[0].fields.version.name;
 
-        data.metadata.versions.forEach( function(ver) {
+        data.metadata.versions.forEach(function (ver) {
             if (ver.name === version) {
                 startDate = ver.startDate;
                 endDate = ver.releaseDate;
