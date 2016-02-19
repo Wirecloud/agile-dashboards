@@ -26,13 +26,13 @@
         if (issues === null || versions === null) {
             return;
         }
-        
         versionSelector();
         assigneeSelector();
         statusSelector();
 
     };
 
+    //Adds all the selectors to the view and sets their default content
     var buildSelectors = function buildSelectors() {
         var title;
         // Version select
@@ -55,21 +55,20 @@
     };
 
 
-    //Adds the version selector to the widget
+    //Fill the selector with data
     var versionSelector = function versionSelector() {
-        
         // Adds an entry for each version
         var entries = [];
         entries.push({label: 'Any version', value: ''});
         versions.forEach(function (version) {
-            entries.push({label: version.name, value: version.name });
+            entries.push({label: version.name, value: version.name});
         });
 
         versionSelect.clear();
         versionSelect.addEntries(entries);
     };
 
-
+    //Fill the selector with data
     var assigneeSelector = function assigneeSelector() {
         // Adds an entry for each assignee
         var entries = [];
@@ -77,9 +76,9 @@
 
         entries.push({label: 'Any assignee', value: ''});
         issues.forEach(function (issue) {
-            if(issue.fields.assignee && !found[issue.fields.assignee.name] ) {
+            if (issue.fields.assignee && !found[issue.fields.assignee.name]) {
                 found[issue.fields.assignee.name] = true;
-                entries.push({label: issue.fields.assignee.displayName, value: issue.fields.assignee.name });
+                entries.push({label: issue.fields.assignee.displayName, value: issue.fields.assignee.name});
             }
         });
 
@@ -88,6 +87,7 @@
         assigneeSelect.addEntries(entries);
     };
 
+    //Fill the selector with data
     var statusSelector = function statusSelector() {
         // Adds an entry for each status
         var entries = [];
@@ -96,9 +96,9 @@
         entries.push({label: 'Any status', value: ''});
         issues.forEach(function (issue) {
             //Only add to the filter new statuses
-            if(!found[issue.fields.status.id]) {
+            if (!found[issue.fields.status.id]) {
                 found[issue.fields.status.id] = true;
-                entries.push({label: issue.fields.status.name, value: issue.fields.status.id });
+                entries.push({label: issue.fields.status.name, value: issue.fields.status.id});
             }
         });
 
