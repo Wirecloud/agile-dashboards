@@ -1,7 +1,7 @@
 Jira filter conditions widget
 ======================
 
-The Jira filter conditions widget is a WireCloud widget that provides ...
+The Jira filter conditions widget is a WireCloud widget that provides the ability to filter the issues harvested with the Jira harvester operator.
 
 Build
 -----
@@ -43,23 +43,21 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+No settings needed.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+-`Jira issues`: The list of issues to be filtered.
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+-`Filter conditions`:The filter conditions to be passed to the `and-filter-operator`.
 
 ## Usage
 
+Select the conditions you want to apply to the list of Jira issues.
 
 ## Reference
 

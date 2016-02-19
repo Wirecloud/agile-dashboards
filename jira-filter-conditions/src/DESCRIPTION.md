@@ -1,3 +1,3 @@
-This widget allows you to [...]
+Sets the filter conditions for Jira issues.
 
 ## References
