@@ -1,7 +1,7 @@
 Jira harvester operator operator
 ======================
 
-The Jira harvester operator operator is a WireCloud operator that provides ...
+This operator allows you to harvest Jira issue data.
 
 Build
 -----
@@ -42,23 +42,19 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+-`Jira server URL`: The Jira instance URI.
+-`Jira project key`: The key of the Jira project.
+-`Jira project component`:  The name of the component.
+-`Jira username`: Your Jira username.
+-`Jira password`: Your Jira password.
 
 ## Wiring
 
-
 ### Input Endpoints
-
-`Write here the input wiring endpoints`
-
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
-
-## Usage
-
+-`Jira Issues`: A list of Jira issues associated to the target component.
 
 ## Reference
 
