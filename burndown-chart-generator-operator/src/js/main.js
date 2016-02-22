@@ -34,27 +34,31 @@
 
     // Calculates the data series of the actual progress made during the sprint
     var calculateProgress = function calculateProgress(days, issues) {
-        var serie = [];
+        var progress = [];
+        var closed = [];
         var total = issues.length;
         var count = 0;
+        var dailyCount = 0;
         var today = new Date();
         days.forEach(function (day, index) {
             //There cant be any issues completed in the future
             if (day > today) {
                 return;
             }
-
+            dailyCount = 0;
             for (var i = 0; i < issues.length; i++) {
 
                 if (day >= Date.parse(issues[i].fields.resolutiondate) - dayLength + 1) {
-                    count++;
+                    dailyCount ++;
                     issues.splice(i, 1); //Removes it
                     i--;
                 }
             }
-            serie.push([index, total - count]);
+            count += dailyCount;
+            progress.push([index, total - count]);
+            closed.push([index, dailyCount]);
         });
-        return serie;
+        return {progress: progress,closed: closed};
     };
 
     // Get the timestamps of each day of the sprint
@@ -84,6 +88,10 @@
             return;
         }
 
+        var aux = calculateProgress(days, sprint);
+        var progressSeries = aux.progress;
+        var closedSeries = aux.closed;
+
         var options;
         options = {
 
@@ -100,8 +108,14 @@
                 name: "Reference"
             },
             {
-                data: calculateProgress(days, sprint),
+                type: 'spline',
+                data: progressSeries,
                 name: "Actual"
+            },
+            {
+                type: 'column',
+                data: closedSeries,
+                name: "Closed"
             }]
         };
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
