@@ -101,6 +101,14 @@
                     msg.metadata.type = "list";
                     msg.metadata.tag = "Issue";
                     msg.metadata.verbose = "Jira issues";
+
+                    //Reliability chart compatibility
+                    msg.forEach(function (issue){
+                        if(issue.fields.assignee) {
+                            issue.assignee = issue.fields.assignee.name;
+                        }
+                        issue.state = issue.fields.status.name.toLowerCase();
+                    });
                 }
 
                 //Pushes the list of issues
