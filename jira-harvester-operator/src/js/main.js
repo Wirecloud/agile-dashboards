@@ -39,7 +39,7 @@
 
         //Updates the Login credentials
         token = btoa(MashupPlatform.prefs.get("username") + ":" + MashupPlatform.prefs.get("passwd"));
-        requestHeaders.Authorization = token;
+        requestHeaders.Authorization = "Basic " + token;
 
         //Updates the jira instance URI
         baseURI = MashupPlatform.prefs.get("jira-url");
