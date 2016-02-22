@@ -22,7 +22,6 @@
     // Calculates the reference data series
     var calculateInterval = function calculateInterval(days, issuesCount) {
         var serie = [];
-
         var factor = issuesCount / (days.length - 1);
 
         days.forEach(function (d, index) {
@@ -49,7 +48,7 @@
             for (var i = 0; i < issues.length; i++) {
 
                 if (day >= Date.parse(issues[i].fields.resolutiondate) - dayLength + 1) {
-                    dailyCount ++;
+                    dailyCount++;
                     issues.splice(i, 1); //Removes it
                     i--;
                 }
@@ -58,7 +57,7 @@
             progress.push([index, total - count]);
             closed.push([index, dailyCount]);
         });
-        return {progress: progress,closed: closed};
+        return {progress: progress, closed: closed};
     };
 
     // Get the timestamps of each day of the sprint
@@ -88,7 +87,7 @@
             return;
         }
 
-        var aux = calculateProgress(days, sprint);
+        var aux = calculateProgress(days, sprint.slice(0));
         var progressSeries = aux.progress;
         var closedSeries = aux.closed;
 
@@ -103,6 +102,19 @@
                 text: version
             },
 
+            xAxis: {
+                tickInterval:1,
+                title: {
+                    text: "Days"
+                }
+            },
+
+            yAxis: {
+                title: {
+                    text: "Issues"
+                }
+            },
+
             series: [{
                 data: calculateInterval(days, sprint.length),
                 name: "Reference"
@@ -115,7 +127,10 @@
             {
                 type: 'column',
                 data: closedSeries,
-                name: "Closed"
+                name: "Closed",
+                dataLabels: {
+                    enabled: true
+                }
             }]
         };
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
@@ -129,7 +144,6 @@
     MashupPlatform.wiring.registerCallback("issues", function (data) {
         sprint = data;
         version = null;
-
         if (sprint.length === 0) {
             cleanPlot();
             return;
