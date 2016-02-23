@@ -92,9 +92,11 @@
         var closedSeries = aux.closed;
 
         var options;
+
         options = {
 
             tooltip: {
+                pointFormat: '{series.name}: <b>{point.y:.1f}</b><br/>',
                 shared: true
             },
 
@@ -103,7 +105,7 @@
             },
 
             xAxis: {
-                tickInterval:1,
+                tickInterval: 1,
                 title: {
                     text: "Days"
                 }
@@ -115,15 +117,7 @@
                 }
             },
 
-            series: [{
-                data: calculateInterval(days, sprint.length),
-                name: "Reference"
-            },
-            {
-                type: 'spline',
-                data: progressSeries,
-                name: "Actual"
-            },
+            series: [
             {
                 type: 'column',
                 data: closedSeries,
@@ -131,7 +125,18 @@
                 dataLabels: {
                     enabled: true
                 }
-            }]
+            },
+            {
+
+                data: calculateInterval(days, sprint.length),
+                name: "Reference"
+            },
+            {
+                type: 'spline',
+                data: progressSeries,
+                name: "Actual"
+            }
+            ]
         };
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };
