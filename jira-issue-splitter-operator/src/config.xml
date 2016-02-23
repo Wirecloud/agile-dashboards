@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="jira-issue-splitter" version="0.1.8">
+    <details>
+        <title>Jira Issue Splitter</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Splitter for Jira issues.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <wiring>
+        <inputendpoint name="issue-list" type="text" label="Jira issue list" friendcode="jira-issue-list list"/>
+
+        <outputendpoint name="status-list" type="text" label="Issue status list" friendcode="jira-status-list list"/>
+        <outputendpoint name="priority-list" type="text" label="Issue priority list" friendcode="jria-priority-list list"/>
+        <outputendpoint name="assignee-list" type="text" label="Issue assignee list" friendcode="jira-assignee-list list"/>
+        <outputendpoint name="type-list" type="text" label="Issue type list" friendcode="jira-type-list list"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
