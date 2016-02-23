@@ -1,7 +1,7 @@
 Jira Issue Splitter operator
 ======================
 
-The Jira Issue Splitter operator is a WireCloud operator that provides ...
+The Jira Issue Splitter operator is a WireCloud operator that provides the ability to split Jira issue data.
 
 Build
 -----
@@ -40,25 +40,23 @@ grunt
 
 If everything goes well, you will find a wgt file in the `dist` folder.
 
-## Settings
-
-`Write here the preferences`
-
 ## Wiring
-
 
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+-`Jira issue list`: A Jira issue list. Can be obtained with the Jira Harvester Operator.
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+-`Issue status list`: A list of the Jira statuses the issues had.
+-`Issue priority list`: A list of the Jira priorities the issues had.
+-`Issue assignee list`: A list of the assignees the issues had.
+-`Issue type list`: A list of the Jira types the issues had.
 
 ## Usage
 
+Plug in a list of Jira issues, which can be obtained with the `Jira Harvester Operator` and filtered with the `Jira Issue Filter` and `And Filter 
+Operator`.
 
 ## Reference
 
