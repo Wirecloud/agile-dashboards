@@ -1,7 +1,7 @@
 Pie Chart Generator operator
 ======================
 
-The Pie Chart Generator operator is a WireCloud operator that provides ...
+The Pie Chart Generator operator is a WireCloud operator that provides the ability to draw pie charts.
 
 Build
 -----
@@ -42,23 +42,22 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+-`Chart Title`: The title for the chart.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+-`Number Data Serie`: A data series made of numeric values. 
+-`Label Data Serie`: A data series made of labels.
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+-`Chart Data Model`: The chart data model to be passed to the Highcharts widget.
 
 ## Usage
 
+Plug in one of the inputs (`Label Data Serie` takes preference) and plug the output to the Highcharts widget.
 
 ## Reference
 
