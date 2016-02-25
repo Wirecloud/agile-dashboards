@@ -103,9 +103,9 @@
                     msg.metadata.verbose = "Jira issues";
                     //filter metadata
                     var filters = [];
-                    filters.push({property: "version.name", display: "version.name"});
-                    filters.push({property: "issue.fields.assignee.name", display: "issue.fields.assignee.displayName"});
-                    filters.push({property: "issue.fields.status.name", display: "issue.fields.status.id"});
+                    filters.push({property: "metadata.version.name", display: "metadata.version.name"});
+                    filters.push({property: "fields.assignee.name", display: "fields.assignee.displayName"});
+                    filters.push({property: "fields.status.name", display: "fields.status.id"});
                     msg.metadata.filters = filters;
 
                     //Reliability chart compatibility
