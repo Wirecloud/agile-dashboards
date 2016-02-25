@@ -94,28 +94,29 @@
                     } else if (msg[i].fields.versions && msg[i].fields.versions[0]) {
                         msg[i].fields.version = msg[i].fields.versions[0];
                     }
-
-                    //Add some metadata
-                    msg.metadata = {};
-                    msg.metadata.versions = versions; // :)
-                    msg.metadata.type = "list";
-                    msg.metadata.tag = "Issue";
-                    msg.metadata.verbose = "Jira issues";
-                    //filter metadata
-                    var filters = [];
-                    filters.push({property: "metadata.version.name", display: "metadata.version.name"});
-                    filters.push({property: "fields.assignee.name", display: "fields.assignee.displayName"});
-                    filters.push({property: "fields.status.name", display: "fields.status.id"});
-                    msg.metadata.filters = filters;
-
-                    //Reliability chart compatibility
-                    msg.forEach(function (issue){
-                        if(issue.fields.assignee) {
-                            issue.assignee = issue.fields.assignee.name;
-                        }
-                        issue.state = issue.fields.status.name.toLowerCase();
-                    });
                 }
+
+                //Add some metadata
+                msg.metadata = {};
+                msg.metadata.versions = versions; // :)
+                msg.metadata.type = "list";
+                msg.metadata.tag = "Issue";
+                msg.metadata.verbose = "Jira issues";
+                //filter metadata
+                var filters = [];
+                filters.push({name: "Sprints", property: "metadata.version.name", display: "metadata.version.name"});
+                filters.push({name: "Assignee", property: "fields.assignee.name", display: "fields.assignee.displayName"});
+                filters.push({name: "Status", property: "fields.status.name", display: "fields.status.id"});
+                msg.metadata.filters = filters;
+
+                //Reliability chart compatibility
+                msg.forEach(function (issue){
+                    if(issue.fields.assignee) {
+                        issue.assignee = issue.fields.assignee.name;
+                    }
+                    issue.state = issue.fields.status.name.toLowerCase();
+                });
+                
 
                 //Pushes the list of issues
                 MashupPlatform.wiring.pushEvent("jira-issues", msg);
