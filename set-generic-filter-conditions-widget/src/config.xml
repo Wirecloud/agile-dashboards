@@ -1,0 +1,35 @@
+</operator>
+    <?xml version='1.0' encoding='UTF-8'?>
+    <widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="set-generic-filter-conditions" version="0.1.8">
+    <details>
+        <title>Generic Filter Conditions</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodriguez</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Filter data</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+    <requirements>
+            <feature name="StyledElements"/>
+        </requirements>
+
+        <wiring>
+            <inputendpoint name="input" label="Build Filter" type="text" friendcode="build-condition-list condition-list" />
+            <outputendpoint name="output-filter" label="Issue Filter" type="text" friendcode="issue-condition-list condition-list" />
+        </wiring>
+
+        <scripts>
+            <script src="js/main.js"/>
+        </scripts>
+
+        <contents src="index.html" useplatformstyle="true"/>
+        <rendering height="300px" width="400px"/>
+    <contents src="index.html"/>
+    <rendering height="47" width="10"/>
+</widget>
