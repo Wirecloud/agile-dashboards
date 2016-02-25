@@ -1,4 +1,3 @@
-
 /*
  * set-generic-filter-conditions-widget
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
@@ -6,6 +5,9 @@
  * Copyright (c) 2016 CoNWet
  * Licensed under the MIT license.
  */
+ 
+/* global StyledElements */
+
 
 (function () {
 
@@ -49,6 +51,7 @@
 
     };
 
+    //Get nested property of an object
     var getProperty = function getProperty (item, attr) {
         attr = attr.split(".");
         for (var i = 0; i < attr.length; i++) {
@@ -74,15 +77,11 @@
                 found[prop] = true;
                 entries.push({label: prop, value: prop});
             }
-            //found[issue.fields.assignee.name] = true;
-            //entries.push({label: issue.fields.assignee.displayName, value: issue.fields.assignee.name});
         });
 
         select.addEntries(entries);
         select.addEventListener("change", sendEvents.bind(this));
-        //versionSelect.addEventListener('change', sendEvents.bind(this));
-        //versionSelect.insertInto(document.body);
-        
+
         //Add the selector to the view
         div.appendChild(title);
         div.appendChild(select);
