@@ -101,6 +101,12 @@
                     msg.metadata.type = "list";
                     msg.metadata.tag = "Issue";
                     msg.metadata.verbose = "Jira issues";
+                    //filter metadata
+                    var filters = [];
+                    filters.push({property: "version.name", display: "version.name"});
+                    filters.push({property: "issue.fields.assignee.name", display: "issue.fields.assignee.displayName"});
+                    filters.push({property: "issue.fields.status.name", display: "issue.fields.status.id"});
+                    msg.metadata.filters = filters;
 
                     //Reliability chart compatibility
                     msg.forEach(function (issue){
