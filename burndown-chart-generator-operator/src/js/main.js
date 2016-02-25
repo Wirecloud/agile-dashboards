@@ -178,4 +178,6 @@
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };
 
+    //Init the operator
+    init();
 })();
