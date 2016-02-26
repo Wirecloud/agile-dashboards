@@ -37,6 +37,7 @@
         dict.forEach(function (filter) {
             createSelector(filter);
         });
+        sendEvents();
     };
 
     //Removes current selectors
