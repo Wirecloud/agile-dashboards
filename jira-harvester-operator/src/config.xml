@@ -27,7 +27,7 @@
     </preferences>
 
     <wiring>
-        <outputendpoint name="jira-issues" label="Jira Issues" description="List of Jira sprints and their issues" type="text" friendcode="jira-sprint-list list" />
+        <outputendpoint name="jira-issues" label="Jira Issues" description="List of Jira sprints and their issues" type="text" friendcode="jira-sprint-list list generic-filter" />
     </wiring>
 
     <scripts>
