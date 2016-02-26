@@ -71,7 +71,7 @@
         var entries = [];
 
         //Check if the data to be filtered
-        var dataSet = filter.base ? data.getProperty(filter.base) : data;
+        var dataSet = filter.base ? getProperty(data, filter.base) : data;
 
         entries.push({label: 'All', value: ''});
         dataSet.forEach( function (item) {
