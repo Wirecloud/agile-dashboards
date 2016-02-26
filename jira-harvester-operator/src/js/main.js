@@ -104,20 +104,18 @@
                 msg.metadata.verbose = "Jira issues";
                 //filter metadata
                 var filters = [];
-                filters.push({name: "Sprints", property: "metadata.version.name", display: "metadata.version.name"});
+                filters.push({name: "Sprints", property: "fields.version.id", display: "fields.version.name"});
                 filters.push({name: "Assignee", property: "fields.assignee.name", display: "fields.assignee.displayName"});
                 filters.push({name: "Status", property: "fields.status.name", display: "fields.status.id"});
                 msg.metadata.filters = filters;
 
                 //Reliability chart compatibility
-                msg.forEach(function (issue){
-                    if(issue.fields.assignee) {
+                msg.forEach(function (issue) {
+                    if (issue.fields.assignee) {
                         issue.assignee = issue.fields.assignee.name;
                     }
                     issue.state = issue.fields.status.name.toLowerCase();
                 });
-                
-
                 //Pushes the list of issues
                 MashupPlatform.wiring.pushEvent("jira-issues", msg);
             }
