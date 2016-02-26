@@ -70,12 +70,16 @@
         var found = [];
         var entries = [];
 
+        //Check if the data to be filtered
+        var dataSet = filter.base ? data.getProperty(filter.base) : data;
+
         entries.push({label: 'All', value: ''});
-        data.forEach( function (item) {
-            var prop = getProperty(item, filter.property);
-            if (!found[prop]) {
-                found[prop] = true;
-                entries.push({label: prop, value: prop});
+        dataSet.forEach( function (item) {
+            var property = getProperty(item, filter.property);
+            var display = getProperty(item, filter.display);
+            if (!found[property]) {
+                found[property] = true;
+                entries.push({label: display, value: property});
             }
         });
 
@@ -83,8 +87,10 @@
         select.addEventListener("change", sendEvents.bind(this));
 
         //Add the selector to the view
-        div.appendChild(title);
-        div.appendChild(select);
+        title.insertInto(div);
+        select.insertInto(div);
+        //div.appendChild(title);
+        //div.appendChild(select);
         body.appendChild(div);
 
         //Save the new selector
