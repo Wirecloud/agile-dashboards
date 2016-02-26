@@ -1,7 +1,7 @@
 Generic Filter Conditions widget
 ======================
 
-The Generic Filter Conditions widget is a WireCloud widget that provides ...
+The Generic Filter Conditions widget is a WireCloud widget that provides the ability to choose the filters to be applied to the input data by the `And Filter Operator`
 
 Build
 -----
@@ -43,23 +43,23 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+No settings needed for this operator to work.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+-`Input data`: The source data to be filtered. Must be compatible.
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+-`Filter conditions`: The filter conditions to be passed to and filter.
 
 ## Usage
 
+After giving as input a compatible data source, you can select the filters you want from the workspace view.
+
+The output should be connected to the `And Filter Operator`.
 
 ## Reference
 

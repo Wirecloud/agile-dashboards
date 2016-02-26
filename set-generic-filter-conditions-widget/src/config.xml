@@ -20,8 +20,8 @@
     </requirements>
     
     <wiring>
-        <inputendpoint name="input" label="Jira issues" type="text"/>
-        <outputendpoint name="filter-conditions" label="Filter conditions" type="text"/>
+        <inputendpoint name="input" label="Input data" type="text" friendcode="generic-filter"/>
+        <outputendpoint name="filter-conditions" label="Filter conditions" type="text" friendcode="condition-list"/>
     </wiring>
 
 
