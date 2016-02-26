@@ -1,11 +1,9 @@
 /*
  * set-generic-filter-conditions-widget
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
- *
  * Copyright (c) 2016 CoNWet
  * Licensed under the MIT license.
  */
- 
 /* global StyledElements */
 
 
@@ -25,11 +23,11 @@
 
     var calculateFilters = function calculateFilters () {
         //Wait for data
-        if(data === null) {
+        if (data === null) {
             return;
         }
         //Check if data has filter info
-        if(!data.metadata || !data.metadata.filters || data.metadata.filters.length <= 0) {
+        if (!data.metadata || !data.metadata.filters || data.metadata.filters.length <= 0) {
             return; //No filters available
         }
         //Clear previous filters
@@ -74,7 +72,7 @@
         var dataSet = filter.base ? getProperty(data, filter.base) : data;
 
         entries.push({label: 'All', value: ''});
-        dataSet.forEach( function (item) {
+        dataSet.forEach(function (item) {
             var property = getProperty(item, filter.property);
             var display = getProperty(item, filter.display);
             if (!found[property]) {
@@ -89,16 +87,25 @@
         //Add the selector to the view
         title.insertInto(div);
         select.insertInto(div);
-        //div.appendChild(title);
-        //div.appendChild(select);
         body.appendChild(div);
 
         //Save the new selector
+        select.attr = filter.compare || filter.property; //Save where to compare the info for later building the filter
         selectors.push(select);
     };
 
+    //Build the filters from the selected data and push it
     var sendEvents = function sendEvents() {
 
+        var filters = [];
+        selectors.forEach(function (selector) {
+            var val = selector.getValue();
+            if (val !== '') {
+                filters.push({type: "eq", value: val, attr: selector.attr});
+            }
+        });
+
+        MashupPlatform.wiring.pushEvent('filter-conditions', filters);
     };
 
     //Init the widget
