@@ -29,7 +29,7 @@
             return;
         }
         //Check if data has filter info
-        if(!data.metadata || data.metadata.filters || data.metadata.filters.length > 0) {
+        if(!data.metadata || !data.metadata.filters || data.metadata.filters.length <= 0) {
             return; //No filters available
         }
         //Clear previous filters
