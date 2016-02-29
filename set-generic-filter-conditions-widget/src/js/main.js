@@ -54,6 +54,9 @@
     var getProperty = function getProperty (item, attr) {
         attr = attr.split(".");
         for (var i = 0; i < attr.length; i++) {
+            if (!item[attr[i]]) {
+                return null;
+            }
             item = item[attr[i]] ;
         }
         return item;
@@ -76,6 +79,9 @@
         dataSet.forEach(function (item) {
             var property = getProperty(item, filter.property);
             var display = getProperty(item, filter.display);
+            if (!property || !display) {
+                return;
+            }
             if (!found[property]) {
                 found[property] = true;
                 entries.push({label: display, value: property});
