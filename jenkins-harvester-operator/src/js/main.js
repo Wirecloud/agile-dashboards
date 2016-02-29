@@ -38,12 +38,15 @@
                             revision = build.actions[j].lastBuiltRevision.SHA1;
                         }
                     }
+                    var monthFilter = new Date(build.timestamp);
+                    monthFilter = monthFilter.getMonth() + " - " + monthFilter.getFullYear();
 
                     build_info.push({
                         id: build.id,
                         result: build.result,
                         duration: build.duration || 0,
                         timestamp: build.timestamp,
+                        month: monthFilter,
                         revision: revision,
                         user: user,
                         changes: build.changeSet.items,
@@ -52,6 +55,19 @@
                 }
 
                 build_info.sort(function (a, b) {return a.timestamp - b.timestamp;});
+
+                //Add some metadata
+                build_info.metadata = {};
+                build_info.metadata.type = "list";
+                build_info.metadata.tag = "Builds";
+                build_info.metadata.verbose = "Jenkins builds";
+                //filter metadata
+                var filters = [];
+                filters.push({name: "Date", property: "month", display: "month"});
+                filters.push({name: "User", property: "user", display: "user"});
+                filters.push({name: "Result", property: "result", display: "result"});
+                build_info.metadata.filters = filters;
+
                 MashupPlatform.wiring.pushEvent("build-list", build_info);
             }
         });
