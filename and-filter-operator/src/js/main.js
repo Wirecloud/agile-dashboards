@@ -16,7 +16,11 @@
     var EQ_FILTER = function EQ_FILTER(attr, value, item) {
         attr = attr.split(".");
         for (var i = 0; i < attr.length; i++) {
-            item = item[attr[i]] ;
+            if (!item[attr[i]]) {
+                return false;
+            }
+            item = item[attr[i]];
+
         }
         return item === value;
     };
