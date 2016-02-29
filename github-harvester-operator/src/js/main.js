@@ -42,6 +42,19 @@
                             issue.milestone = issue.milestone.title;
                         }
                     });
+
+                    //Add some metadata
+                    issues.metadata = {};
+                    issues.metadata.type = "list";
+                    issues.metadata.tag = "Issue";
+                    issues.metadata.verbose = "Github issues";
+                    //filter metadata
+                    var filters = [];
+                    filters.push({name: "Milestone", property: "milestone", display: "milestone"});
+                    filters.push({name: "Assignee", property: "assignee", display: "assignee"});
+                    filters.push({name: "Status", property: "state", display: "state"});
+                    issues.metadata.filters = filters;
+
                     MashupPlatform.wiring.pushEvent("issue-list", issues);
                 }
             });
@@ -57,7 +70,20 @@
                 },
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
-                    MashupPlatform.wiring.pushEvent("commit-list", JSON.parse(response.responseText));
+                    var commits = JSON.parse(response.responseText);
+
+                    //Add some metadata
+                    commits.metadata = {};
+                    commits.metadata.type = "list";
+                    commits.metadata.tag = "Commit";
+                    commits.metadata.verbose = "Github commits";
+                    //filter metadata
+                    var filters = [];
+                    filters.push({name: "Author", property: "commit.author.name", display: "commit.author.name"});
+                    commits.metadata.filters = filters;
+
+
+                    MashupPlatform.wiring.pushEvent("commit-list", commits);
                 }
             });
         }
