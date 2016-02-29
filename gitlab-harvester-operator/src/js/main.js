@@ -16,27 +16,23 @@
         };
 
     var init = function init() {
-        //On preferences update
-        MashupPlatform.prefs.registerCallback(function (new_preferences) {
-            //Updates de AUTH tokens
-            if ("private-token" in new_preferences) {
-                requestHeaders["PRIVATE-TOKEN"] = MashupPlatform.prefs.get("private-token");
-            }
-            if ("oauth2-token" in new_preferences) {
-                requestHeaders.Authorization = MashupPlatform.prefs.get("oauth2-token");
-            }
+        //Register callbacks
+        MashupPlatform.prefs.registerCallback(newPreferences);
+        MashupPlatform.wiring.registerStatusCallback(pushInfo);
+        newPreferences();
+    };
 
-            //Updates de gitlab instance URI
-            if ("gitlab-url" in new_preferences) {
-                baseURI = MashupPlatform.prefs.get("gitlab-url") + "/api/v3";
-            }
+    var newPreferences = function newPreferences () {
+        //Updates de AUTH tokens
+        requestHeaders["PRIVATE-TOKEN"] = MashupPlatform.prefs.get("private-token");
+        requestHeaders.Authorization = MashupPlatform.prefs.get("oauth2-token");
 
-            //Updates the target project
-            if ("project-name" in new_preferences) {
-                getProjectId(MashupPlatform.prefs.get("project-name"));
-            }
-            pushInfo();
-        });
+        //Updates de gitlab instance URI
+        baseURI = MashupPlatform.prefs.get("gitlab-url") + "/api/v3";
+
+        //Updates the target project
+        getProjectId(MashupPlatform.prefs.get("project-name"));
+        pushInfo();
     };
 
     //Sends events through the connected outputs
