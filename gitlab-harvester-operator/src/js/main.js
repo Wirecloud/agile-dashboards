@@ -12,7 +12,7 @@
     var projectID = "101";
 
     var requestHeaders = {
-            Accept: "application/vnd.github.v3.html+json"
+            Accept: "application/json"
         };
 
     var init = function init() {
