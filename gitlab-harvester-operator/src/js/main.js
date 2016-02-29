@@ -101,8 +101,8 @@
                 issues.metadata.verbose = "Gitlab issues";
                 //filter metadata
                 var filters = [];
-                filters.push({name: "Milestone", property: "milestone.title", display: "milestone.title"});
-                filters.push({name: "Assignee", property: "assignee.username", display: "assignee.name"});
+                filters.push({name: "Milestone", property: "milestone", display: "milestone"});
+                filters.push({name: "Assignee", property: "assignee", display: "assignee"});
                 filters.push({name: "Status", property: "state", display: "state"});
                 issues.metadata.filters = filters;
 
@@ -121,7 +121,20 @@
             },
             requestHeaders: requestHeaders,
             onSuccess: function (response) {
-                MashupPlatform.wiring.pushEvent("commit-list", JSON.parse(response.responseText));
+                var commits = JSON.parse(response.responseText);
+
+                //Add some metadata
+                commits.metadata = {};
+                commits.metadata.type = "list";
+                commits.metadata.tag = "Commits";
+                commits.metadata.verbose = "Gitlab commits";
+                //filter metadata
+                var filters = [];
+                filters.push({name: "Author", property: "author_name", display: "author_name"});
+                commits.metadata.filters = filters;
+
+
+                MashupPlatform.wiring.pushEvent("commit-list", commits);
             }
         });
     };
