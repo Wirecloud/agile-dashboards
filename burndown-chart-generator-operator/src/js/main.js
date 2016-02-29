@@ -49,7 +49,7 @@
         var factor = issuesCount / (days.length - 1);
 
         days.forEach(function (d, index) {
-            serie.push([index, issuesCount - factor * index]);
+            serie.push([index + 1, issuesCount - factor * index]);
         });
 
         return serie;
@@ -78,8 +78,8 @@
                 }
             }
             count += dailyCount;
-            progress.push([index, total - count]);
-            closed.push([index, dailyCount]);
+            progress.push([index + 1, total - count]);
+            closed.push([index + 1, dailyCount]);
         });
         return {progress: progress, closed: closed};
     };
