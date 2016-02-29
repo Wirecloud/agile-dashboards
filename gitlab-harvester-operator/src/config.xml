@@ -24,8 +24,8 @@
     </preferences>
 
     <wiring>
-        <outputendpoint name="issue-list" label="Issue List" description="Issues associated to the project" type="text" friendcode="issue-list list" />
-        <outputendpoint name="commit-list" label="Commit List" description="Commits associated to the project" type="text" friendcode="commit-list list" />
+        <outputendpoint name="issue-list" label="Issue List" description="Issues associated to the project" type="text" friendcode="issue-list list generic-filter" />
+        <outputendpoint name="commit-list" label="Commit List" description="Commits associated to the project" type="text" friendcode="commit-list list generic-filter" />
     </wiring>
 
     <scripts>

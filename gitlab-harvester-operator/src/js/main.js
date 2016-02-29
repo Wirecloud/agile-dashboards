@@ -94,6 +94,18 @@
                     }
                 });
 
+                //Add some metadata
+                issues.metadata = {};
+                issues.metadata.type = "list";
+                issues.metadata.tag = "Issues";
+                issues.metadata.verbose = "Gitlab issues";
+                //filter metadata
+                var filters = [];
+                filters.push({name: "Milestone", property: "milestone.title", display: "milestone.title"});
+                filters.push({name: "Assignee", property: "assignee.username", display: "assignee.name"});
+                filters.push({name: "Status", property: "state", display: "state"});
+                issues.metadata.filters = filters;
+
                 MashupPlatform.wiring.pushEvent("issue-list", issues);
             }
         });
