@@ -96,7 +96,7 @@
                 msg.metadata.verbose = "Jira issues";
                 //Add filter configuration
                 var filters = [];
-                filters.push({name: "Sprints", base: "metadata.versions", property: "id", display: "name", compare: "fields.version.id"});
+                filters.push({name: "Sprints", base: "metadata.versions", property: "id", display: "name", compare: "fields.version.id", type: "some"});
                 filters.push({name: "Assignee", property: "assigneeId", display: "assignee"});
                 filters.push({name: "Status", property: "status", display: "status"});
                 msg.metadata.filters = filters;
