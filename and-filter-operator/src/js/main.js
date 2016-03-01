@@ -34,6 +34,20 @@
         return value >= start && value <= end;
     };
 
+    var SOME_FILTER = function SOME_FILTER(attr, value, item) {
+        attr = attr.split(".");
+        for (var i = 0; i < attr.length; i++) {
+            if (!item[attr[i]]) {
+                return false;
+            }
+            item = item[attr[i]];
+        }
+
+        return item.some(function (i) {
+            return i === value;
+        });
+    };
+
     var build_filters = function build_filters(filters) {
         var filter_funcs = [];
 
@@ -44,6 +58,9 @@
                 break;
             case "range":
                 filter_funcs.push(RANGE_FILTER.bind(null, filters[i].attr, filters[i].start, filters[i].end));
+                break;
+            case "some":
+                filter_funcs.push(SOME_FILTER.bind(null, filters[i].attr, filters[i].value));
                 break;
             default:
             case "eq":
