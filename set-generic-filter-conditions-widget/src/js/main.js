@@ -97,7 +97,7 @@
         body.appendChild(div);
 
         //Save the new selector
-        select.attr = filter.compare || filter.property; //Save where to compare the info for later building the filter
+        select.attr = filter; //Save where to compare the info for later building the filter
         selectors.push(select);
     };
 
@@ -108,7 +108,7 @@
         selectors.forEach(function (selector) {
             var val = selector.getValue();
             if (val !== '') {
-                filters.push({type: "eq", value: val, attr: selector.attr});
+                filters.push({type: selector.attr.type || "eq", value: val, attr: selector.attr.compare || selector.attr.property});
             }
         });
 
