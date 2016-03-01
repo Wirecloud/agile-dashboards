@@ -94,22 +94,13 @@
                 msg.metadata.type = "list";
                 msg.metadata.tag = "Issue";
                 msg.metadata.verbose = "Jira issues";
-                //filter metadata
+                //Add filter configuration
                 var filters = [];
                 filters.push({name: "Sprints", base: "metadata.versions", property: "id", display: "name", compare: "fields.version.id"});
-                filters.push({name: "Assignee", property: "fields.assignee.name", display: "fields.assignee.displayName"});
-                filters.push({name: "Status", property: "fields.status.id", display: "fields.status.name"});
+                filters.push({name: "Assignee", property: "assigneeId", display: "assignee"});
+                filters.push({name: "Status", property: "status", display: "status"});
                 msg.metadata.filters = filters;
 
-                //Reliability chart compatibility
-                /*
-                msg.forEach(function (issue) {
-                    if (issue.fields.assignee) {
-                        issue.assignee = issue.fields.assignee.name;
-                    }
-                    issue.state = issue.fields.status.name.toLowerCase();
-                });
-                */
                 //Pushes the list of issues
                 MashupPlatform.wiring.pushEvent("jira-issues", msg);
             }
@@ -161,8 +152,6 @@
 
         //Farm versions and append them.
         result.versions = result.versions.concat(findOlderVersions(issue));
-
-        //RESOLUTION(DATE) CREATED DUEDATE?? VERSION(SPRINT)
 
         return result;
     };
