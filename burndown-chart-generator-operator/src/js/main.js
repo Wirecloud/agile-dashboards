@@ -26,7 +26,11 @@
             }
 
             //Check that all issues are from the same sprint/release
-            version = sprint[0].fields.version.name;
+            var possibleVersions = sprint.versions.splice(0);
+
+            version = sprint[0].versions[0];
+
+
             if (!checkOneSprint()) {
                 cleanPlot("All input issues must be from the same sprint");
                 return;
@@ -71,7 +75,7 @@
             dailyCount = 0;
             for (var i = 0; i < issues.length; i++) {
 
-                if (day >= Date.parse(issues[i].fields.resolutiondate) - DAY_LENGTH + 1) {
+                if (day >= Date.parse(issues[i].resolutiondate) - DAY_LENGTH + 1) {
                     dailyCount++;
                     issues.splice(i, 1); //Removes it
                     i--;
@@ -84,9 +88,12 @@
         return {progress: progress, closed: closed};
     };
 
+    //all the issues are part of the target sprint
     var checkOneSprint = function checkOneSprint() {
         return sprint.every(function (issue) {
-            return issue.fields.version.name === version;
+            return issue.versions.some(function (ver) {
+                return ver === version;
+            });
         });
     };
 
