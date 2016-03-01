@@ -14,7 +14,8 @@
     var requestHeaders = {
             Accept: "application/json",
             "Content-Type": "Application/json",
-            Authorization: "Basic cmZlcm5hbmRlejpDMG53M3Rf"
+            Authorization: "Basic cmZlcm5hbmRlejpDMG53M3Rf",
+            
         };
 
     var token;
@@ -77,24 +78,15 @@
     var requestComponentIssues = function requestComponentIssues(versions) {
         //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
 
-        MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?jql=component%3D" + component + "&maxResults=1000", {
+        MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?jql=component%3D" + component + "&maxResults=1000&expand=changelog", {
             method: 'GET',
             supportsAccessControl: false,
 
             requestHeaders: requestHeaders,
             onSuccess: function (response) {
                 var data = JSON.parse(response.responseText);
-                var msg = data.issues;
-                for (var i = 0; i < msg.length; i++) {
-                    // Makes version info consistent
-                    msg[i].fields.version = {};
-                    msg[i].fields.version.name = "";
-                    if (msg[i].fields.fixVersions && msg[i].fields.fixVersions[0]) {
-                        msg[i].fields.version = msg[i].fields.fixVersions[0];
-                    } else if (msg[i].fields.versions && msg[i].fields.versions[0]) {
-                        msg[i].fields.version = msg[i].fields.versions[0];
-                    }
-                }
+                
+                var msg = normalizeData(data.issues);
 
                 //Add some metadata
                 msg.metadata = {};
@@ -110,16 +102,92 @@
                 msg.metadata.filters = filters;
 
                 //Reliability chart compatibility
+                /*
                 msg.forEach(function (issue) {
                     if (issue.fields.assignee) {
                         issue.assignee = issue.fields.assignee.name;
                     }
                     issue.state = issue.fields.status.name.toLowerCase();
                 });
+                */
                 //Pushes the list of issues
                 MashupPlatform.wiring.pushEvent("jira-issues", msg);
             }
         });
+    };
+
+    //Gives Jira's issues a standar issue format common to all harvester's issues
+    var normalizeData = function normalizeData (data) {
+        var result = [];
+
+        for(var i = 0; i < data.length; i++) {
+            result.push(normalizeIssue(data[i]));
+        }
+
+        return result;
+    };
+
+    //Removes useless response JSON data
+    var normalizeIssue = function normalizeIssue (issue) {
+        var result = {};
+
+        result.type = issue.fields.issuetype.name || "";
+        
+        result.jira = {};
+        result.jira.components = issue.fields.components;
+        result.jira.projectName = issue.fields.name;
+        result.jira.projectKey = issue.fields.key;
+        result.jira.priority = issue.fields.priority ? issue.fields.priority.name : null;
+
+        result.creatorId = issue.fields.creator.name;
+        result.creator = issue.fields.creator.displayName;
+        result.assigneeId = issue.fields.assignee.name;
+        result.assignee = issue.fields.assignee.displayName;
+
+        result.status = issue.fields.status.name;
+
+        result.creationDate = issue.fields.created;
+        result.creationTimestamp = Date.parse(issue.fields.created) || null; 
+
+        result.resolutionDate = issue.fields.resolutiondate || null;
+        result.resolutionTimestamp = Date.parse(issue.fields.resolutiondate) || null;
+
+        result.versions = [];
+        if (issue.fields.fixVersions && issue.fields.fixVersions[0]) {
+            result.versions.push(issue.fields.fixVersions[0].name);
+        } else if (issue.fields.versions && issue.fields.versions[0]) {
+            result.versions.push(issue.fields.versions[0].name);
+        }
+
+        //Farm versions and append them.
+        result.versions = result.versions.concat(findOlderVersions(issue));
+
+        //RESOLUTION(DATE) CREATED DUEDATE?? VERSION(SPRINT)
+
+        return result;
+    };
+
+    var findOlderVersions = function findOlderVersions(issue) {
+        var result = [];
+        
+        //If there are no changes there cant be any older versions
+        if (!issue.changelog || issue.changelog.histories.length <= 0) {
+            return result; 
+        }
+
+        //Look through all the changes for any kind of version change
+        var changes = issue.changelog.histories;
+        changes.forEach(function (change) {
+            var items = change.items;
+            items.forEach(function (item) {
+                //Check if the version change
+                if ((item.field === "Fix Version" || item.field === "Version") && item.fromString) {
+                    result.push(item.fromString); 
+                }
+            });
+        });
+
+        return result;
     };
 
     init();
