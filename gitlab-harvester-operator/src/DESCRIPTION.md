@@ -1,0 +1,1 @@
+The Gitlab Harvester Operator provides a list with all the issues and a list with all the commits of a Gitlab project.

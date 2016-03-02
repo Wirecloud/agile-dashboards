@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Conwet" name="gitlab-harvester" version="0.1.8">
+    <details>
+        <title>Gitlab Harvester Operator</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Gitlab harvester</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="gitlab-url" label="Gitlab URL" type="text" default="https://repo.conwet.fi.upm.es" />
+        <preference name="project-name" label="Gitlab project name" type="text" default="agile-dashboards" />
+
+        <preference name="private-token" label="Private Token" type="text" default="" />
+        <preference name="oauth2-token" label="OAuth2 Token" type="text" default="" />
+    </preferences>
+
+    <wiring>
+        <outputendpoint name="issue-list" label="Issue List" description="Issues associated to the project" type="text" friendcode="issue-list list generic-filter" />
+        <outputendpoint name="commit-list" label="Commit List" description="Commits associated to the project" type="text" friendcode="commit-list list generic-filter" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
