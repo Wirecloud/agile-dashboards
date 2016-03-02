@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Conwet" name="setDifference-list" version="0.1.8">
+    <details>
+        <title>SetDifference List Operator</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Calculates the difference between two input lists.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <wiring>
+        <inputendpoint name="list-A" label="Original list" type="text" description="Input list" friendcode="list" />
+        <inputendpoint name="list-B" label="List B" type="text" description="Second list" friendcode="list" />
+        <outputendpoint name="complement-list" label="Complement List" type="text" description="This endpoint provides a list with the items of &quot;Original List&quot; after removing the items of &quot;List B&quot; from it" friendcode="list" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
