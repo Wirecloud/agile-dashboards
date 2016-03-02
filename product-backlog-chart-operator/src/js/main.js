@@ -29,8 +29,8 @@
 
         data.forEach(function (issue) {
             //Creation count
-            if (issue.fields.created) {
-                date = issue.fields.created.substring(0,7);
+            if (issue.creationDate) {
+                date = issue.creationDate.substring(0, 7);
                 if (created[date]) {
                     created[date] += 1;
                 } else {
@@ -38,8 +38,8 @@
                 }
             }
             //Resolved count
-            if (issue.fields.resolutiondate) {
-                date = issue.fields.resolutiondate.substring(0,7);
+            if (issue.resolutionDate) {
+                date = issue.resolutionDate.substring(0, 7);
                 if (resolved[date]) {
                     resolved[date] += 1;
                 } else {
@@ -47,8 +47,8 @@
                 }
             }
             //Updated count
-            if (issue.fields.updated) {
-                date = issue.fields.updated.substring(0,7);
+            if (issue.updatedDate) {
+                date = issue.updatedDate.substring(0, 7);
                 if (updated[date]) {
                     updated[date] += 1;
                 } else {
@@ -91,7 +91,6 @@
         //Splits dates on year and month
         var x = a.split("-");
         var y = b.split("-");
-        
         //Compares the year
         var result = x[0] - y[0];
 
@@ -106,8 +105,8 @@
     //Removes duplicate elements of an array
     var removeDuplicates = function removeDuplicates(array) {
         var a = array.concat();
-        for(var i=0; i<a.length; ++i) {
-            for(var j=i+1; j<a.length; ++j) {
+        for (var i = 0; i < a.length; ++i) {
+            for (var j = i + 1; j < a.length; ++j) {
                 if (a[i] === a[j]) {
                     a.splice(j--, 1);
                 }
@@ -119,7 +118,7 @@
 
     var plot = function plot() {
         //Wait for data
-        if(data === null) {
+        if (data === null) {
             return;
         }
         var options;
@@ -142,9 +141,7 @@
 
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };
-
     init();
-    
     /* test-code */
 
     /* end-test-code */
