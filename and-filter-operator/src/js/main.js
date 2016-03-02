@@ -12,6 +12,7 @@
 
     var original_list = null;
     var filters = [];
+    var appliedFilters = {};
 
     var EQ_FILTER = function EQ_FILTER(attr, value, item) {
         attr = attr.split(".");
@@ -52,6 +53,7 @@
         var filter_funcs = [];
 
         for (var i = 0; i < filters.length; i++) {
+            appliedFilters[filters[i].name] = filters[i].value || "";
             switch (filters[i].type) {
             case "in":
                 filter_funcs.push(IN_FILTER.bind(null, filters[i].attr, filters[i].values));
@@ -93,13 +95,8 @@
         //Save the metadata if any
         filtered.metadata = original_list.metadata;
 
-        //Add filtered metadata
-        filtered.metadata.filtered = {};
-        filters.forEach(function (filter) {
-            if (filter.name) {
-                filtered.metadata.filtered[filter.name] = filter.value || "";
-            }
-        });
+        //Add appliedFilters metadata
+        filtered.metadata.filtered = appliedFilters;
 
 
         MashupPlatform.wiring.pushEvent('filtered-list', filtered);
@@ -112,6 +109,7 @@
 
     MashupPlatform.wiring.registerCallback("condition-list", function (_filters) {
         filters = build_filters(_filters);
+        appliedFilters = {};
         filter();
     });
 
