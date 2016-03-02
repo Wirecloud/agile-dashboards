@@ -14,8 +14,7 @@
     var requestHeaders = {
             Accept: "application/json",
             "Content-Type": "Application/json",
-            Authorization: "Basic cmZlcm5hbmRlejpDMG53M3Rf",
-            
+            Authorization: "Basic cmZlcm5hbmRlejpDMG53M3Rf"
         };
 
     var token;
@@ -85,7 +84,6 @@
             requestHeaders: requestHeaders,
             onSuccess: function (response) {
                 var data = JSON.parse(response.responseText);
-                
                 var msg = normalizeData(data.issues);
 
                 //Add some metadata
@@ -111,7 +109,7 @@
     var normalizeData = function normalizeData (data) {
         var result = [];
 
-        for(var i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             result.push(normalizeIssue(data[i]));
         }
 
@@ -123,7 +121,6 @@
         var result = {};
 
         result.type = issue.fields.issuetype.name || "";
-        
         result.jira = {};
         result.jira.components = issue.fields.components;
         result.jira.projectName = issue.fields.name;
@@ -137,11 +134,15 @@
 
         result.status = issue.fields.status.name;
 
+        //Harvest event dates
         result.creationDate = issue.fields.created;
-        result.creationTimestamp = Date.parse(issue.fields.created) || null; 
+        result.creationTimestamp = Date.parse(issue.fields.created) || null;
 
         result.resolutionDate = issue.fields.resolutiondate || null;
         result.resolutionTimestamp = Date.parse(issue.fields.resolutiondate) || null;
+
+        result.updatedDate = issue.fields.updated || null;
+        result.updatedTimestamp = Date.parse(issue.fields.updated) || null;
 
         result.versions = [];
         if (issue.fields.fixVersions && issue.fields.fixVersions[0]) {
@@ -158,10 +159,9 @@
 
     var findOlderVersions = function findOlderVersions(issue) {
         var result = [];
-        
         //If there are no changes there cant be any older versions
         if (!issue.changelog || issue.changelog.histories.length <= 0) {
-            return result; 
+            return result;
         }
 
         //Look through all the changes for any kind of version change
@@ -171,7 +171,7 @@
             items.forEach(function (item) {
                 //Check if the version change
                 if ((item.field === "Fix Version" || item.field === "Version") && item.fromString) {
-                    result.push(item.fromString); 
+                    result.push(item.fromString);
                 }
             });
         });
