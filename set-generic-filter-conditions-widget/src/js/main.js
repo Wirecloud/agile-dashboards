@@ -108,7 +108,7 @@
         selectors.forEach(function (selector) {
             var val = selector.getValue();
             if (val !== '') {
-                filters.push({type: selector.attr.type || "eq", value: val, attr: selector.attr.compare || selector.attr.property});
+                filters.push({type: selector.attr.type || "eq", value: val, attr: selector.attr.compare || selector.attr.property, name: selector.attr.name});
             }
         });
 
