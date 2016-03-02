@@ -102,7 +102,7 @@
                 };
             }
 
-            if (issue.state === 'closed') {
+            if (issue.status.toLowerCase() === 'closed') {
                 data[issue.assignee].done += 1;
             } else {
                 data[issue.assignee].failed += 1;
