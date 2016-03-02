@@ -1,0 +1,1 @@
+This operator helps you intersect two arbitrary list
