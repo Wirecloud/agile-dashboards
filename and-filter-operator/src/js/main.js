@@ -12,9 +12,18 @@
 
     var original_list = null;
     var filters = [];
+    var appliedFilters = {};
 
     var EQ_FILTER = function EQ_FILTER(attr, value, item) {
-        return item[attr] === value;
+        attr = attr.split(".");
+        for (var i = 0; i < attr.length; i++) {
+            if (!item[attr[i]]) {
+                return false;
+            }
+            item = item[attr[i]];
+
+        }
+        return item === value;
     };
 
     var IN_FILTER = function IN_FILTER(attr, values, item) {
@@ -26,16 +35,34 @@
         return value >= start && value <= end;
     };
 
+    var SOME_FILTER = function SOME_FILTER(attr, value, item) {
+        attr = attr.split(".");
+        for (var i = 0; i < attr.length; i++) {
+            if (!item[attr[i]]) {
+                return false;
+            }
+            item = item[attr[i]];
+        }
+
+        return item.some(function (i) {
+            return i === value;
+        });
+    };
+
     var build_filters = function build_filters(filters) {
         var filter_funcs = [];
 
         for (var i = 0; i < filters.length; i++) {
+            appliedFilters[filters[i].name] = filters[i].value || "";
             switch (filters[i].type) {
             case "in":
                 filter_funcs.push(IN_FILTER.bind(null, filters[i].attr, filters[i].values));
                 break;
             case "range":
                 filter_funcs.push(RANGE_FILTER.bind(null, filters[i].attr, filters[i].start, filters[i].end));
+                break;
+            case "some":
+                filter_funcs.push(SOME_FILTER.bind(null, filters[i].attr, filters[i].value));
                 break;
             default:
             case "eq":
@@ -54,6 +81,7 @@
             return;
         }
 
+        //Filter the list
         if (filters.length > 0) {
             original_list.forEach(function (item) {
                 if (filters.every(function (filter) {return filter(item);})) {
@@ -64,6 +92,13 @@
             filtered = original_list.slice(0);
         }
 
+        //Save the metadata if any
+        filtered.metadata = original_list.metadata;
+
+        //Add appliedFilters metadata
+        filtered.metadata.filtered = appliedFilters;
+
+
         MashupPlatform.wiring.pushEvent('filtered-list', filtered);
     };
 
@@ -73,6 +108,7 @@
     });
 
     MashupPlatform.wiring.registerCallback("condition-list", function (_filters) {
+        appliedFilters = {};
         filters = build_filters(_filters);
         filter();
     });
