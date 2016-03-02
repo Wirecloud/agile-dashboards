@@ -42,7 +42,7 @@
             data.metadata.versions.forEach(function (ver) {
                 if (ver.name === version) {
                     startDate = ver.startDate;
-                    endDate = ver.releaseDate;
+                    endDate = ver.endDate;
                 }
             });
 
