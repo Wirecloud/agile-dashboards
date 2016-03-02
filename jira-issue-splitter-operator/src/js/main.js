@@ -31,12 +31,12 @@
 
         //Splits the data
         data.forEach(function (issue) {
-            statusList.push(issue.state);
-            if (issue.fields.priority) {
-                priorityList.push(issue.fields.priority.name);
+            statusList.push(issue.status);
+            if (issue.jira.priority) {
+                priorityList.push(issue.jira.priority);
             }
             assigneeList.push(issue.assignee);
-            typeList.push(issue.fields.issuetype.name);
+            typeList.push(issue.type);
         });
         pushInfo();
     };
