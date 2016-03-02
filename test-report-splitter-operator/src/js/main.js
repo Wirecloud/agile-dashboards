@@ -21,9 +21,14 @@
             skip_count_list.push(test_report.skipCount);
         });
 
+        //Adds metadata
+        fail_count_list.metadata = {type: "number", tag: "test", verbose: "Failed tests"};
+        pass_count_list.metadata = {type: "number", tag: "test", verbose: "Passed tests"};
+        skip_count_list.metadata = {type: "number", tag: "test", verbose: "Skipped tests"};
+
+        //Push the splitted lists
         MashupPlatform.wiring.pushEvent("fail-count-list", fail_count_list);
         MashupPlatform.wiring.pushEvent("pass-count-list", pass_count_list);
         MashupPlatform.wiring.pushEvent("skip-count-list", skip_count_list);
     });
-
 })();
