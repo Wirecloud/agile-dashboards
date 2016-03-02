@@ -10,6 +10,8 @@
 
     "use strict";
 
+    var milestones = [];
+
     var request_github_info = function request_github_info() {
 
         var requestHeaders = {
@@ -32,27 +34,23 @@
                 },
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
-                    var issues = JSON.parse(response.responseText);
-                    issues.forEach(function (issue) {
-                        issue.closed_at = Date.parse(issue.closed_at);
-                        if (issue.assignee != null) {
-                            issue.assignee = issue.assignee.login;
-                        }
-                        if (issue.milestone != null) {
-                            issue.milestone = issue.milestone.title;
-                        }
-                    });
+                    milestones = [];
+                    var issues = normalizeData(JSON.parse(response.responseText));
+
+                    //Calculate the sprints
+                    guessMilestonesBeginDate ();
 
                     //Add some metadata
                     issues.metadata = {};
+                    issues.metadata.versions = milestones;
                     issues.metadata.type = "list";
                     issues.metadata.tag = "Issue";
                     issues.metadata.verbose = "Github issues";
                     //filter metadata
                     var filters = [];
-                    filters.push({name: "Milestone", property: "milestone", display: "milestone"});
+                    filters.push({name: "Sprints", base: "metadata.versions", property: "name", display: "name", compare: "versions", type: "some"});
                     filters.push({name: "Assignee", property: "assignee", display: "assignee"});
-                    filters.push({name: "Status", property: "state", display: "state"});
+                    filters.push({name: "Status", property: "status", display: "status"});
                     issues.metadata.filters = filters;
 
                     MashupPlatform.wiring.pushEvent("issue-list", issues);
@@ -87,6 +85,104 @@
                 }
             });
         }
+    };
+
+    var normalizeData = function normalizeData (data) {
+        var result = [];
+
+        for (var i = 0; i < data.length; i++) {
+            result.push(normalizeIssue(data[i]));
+        }
+
+        return result;
+    };
+
+    //Removes useless response JSON data and gives normalized format
+    var normalizeIssue = function normalizeIssue (issue) {
+        var result = {};
+
+        result.type = null;
+
+        //User data
+        if (issue.user) {
+            result.creatorId = issue.user.login;
+            result.creator = issue.user.login;
+        }
+        if (issue.assignee) {
+            result.assigneeId = issue.assignee.login;
+            result.assignee = issue.assignee.login;
+        }
+        //Status of the issue (closed / open / etc)
+        result.status = issue.state;
+
+        //Harvest event dates
+        result.creationDate = issue.created_at;
+        result.creationTimestamp = Date.parse(issue.created_at) || null;
+
+        result.resolutionDate = issue.closed_at || null;
+        result.resolutionTimestamp = Date.parse(issue.closed_at) || null;
+
+        result.updatedDate = issue.updated_at || null;
+        result.updatedTimestamp = Date.parse(issue.updated_at) || null;
+
+        //Harvest versions
+        result.versions = [];
+        if (issue.milestone) {
+            result.versions.push(issue.milestone.title);
+            addMilestones (issue.milestone.title, issue.milestone.due_on);
+            //result.versions.push(issue.milestone.title);
+        }
+
+        return result;
+    };
+
+    //Add the milestone if its the first time its found.
+    var addMilestones = function addMilestones (title, date) {
+        var bol = milestones.some(function (stone) {
+            return stone.name === title;
+        });
+        if (!bol) {
+            milestones.push({name: title, endDate: date, startDate: null});
+        }
+    };
+    /*
+    * Sprint startDate shall be the next day to the end of the previous sprint
+    * If there are no previous sprints it'll be the first day of the month
+    */
+    var guessMilestonesBeginDate = function guessMilestonesBeginDate () {
+        // sort them
+        milestones.sort(sortMilestones);
+
+        for (var i = 0; i < milestones.length; i++) {
+            //Skip milestones with no endDate
+            if (milestones[i].endDate === null) {
+                continue;
+            }
+
+            // If the previous milestone has no endDate
+            // begin date shall be the first day of the month
+            if (i === 0 || !milestones[i - 1].endDate) {
+                milestones[i].startDate = milestones[i].endDate.substring(0, 7) + "-01";
+            } else {
+                //The moment next to the previous sprint endDate
+                milestones[i].startDate = new Date(Date.parse(milestones[i - 1].endDate) + 1);
+            }
+        }
+    };
+
+    var sortMilestones = function sortMilestones (a, b) {
+        var x = a.endDate;
+        var y = b.endDate;
+
+        // The milestones with  no dueDate are always the first
+        if (x === null) {
+            return -1;
+        }
+        if (y === null) {
+            return 1;
+        }
+
+        return Date.parse(a.endDate) - Date.parse(b.endDate);
     };
 
     request_github_info();
