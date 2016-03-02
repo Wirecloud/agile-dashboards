@@ -93,6 +93,15 @@
         //Save the metadata if any
         filtered.metadata = original_list.metadata;
 
+        //Add filtered metadata
+        filtered.metadata.filtered = {};
+        filters.forEach(function (filter) {
+            if (filter.name) {
+                filtered.metadata.filtered[filter.name] = filter.value || "";
+            }
+        });
+
+
         MashupPlatform.wiring.pushEvent('filtered-list', filtered);
     };
 

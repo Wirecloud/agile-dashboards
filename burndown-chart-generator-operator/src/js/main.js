@@ -25,10 +25,12 @@
                 return;
             }
 
-            //Check that all issues are from the same sprint/release
-            var possibleVersions = sprint.versions.splice(0);
-
-            version = sprint[0].versions[0];
+            //Get the filtered sprint. If none is chosen try with the first available version
+            if (data.metadata.filtered && data.metadata.filtered.sprint) {
+                version = data.metadata.filtered.sprint;
+            } else {
+                version = sprint[0].versions[0];
+            }
 
 
             if (!checkOneSprint()) {
@@ -36,6 +38,7 @@
                 return;
             }
 
+            //Get version data
             data.metadata.versions.forEach(function (ver) {
                 if (ver.name === version) {
                     startDate = ver.startDate;
@@ -75,7 +78,7 @@
             dailyCount = 0;
             for (var i = 0; i < issues.length; i++) {
 
-                if (day >= Date.parse(issues[i].resolutiondate) - DAY_LENGTH + 1) {
+                if (day >= Date.parse(issues[i].resolutionDate) - DAY_LENGTH + 1) {
                     dailyCount++;
                     issues.splice(i, 1); //Removes it
                     i--;
