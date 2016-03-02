@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="BasicListMathOperator" version="0.1.8">
+    <details>
+        <title>Basic List Arithmetic Operator</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@gmail.com&gt;</authors>
+        <email>alex.rodriguez@gmail.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Provides basic arithemtic operations for lists.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <wiring>
+        <inputendpoint name="input-a" label="Input A" description="First input" type="text" friendcode="list number text"/>
+        <inputendpoint name="input-b" label="Input B" description="Second input" type="text" friendcode="list number text"/>
+
+        <outputendpoint name="addition" label="Addition" description="The addition of both inputs" type="text" friendcode="list number text"/>
+        <outputendpoint name="subtraction" label="Subtraction" description="The subtraction of both inputs" type="text" friendcode="list number text"/>
+        <outputendpoint name="multiplication" label="Multiplication" description="The multiplication of both inputs" type="text" friendcode="list number text"/>
+        <outputendpoint name="division" label="Division" description="The division of both inputs" type="text" friendcode="list number text"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
