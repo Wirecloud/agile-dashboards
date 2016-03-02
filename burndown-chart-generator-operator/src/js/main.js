@@ -26,7 +26,7 @@
             }
 
             //Get the filtered sprint. If none is chosen try with the first available version
-            if (data.metadata.filtered && data.metadata.filtered.sprint) {
+            if (data.metadata.filtered && data.metadata.filtered.Sprints) {
                 version = data.metadata.filtered.Sprints;
             } else {
                 version = sprint[0].versions[0];

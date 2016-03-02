@@ -108,8 +108,8 @@
     });
 
     MashupPlatform.wiring.registerCallback("condition-list", function (_filters) {
-        filters = build_filters(_filters);
         appliedFilters = {};
+        filters = build_filters(_filters);
         filter();
     });
 
