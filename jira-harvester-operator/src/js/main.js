@@ -68,7 +68,13 @@
             onSuccess: function (response) {
                 var data = JSON.parse(response.responseText);
 
-                requestComponentIssues(data);
+                //Normalize versions
+                var versions = [];
+                data.forEach(function (version) {
+                    versions.push({name: version.name, startDate: version.startDate, endDate: version.releaseDate});
+                });
+
+                requestComponentIssues(versions);
             }
         });
     };
