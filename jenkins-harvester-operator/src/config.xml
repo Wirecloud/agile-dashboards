@@ -21,7 +21,7 @@
     </preferences>
 
     <wiring>
-        <outputendpoint name="build-list" type="text" label="⊱Build List" description="Build list. Build information can be splitted using the &lt;Build&gt; Splitter operator" friendcode="build-list list"/>
+        <outputendpoint name="build-list" type="text" label="⊱Build List" description="Build list. Build information can be splitted using the &lt;Build&gt; Splitter operator" friendcode="build-list list generic-filter"/>
     </wiring>
 
     <scripts>

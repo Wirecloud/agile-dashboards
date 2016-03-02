@@ -13,7 +13,6 @@
     var issue_list = null;
 
     var build_pie_chart = function build_pie_chart(done, failed) {
-        var total = done + failed;
         return {
             chart: {
                 type: 'pie'
@@ -24,11 +23,14 @@
             legend: {
                 enabled: false
             },
-            series: [
-                {name: "Closed", y: done / total},
-                {name: "Pending", y: failed / total}
-            ]
+            series: [{
+                data: [
+                    {name: "Closed", y: done},
+                    {name: "Pending", y: failed}
+                ]
+            }]
         };
+
     };
 
     var build_serie = function build_serie(attr, values) {
@@ -100,7 +102,7 @@
                 };
             }
 
-            if (issue.state === 'closed') {
+            if (issue.status.toLowerCase() === 'closed') {
                 data[issue.assignee].done += 1;
             } else {
                 data[issue.assignee].failed += 1;

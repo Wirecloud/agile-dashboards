@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Conwet" name="jira-harvester" version="2.2.2">
+    <details>
+        <title>Jira harvester operator</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Jira data harvester</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    
+    <preferences>
+        <preference name="jira-url" label="Jira server URL" type="text"/>
+        <preference name="project-key" label="Jira project key" type="text"/>
+        <preference name="component" label="Jira project component" type="text" default="" />
+
+        <preference name="username" label="Jira username" type="text" default="" />
+        <preference name="passwd" label="Jira Password" type="text" default="" />
+        <preference name="oauth2-token" label="OAuth2 Token" type="text" default="" />
+    </preferences>
+
+    <wiring>
+        <outputendpoint name="jira-issues" label="Jira Issues" description="List of Jira sprints and their issues" type="text" friendcode="jira-sprint-list list generic-filter" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>

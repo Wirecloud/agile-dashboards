@@ -1,0 +1,1 @@
+This operator helps you calculate the union between two arbitrary lists
