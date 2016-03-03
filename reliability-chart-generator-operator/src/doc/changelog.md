@@ -1,7 +1,11 @@
-## v0.1.4 [Extra release info, e.g. release date]
+## v0.2.0
 
-Initial version
+Version 0.2.0
 
-- change 1
-- change 2
-- ...
+- Fixed pie chart not displaying.
+- Issue status check is now case insensitive.
+
+Initial version (v0.1.8)
+
+- Calculates the reliability of the input issues
+- Plots it on a column or pie chart
