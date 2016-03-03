@@ -1,5 +1,6 @@
 # Widget / Operator index
 
+
 ## [and-filter-operator](and-filter-operator/README.md)
 
 ## [calculate-tendency-operator](calculate-tendency-operator/README.md)
@@ -16,13 +17,19 @@
 
 ## [github-harvester-operator](github-harvester-operator/README.md)
 
-## [gitlab-harvester-operator](github-harvester-operator/README.md) 
+## [gitlab-harvester-operator](gitlab-harvester-operator/README.md)
+
+## [jira-harvester-operator](jira-harvester-operator/README.md)
+
+## [jira-issue-splitter-operator](jira-issue-splitter-operator/README.md)
 
 ## [jenkins-harvester-operator](jenkins-harvester-operator/README.md) 
 
-## [jenkins-project-build-list-widget](jenkins-project-build-list-widget/README.md) 
+## [jenkins-project-build-list-widget](jenkins-project-build-list-widget/README.md)
 
-## [set-filter-conditions-widget](set-filter-conditions-widget/README.md) 
+## [set-filter-conditions-widget](set-filter-conditions-widget/README.md)
+
+## [set-generic-filter-conditions-widget](set-generic-filter-conditions-widget/README.md)
 
 ## [build-splitter-operator](build-splitter-operator/README.md)
 
@@ -36,6 +43,14 @@
 
 ## [workload-chart-generator-operator](workload-chart-generator-operator/README.md)
 
+## [burndown-chart-generator-operator](burndown-chart-generator-operator/README.md)
+
+## [column-chart-generator-operator](column-chart-generator-operator/README.md)
+
+## [pie-chart-generator-operator](pie-chart-generator-operator/README.md)
+
+## [product-backlog-chart-operator](product-backlog-chart-operator/README.md)
+
 ## [union-list-operator](union-list-operator/README.md)
 
 ## [intersection-list-operator](intersection-list-operator/README.md)
@@ -44,4 +59,6 @@
 
 ## [packlist-operator](packlist-operator/README.md) 
 
-## [basic-list-math-operator](BasicListMathOperator/README.md) 
+## [basic-list-math-operator](BasicListMathOperator/README.md)
+
+## [removeDuplicates-list-operator](removeDuplicates-list-operator/README.md)
