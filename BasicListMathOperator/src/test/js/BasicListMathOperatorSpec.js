@@ -2,7 +2,7 @@
 (function () {
     "use strict";
 
-    jasmine.getFixtures().fixturesPath = 'src/test/fixtures/';
+    //jasmine.getFixtures().fixturesPath = 'src/test/fixtures/';
 
     var dependencyList = [
         'script',
@@ -21,7 +21,6 @@
 
         beforeEach(function () {
             MashupPlatform.reset();
-            widget = new BasicListMathOperator();
         });
 
         it("Dummy test", function () {
