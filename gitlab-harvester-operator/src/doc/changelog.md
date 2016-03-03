@@ -1,7 +1,9 @@
-## v0.1.8 [Extra release info, e.g. release date]
+## v0.2.0
 
 Initial version
 
-- change 1
-- change 2
-- ...
+- Harvests Gitlab issues.
+- Harvests Gitlab commits.
+- Can authenticate with OAuth2 or with a private token.
+- Adds generic metadata.
+- Adds available filters metadata.
