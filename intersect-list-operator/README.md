@@ -44,21 +44,18 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-There are no preferences for this operator.
+No settings needed for this operator to work.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-"First list": <list> The first of the two lists to be intersected.
+- `Original List A`: List to be intersected with `Original List B`.
+- `Original List B`: List to be intersected with `Original List A`.
 
-"Second list": <list> The second of the two lists to be intersected.
+## Output Endpoints
 
-
-### Output Endpoints
-
-"Intersected list": <list> The result of the two lists being intersected. 
+- `Intersected List`: This endpoint provides a list with the items of `Original List A` that match the ones of `Original List B`.
 
 ## Usage
 
