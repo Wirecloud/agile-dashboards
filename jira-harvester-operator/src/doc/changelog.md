@@ -1,7 +1,9 @@
-## v0.1.8 [Extra release info, e.g. release date]
+## v0.2.0
 
-Initial version
+Initial version (v0.2.0)
 
-- change 1
-- change 2
-- ...
+- Harvest issue data.
+- Adds generic metadata.
+- Normalizes issues
+- Adds available filters metadata.
+- Basic auth support.
