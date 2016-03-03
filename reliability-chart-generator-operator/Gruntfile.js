@@ -1,5 +1,5 @@
 /*
- * reliability-chart-generator
+ * and-filter
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
  * Copyright (c) 2016 CoNWeT
@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
-
+        
         jshint: {
             options: {
                 jshintrc: true
@@ -58,9 +58,12 @@ module.exports = function (grunt) {
 
         copy: {
             main: {
-                files: [
-                    {expand: true, cwd: 'src/js', src: '*', dest: 'build/src/js'}
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'src/js',
+                    src: '*',
+                    dest: 'build/src/js'
+                }]
             }
         },
 
@@ -83,50 +86,60 @@ module.exports = function (grunt) {
                     mode: 'zip',
                     archive: 'dist/<%= pkg.vendor %>_<%= pkg.name %>_<%= pkg.version %>.wgt'
                 },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'src',
-                        src: [
-                            'DESCRIPTION.md',
-                            'css/**/*',
-                            'doc/**/*',
-                            'images/**/*',
-                            'index.html',
-                            'config.xml'
-                        ]
-                    },
-                    {
-                        expand: true,
-                        cwd: 'build/lib',
-                        src: [
-                            'lib/**/*'
-                        ]
-                    },
-                    {
-                        expand: true,
-                        cwd: 'build/src',
-                        src: [
-                            'js/**/*'
-                        ]
-                    },
-                    {
-                        expand: true,
-                        cwd: '.',
-                        src: [
-                            'LICENSE'
-                        ]
-                    }
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'src',
+                    src: [
+                        'DESCRIPTION.md',
+                        'css/**/*',
+                        'doc/**/*',
+                        'images/**/*',
+                        'index.html',
+
+                        'config.xml'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: 'build/lib',
+                    src: [
+                        'lib/**/*'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: 'build/src',
+                    src: [
+                        'js/**/*'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: '.',
+                    src: [
+                        'LICENSE'
+                    ]
+                }]
             }
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: {
                 src: ['build']
             },
             temp: {
                 src: ['build/src']
+            }
+        },
+
+        jsbeautifier: {
+            files: ["Gruntfile.js"],
+            options: {
+                js: {
+                    spaceAfterAnonFunction: true,
+                    endWithNewline: false,
+                    jslintHappy: true
+                }
             }
         },
 
@@ -147,9 +160,9 @@ module.exports = function (grunt) {
                 options: {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],
-                    vendor: [
-                        'node_modules/jquery/dist/jquery.js',
+                    vendor: ['node_modules/jquery/dist/jquery.js',
                         'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+
                         'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
                         'src/test/vendor/*.js'
                     ]
@@ -164,16 +177,26 @@ module.exports = function (grunt) {
                     template: require('grunt-template-jasmine-istanbul'),
                     templateOptions: {
                         coverage: 'build/coverage/json/coverage.json',
-                        report: [
-                            {type: 'html', options: {dir: 'build/coverage/html'}},
-                            {type: 'cobertura', options: {dir: 'build/coverage/xml'}},
-                            {type: 'text-summary'}
-                        ]
+                        report: [{
+                            type: 'html',
+                            options: {
+                                dir: 'build/coverage/html'
+                            }
+                        }, {
+                            type: 'cobertura',
+                            options: {
+                                dir: 'build/coverage/xml'
+                            }
+                        }, {
+                            type: 'text-summary'
+                        }]
                     }
                 }
             }
         }
     });
+
+
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
@@ -183,16 +206,20 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-strip-code');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('test', [
+
         'jshint',
         'jshint:grunt',
         'jscs',
         'jasmine:coverage'
+
     ]);
 
     grunt.registerTask('build', [
         'clean:temp',
+
         'copy:main',
         'strip_code',
         'replace:version',
@@ -200,11 +227,14 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
+        'jsbeautifier',
+
         'test',
         'build'
     ]);
 
     grunt.registerTask('publish', [
         'default'
+
     ]);
 };

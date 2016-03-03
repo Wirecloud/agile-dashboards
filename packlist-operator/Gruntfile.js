@@ -1,9 +1,9 @@
 /*
- * packlist
+ * and-filter
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
- * Copyright (c) 2016 CoNWet
- * Licensed under the MIT license.
+ * Copyright (c) 2016 CoNWeT
+ * Licensed under the Apache2 license.
  */
 
 module.exports = function (grunt) {
@@ -13,9 +13,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
-
-
-
 
         jshint: {
             options: {
@@ -58,8 +55,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-
 
         copy: {
             main: {
@@ -126,6 +121,9 @@ module.exports = function (grunt) {
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: {
                 src: ['build']
             },
@@ -162,7 +160,9 @@ module.exports = function (grunt) {
                 options: {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],
-                    vendor: [
+                    vendor: ['node_modules/jquery/dist/jquery.js',
+                        'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+
                         'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
                         'src/test/vendor/*.js'
                     ]

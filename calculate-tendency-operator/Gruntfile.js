@@ -1,8 +1,8 @@
 /*
- * calculate-tendency
+ * and-filter
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
- * Copyright (c) 2015 CoNWeT
+ * Copyright (c) 2016 CoNWeT
  * Licensed under the Apache2 license.
  */
 
@@ -13,9 +13,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
-
-
-
 
         jshint: {
             options: {
@@ -124,6 +121,9 @@ module.exports = function (grunt) {
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: {
                 src: ['build']
             },

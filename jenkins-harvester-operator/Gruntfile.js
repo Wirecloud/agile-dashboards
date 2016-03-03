@@ -1,17 +1,9 @@
-/*!
- *   Copyright 2014-2015 CoNWeT Lab., Universidad Politecnica de Madrid
+/*
+ * and-filter
+ * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
+ * Copyright (c) 2016 CoNWeT
+ * Licensed under the Apache2 license.
  */
 
 module.exports = function (grunt) {
@@ -21,9 +13,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
-
-
-
 
         jshint: {
             options: {
@@ -66,8 +55,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-
 
         copy: {
             main: {
@@ -134,6 +121,9 @@ module.exports = function (grunt) {
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: {
                 src: ['build']
             },
@@ -170,7 +160,9 @@ module.exports = function (grunt) {
                 options: {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],
-                    vendor: [
+                    vendor: ['node_modules/jquery/dist/jquery.js',
+                        'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+
                         'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
                         'src/test/vendor/*.js'
                     ]

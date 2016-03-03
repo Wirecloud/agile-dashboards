@@ -1,5 +1,5 @@
 /*
- * file-coverage-chart-generator
+ * and-filter
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
  * Copyright (c) 2016 CoNWeT
@@ -13,9 +13,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
-
-
-
 
         jshint: {
             options: {
@@ -124,6 +121,9 @@ module.exports = function (grunt) {
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: {
                 src: ['build']
             },
