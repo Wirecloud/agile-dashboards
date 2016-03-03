@@ -1,10 +1,10 @@
 ## Introduction
 
 Provides basic arithemtic operations that can be used between lists and non-list
--Addition
--Subtraction
--Multiplication
--Division
+- Addition
+- Subtraction
+- Multiplication
+- Division
 
 ## Settings
 
@@ -14,15 +14,15 @@ No settings needed for this operator to work
 
 ### Input Endpoints
 
--`Input A`: First input. Can be a list or a string or number.
--`Input B`: First input. Can be a list or a string or number
+- `Input A`: First input. Can be a list or a string or number.
+- `Input B`: First input. Can be a list or a string or number
 
 ### Output Endpoints
 
--`Addition`: Result of the addition of both inputs. Its a list if any of the inputs was a list.
--`Subtraction`: Result of the subtraction of `Input A` minus `Input B`. Its a list if any of the inputs was a list.
--`Multiplication`: Result of the multiplication of both inputs. Its a list if any of the inputs was a list.
--`Division`: Result of the division of `Input A` divided by `Input B`. Its a list if any of the inputs was a list.
+- `Addition`: Result of the addition of both inputs. Its a list if any of the inputs was a list.
+- `Subtraction`: Result of the subtraction of `Input A` minus `Input B`. Its a list if any of the inputs was a list.
+- `Multiplication`: Result of the multiplication of both inputs. Its a list if any of the inputs was a list.
+- `Division`: Result of the division of `Input A` divided by `Input B`. Its a list if any of the inputs was a list.
 
 ## Usage
 
