@@ -1,7 +1,6 @@
-## v0.1.8 [Extra release info, e.g. release date]
+## v0.2.0
 
 Initial version
 
-- change 1
-- change 2
-- ...
+- Plots the burndown chart of the input set of issues.
+- Only plots if all the issues are from the same sprint.
