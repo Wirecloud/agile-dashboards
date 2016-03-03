@@ -1,7 +1,7 @@
 Product backlog chart operator
 ======================
 
-The Product backlog chart operator is a WireCloud operator that provides ...
+The Product backlog chart operator is a WireCloud operator that provides the ability to plot a product backlog chart based on the input issues.
 
 Build
 -----
@@ -42,23 +42,22 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+- `Chart title`: The title of the resulting chart.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+- `Issues`: The set of issues to generate the chart from.
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+- `Chart Data Model`: The data model to be passed to the highcharts widget.
 
 ## Usage
 
+Generates a product backlog chart from the input issues.
+Plots the creation, update and resolve line charts and the progress column chart for each month.
 
 ## Reference
 

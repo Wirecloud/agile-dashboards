@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="product-backlog-chart" version="0.1.9">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="product-backlog-chart" version="0.2.0">
     <details>
         <title>Product backlog chart</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -20,7 +20,7 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="jira-issues" label="Jira Issues" type="text" friendcode="jira-issues" />
+        <inputendpoint name="issues" label="Issues" type="text" friendcode="jira-issues" />
         <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
     </wiring>
 
