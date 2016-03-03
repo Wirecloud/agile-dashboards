@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="trend-chart-generator" version="0.1.8">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="trend-chart-generator" version="0.2.0">
     <details>
         <title>Trend Chart Generator</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -17,7 +17,6 @@
 
     <preferences>
         <preference name="title" type="text" label="Chart Title" description="Title used for the chart" default=""/>
-        <preference name="serie_title" type="text" label="Serie Title" description="Title used for the serie" default=""/>
         <preference name="max" type="text" label="Maximum value" description="Maximum value to display in the chart. If empty, the max value is automatically calculated" default=""/>
     </preferences>
 

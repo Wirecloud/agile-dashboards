@@ -113,7 +113,7 @@
 
         max = MashupPlatform.prefs.get('max').trim();
         if (max !== '') {
-            options.yAxis = {max: parseInt(max, 10)};
+            options.yAxis.max = parseInt(max, 10);
         }
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };

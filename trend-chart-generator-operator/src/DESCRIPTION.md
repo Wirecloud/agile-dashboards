@@ -1,1 +1,1 @@
-This operator allows you to create the data model needed by chart widgets, from data series.
+The Trend Chart Generator operator is a WireCloud operator that provides the ability to generate trend charts.
