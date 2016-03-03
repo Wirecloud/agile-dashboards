@@ -53,7 +53,7 @@
 
 ## [union-list-operator] (/wirecloud/agile-dashboards/blob/develop/union-list-operator/README.md)
 
-## [intersection-list-operator] (/wirecloud/agile-dashboards/blob/develop/intersection-list-operator/README.md)
+## [intersect-list-operator] (/wirecloud/agile-dashboards/blob/develop/intersect-list-operator/README.md)
 
 ## [setDifference-list-operator] (/wirecloud/agile-dashboards/blob/develop/setDifference-list-operator/README.md)
 
