@@ -1,7 +1,6 @@
-## v0.1.8 [Extra release info, e.g. release date]
+## v0.2.0
 
-Initial version
+Initial version (v0.2.0)
 
-- change 1
-- change 2
-- ...
+- Calculates the difference betweent two sets (lists).
+- Nested elements compatibility.
