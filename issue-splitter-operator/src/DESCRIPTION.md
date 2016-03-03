@@ -1,0 +1,1 @@
+The issue-splitter-operator is a WireCloud operator that provides the ability to split normalized issue data obtained with the agile harvesters.
