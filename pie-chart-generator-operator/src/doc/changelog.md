@@ -1,7 +1,6 @@
-## v0.1.8 [Extra release info, e.g. release date]
+## v0.2.0
 
-Initial version
+Initial version (v0.2.0)
 
-- change 1
-- change 2
-- ...
+- Generates pie charts from a number serie. (Numbers represent total amounts).
+- Generates pie charts from a label serie. (Counts label to get total amounts).
