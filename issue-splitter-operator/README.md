@@ -1,7 +1,7 @@
-Jira Issue Splitter operator
+Issue Splitter operator
 ======================
 
-The Jira Issue Splitter operator is a WireCloud operator that provides the ability to split Jira issue data.
+The issue-splitter-operator is a WireCloud operator that provides the ability to split normalized issue data obtained with the agile harvesters.
 
 Build
 -----
@@ -44,19 +44,18 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ### Input Endpoints
 
--`Jira issue list`: A Jira issue list. Can be obtained with the Jira Harvester Operator.
+-`Issue list`: A normalized issue list. Can be obtained with any agile issue harvester operators.
 
 ### Output Endpoints
 
--`Issue status list`: A list of the Jira statuses the issues had.
--`Issue priority list`: A list of the Jira priorities the issues had.
+-`Issue status list`: A list of the statuses the issues had.
+-`Issue priority list`: A list of the priorities the issues had.
 -`Issue assignee list`: A list of the assignees the issues had.
--`Issue type list`: A list of the Jira types the issues had.
+-`Issue type list`: A list of the types the issues had.
 
 ## Usage
 
-Plug in a list of Jira issues, which can be obtained with the `Jira Harvester Operator` and filtered with the `Jira Issue Filter` and `And Filter 
-Operator`.
+Plug in a list of normalized issues, which can be obtained with any agile issue harvester operator, such as the `jira-harvester-operator` and filtered with the `set-generic-filter-conditions` and the `and-filter-operator`.
 
 ## Reference
 

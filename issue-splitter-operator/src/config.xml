@@ -16,12 +16,12 @@
     </details>
 
     <wiring>
-        <inputendpoint name="issue-list" type="text" label="Jira issue list" friendcode="jira-issue-list list"/>
+        <inputendpoint name="issue-list" type="text" label="Issue list" friendcode="normalized-issue-list list"/>
 
-        <outputendpoint name="status-list" type="text" label="Issue status list" friendcode="jira-status-list list"/>
-        <outputendpoint name="priority-list" type="text" label="Issue priority list" friendcode="jria-priority-list list"/>
-        <outputendpoint name="assignee-list" type="text" label="Issue assignee list" friendcode="jira-assignee-list list"/>
-        <outputendpoint name="type-list" type="text" label="Issue type list" friendcode="jira-type-list list"/>
+        <outputendpoint name="status-list" type="text" label="Issue status list" friendcode="normalized-status-list list"/>
+        <outputendpoint name="priority-list" type="text" label="Issue priority list" friendcode="normalized-priority-list list"/>
+        <outputendpoint name="assignee-list" type="text" label="Issue assignee list" friendcode="normalized-assignee-list list"/>
+        <outputendpoint name="type-list" type="text" label="Issue type list" friendcode="normalized-type-list list"/>
     </wiring>
 
     <scripts>
