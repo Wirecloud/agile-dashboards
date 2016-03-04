@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="jira-issue-splitter" version="0.1.8">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="issue-splitter" version="0.1.8">
     <details>
-        <title>Jira Issue Splitter</title>
+        <title>Issue Splitter</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
         <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
         <email>alex.rodriguez@conwet.com</email>
