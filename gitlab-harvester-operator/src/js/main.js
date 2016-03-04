@@ -12,6 +12,7 @@
     var projectID = "101";
 
     var milestones = [];
+    var DAY_LENGTH = 86400000;
 
     var requestHeaders = {
             Accept: "application/json"
@@ -60,7 +61,7 @@
                 var projects = JSON.parse(response.responseText);
                 //Looks for the projectID needed for the querys
                 for (var i = 0; i < projects.length; i++) {
-                    if (projects[i].name === projectName) {
+                    if (projects[i].name_with_namespace === projectName) {
                         projectID = projects[i].id;
                         break;
                     }
@@ -213,7 +214,7 @@
                 milestones[i].startDate = milestones[i].endDate.substring(0, 7) + "-01";
             } else {
                 //The moment next to the previous sprint endDate
-                milestones[i].startDate = new Date(Date.parse(milestones[i - 1].endDate) + 1);
+                milestones[i].startDate = new Date(Date.parse(milestones[i - 1].endDate) + DAY_LENGTH);
             }
         }
     };
