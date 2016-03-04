@@ -7,7 +7,7 @@
         <email>alex.rodriguez@conwet.com</email>
         <image></image>
         <smartphoneimage></smartphoneimage>
-        <description>Generates the product backlog chart for the Jira porject</description>
+        <description>Generates the product backlog chart for the input issues</description>
         <longdescription>DESCRIPTION.md</longdescription>
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
