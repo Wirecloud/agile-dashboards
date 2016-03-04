@@ -17,7 +17,7 @@
     var coverage_info = {};
 
     var addCoverageReport = function addCoverageReport(response) {
-        var build_info, index;
+        var build_info;
 
         build_info = JSON.parse(response.responseText);
         file_list.forEach(function (file) {
