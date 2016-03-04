@@ -11,6 +11,7 @@
     "use strict";
 
     var milestones = [];
+    var DAY_LENGTH = 86400000;
 
     var request_github_info = function request_github_info() {
 
@@ -165,7 +166,7 @@
                 milestones[i].startDate = milestones[i].endDate.substring(0, 7) + "-01";
             } else {
                 //The moment next to the previous sprint endDate
-                milestones[i].startDate = new Date(Date.parse(milestones[i - 1].endDate) + 1);
+                milestones[i].startDate = new Date(Date.parse(milestones[i - 1].endDate) + DAY_LENGTH);
             }
         }
     };
