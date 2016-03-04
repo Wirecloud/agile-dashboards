@@ -21,7 +21,7 @@
 
 ## [jira-harvester-operator] (/wirecloud/agile-dashboards/blob/develop/jira-harvester-operator)
 
-## [jira-issue-splitter-operator] (/wirecloud/agile-dashboards/blob/develop/jira-issue-splitter-operator)
+## [issue-splitter-operator] (/wirecloud/agile-dashboards/blob/develop/issue-splitter-operator)
 
 ## [jenkins-harvester-operator] (/wirecloud/agile-dashboards/blob/develop/jenkins-harvester-operator) 
 
@@ -44,8 +44,6 @@
 ## [workload-chart-generator-operator] (/wirecloud/agile-dashboards/blob/develop/workload-chart-generator-operator)
 
 ## [burndown-chart-generator-operator] (/wirecloud/agile-dashboards/blob/develop/burndown-chart-generator-operator)
-
-## [column-chart-generator-operator] (/wirecloud/agile-dashboards/blob/develop/column-chart-generator-operator)
 
 ## [pie-chart-generator-operator] (/wirecloud/agile-dashboards/blob/develop/pie-chart-generator-operator)
 
