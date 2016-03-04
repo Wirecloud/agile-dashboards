@@ -1,7 +1,19 @@
 Calculate Tendency operator
 ======================
 
-The Calculate Tendency operator is a WireCloud operator that provides ...
+This operator allows you to calculate different trend tendencies from a list of values.
+
+It supports:
+
+- Maximum
+- Minimum
+- Arithmetic mean
+- Median
+- Mode
+- Standard Deviation
+- Count
+- Sum
+
 
 Build
 -----
@@ -40,25 +52,22 @@ grunt
 
 If everything goes well, you will find a wgt file in the `dist` folder.
 
-## Settings
-
-`Write here the preferences`
-
 ## Wiring
-
 
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+- `Value List`: A list of numeric values.
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
-
-## Usage
-
+- `Minimum`: The minimun value of `Value List`.
+- `Maximum`: The maximun value of `Value List`.
+- `Arithmetic Mean`: The mean of `Value List`.
+- `Median`: The median value of `Value List`.
+- `Mode`: The mode value of `Value List`.
+- `Standard Deviation`: The standard deviation of `Value List`.
+- `Count`: Lenght of the `Value List`.
+- `Sum`: Sum of the values of `Value List`.
 
 ## Reference
 

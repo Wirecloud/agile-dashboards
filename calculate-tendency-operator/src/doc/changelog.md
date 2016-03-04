@@ -1,7 +1,9 @@
-## v0.1.0 [Extra release info, e.g. release date]
+## v0.1.8
 
-Initial version
+Initial version (v0.1.8)
 
-- change 1
-- change 2
-- ...
+- Calculate the maximun & minimun of the list of values..
+- Calculate the arithmetic mean and standard deviation of the list of values..
+- Calculate the median and the mode of the list of values..
+- Calculate the lenght of the list of values..
+- Calculate the sum of the list of values.
