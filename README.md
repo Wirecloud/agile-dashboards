@@ -1,7 +1,7 @@
 # Widget / Operator index
 
 
-## [and-filter-operator] (/wirecloud/agile-dashboards/blob/develop/and-filter-operator)
+## [and-filter-operator] (./and-filter-operator)
 
 ## [calculate-tendency-operator] (/wirecloud/agile-dashboards/blob/develop/calculate-tendency-operator)
 
