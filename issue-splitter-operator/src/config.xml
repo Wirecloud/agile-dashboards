@@ -16,7 +16,7 @@
     </details>
 
     <wiring>
-        <inputendpoint name="issue-list" type="text" label="Issue list" friendcode="normalized-issue-list list"/>
+        <inputendpoint name="issue-list" type="text" label="Issue list" friendcode="normalized-agile-issues list"/>
 
         <outputendpoint name="status-list" type="text" label="Issue status list" friendcode="normalized-status-list list"/>
         <outputendpoint name="priority-list" type="text" label="Issue priority list" friendcode="normalized-priority-list list"/>
