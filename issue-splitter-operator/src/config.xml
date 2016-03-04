@@ -7,7 +7,7 @@
         <email>alex.rodriguez@conwet.com</email>
         <image>images/catalogue.png</image>
         <smartphoneimage></smartphoneimage>
-        <description>Splitter for Jira issues.</description>
+        <description>Splitter for issues.</description>
         <longdescription>DESCRIPTION.md</longdescription>
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
