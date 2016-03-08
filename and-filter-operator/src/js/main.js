@@ -14,37 +14,37 @@
     var filters = [];
     var appliedFilters = {};
 
-    var EQ_FILTER = function EQ_FILTER(attr, value, item) {
+
+    //Get nested property of an object.
+    var getProperty = function getProperty (item, attr) {
         attr = attr.split(".");
         for (var i = 0; i < attr.length; i++) {
             if (!item[attr[i]]) {
-                return false;
+                return null;
             }
-            item = item[attr[i]];
-
+            item = item[attr[i]] ;
         }
-        return item === value;
+        return item;
+    };
+
+    var EQ_FILTER = function EQ_FILTER(attr, value, item) {
+        return getProperty(item, attr) === value;
     };
 
     var IN_FILTER = function IN_FILTER(attr, values, item) {
-        return values.indexOf(item[attr]) !== -1;
+        var it = getProperty(item, attr);
+        return values.indexOf(it) !== -1;
     };
 
     var RANGE_FILTER = function RANGE_FILTER(attr, start, end, item) {
-        var value = item[attr];
+        var value = getProperty(item, attr);
         return value >= start && value <= end;
     };
 
     var SOME_FILTER = function SOME_FILTER(attr, value, item) {
-        attr = attr.split(".");
-        for (var i = 0; i < attr.length; i++) {
-            if (!item[attr[i]]) {
-                return false;
-            }
-            item = item[attr[i]];
-        }
+        var it = getProperty(item, attr);
 
-        return item.some(function (i) {
+        return it.some(function (i) {
             return i === value;
         });
     };
