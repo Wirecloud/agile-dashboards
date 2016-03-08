@@ -42,6 +42,8 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
+- `Username`: The Github username of the repository owner.
+- `Repository name`: The name of the target repository.
 - `OAuth2 token`: The token to authenticate on the Github repository.
 
 ## Wiring

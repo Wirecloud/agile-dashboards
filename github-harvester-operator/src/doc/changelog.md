@@ -2,6 +2,7 @@
 
 Version 0.2.0
 
+- Added preferences to change the target repository.
 - Added generic metadata.
 - Added filter settings metadata.
 - Normalized issues.

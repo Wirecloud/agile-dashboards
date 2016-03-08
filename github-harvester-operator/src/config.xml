@@ -16,7 +16,9 @@
     </details>
 
     <preferences>
-        <preference name="oauth2-token" label="OAuth2 Token" type="text" default="2fa2bfc1a356ecd897dfe36dfbcab1adb4a6db9d" />
+        <preference name="repo-owner" label="Username" description="The username of the repository owner" type="text" default="Wirecloud" />
+        <preference name="repo-name" label="Repository name" description="Name of the repository" type="text" default="wirecloud" />
+        <preference name="oauth2-token" label="OAuth2 Token" type="text" default="" />
     </preferences>
 
     <wiring>

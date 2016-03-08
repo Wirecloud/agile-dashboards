@@ -4,6 +4,8 @@ The GitHub Harvester operator is a WireCloud operator that provides the ability 
 
 ## Settings
 
+- `Username`: The Github username of the repository owner.
+- `Repository name`: The name of the target repository.
 - `OAuth2 token`: The token to authenticate on the Github repository.
 
 ## Wiring
