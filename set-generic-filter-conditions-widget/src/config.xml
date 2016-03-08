@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="set-generic-filter-conditions" version="0.1.8">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="set-generic-filter-conditions" version="0.2.0">
     <details>
         <title>Generic filter conditions</title>
         <homepage>https://127.0.0.1</homepage>
         <authors>Alejandro Rodriguez</authors>
         <email>alex.rodriguez@conwet.com</email>
-        <image></image>
+        <image>images/catalogue.png</image>
         <smartphoneimage></smartphoneimage>
         <description>Filter conditions</description>
         <longdescription>DESCRIPTION.md</longdescription>

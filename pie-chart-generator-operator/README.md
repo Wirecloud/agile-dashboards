@@ -42,18 +42,18 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
--`Chart Title`: The title for the chart.
+- `Chart Title`: The title for the chart.
 
 ## Wiring
 
 ### Input Endpoints
 
--`Number Data Serie`: A data series made of numeric values. 
--`Label Data Serie`: A data series made of labels.
+- `Number Data Serie`: A data series made of numeric values. Each number represents a pie)
+- `Label Data Serie`: A data series made of labels. Each label represents a pie, counts repetitions to get their size.
 
 ### Output Endpoints
 
--`Chart Data Model`: The chart data model to be passed to the Highcharts widget.
+- `Chart Data Model`: The chart data model to be passed to the Highcharts widget.
 
 ## Usage
 

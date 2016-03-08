@@ -1,7 +1,7 @@
 Burndown chart generator operator
 ======================
 
-The Burndown chart generator operator is a WireCloud operator that provides the ability to get the options needed to draw on the Highcharts widget a burndown chart from a Jira sprint. 
+The Burndown chart generator operator is a WireCloud operator that provides the ability to get the options needed to draw on the Highcharts widget a burndown chart from a sprint. 
 
 Build
 -----
@@ -48,7 +48,7 @@ No preferences needed for this operator to work.
 
 ### Input Endpoints
 
--`Jira Issues`: The issues associated to the sprint you want to draw
+-`Issues`: The issues associated to the sprint you want to plot.
 
 ### Output Endpoints
 
@@ -56,7 +56,8 @@ No preferences needed for this operator to work.
 
 ## Usage
 
-Get a single sprint issues from the Jira harvester and the Jira issue filter and plug it into the Jira Issues endpoint. The connect the output to the Highcharts widget.
+Plug into the `Issues` input endpoint issues from a single sprint and plug the output to the `Highcharts widget`.
+You can get a single sprint's issues using the `set-generic-filter-conditions operator` and the `and-filter operator` together with the chosen issue harvester.
 
 ## Reference
 

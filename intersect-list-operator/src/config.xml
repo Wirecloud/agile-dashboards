@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="list-intersection" version="0.1.8">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="list-intersection" version="0.2.0">
     <details>
         <title>List intersection</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
         <authors>Alejandro Rodriguez</authors>
-        <image>todo.png</image>
+        <image>images/catalogue.png</image>
         <smartphoneimage></smartphoneimage>
         <description>Intersects two list</description>
         <longdescription>DESCRIPTION.md</longdescription>

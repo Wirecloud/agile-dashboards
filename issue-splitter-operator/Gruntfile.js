@@ -1,9 +1,9 @@
 /*
- * jira-issue-splitter
+ * and-filter
  * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
- * Copyright (c) 2016 CoNWet
- * Licensed under the MIT license.
+ * Copyright (c) 2016 CoNWeT
+ * Licensed under the Apache2 license.
  */
 
 module.exports = function (grunt) {
@@ -14,58 +14,56 @@ module.exports = function (grunt) {
 
         pkg: grunt.file.readJSON('package.json'),
 
-        
+        jshint: {
+            options: {
+                jshintrc: true
+            },
+            all: {
+                files: {
+                    src: ['src/js/**/*.js']
+                }
+            },
+            grunt: {
+                options: {
+                    jshintrc: '.jshintrc-node'
+                },
+                files: {
+                    src: ['Gruntfile.js']
+                }
+            },
+            test: {
+                options: {
+                    jshintrc: '.jshintrc-jasmine'
+                },
+                files: {
+                    src: ['src/test/**/*.js', '!src/test/fixtures/']
+                }
+            }
+        },
 
-        
-         jshint: {
-             options: {
-                 jshintrc: true
-             },
-             all: {
-                 files: {
-                     src: ['src/js/**/*.js']
-                 }
-             },
-             grunt: {
-                 options: {
-                     jshintrc: '.jshintrc-node'
-                 },
-                 files: {
-                     src: ['Gruntfile.js']
-                 }
-             },
-             test: {
-                 options: {
-                     jshintrc: '.jshintrc-jasmine'
-                 },
-                 files: {
-                     src: ['src/test/**/*.js', '!src/test/fixtures/']
-                 }
-             }
-         },
-
-         jscs: {
-             widget: {
-                 src: 'src/js/**/*.js',
-                 options: {
-                     config: ".jscsrc"
-                 }
-             },
-             grunt: {
-                 src: 'Gruntfile.js',
-                 options: {
-                     config: ".jscsrc"
-                 }
-             }
-         },
-
-         
+        jscs: {
+            widget: {
+                src: 'src/js/**/*.js',
+                options: {
+                    config: ".jscsrc"
+                }
+            },
+            grunt: {
+                src: 'Gruntfile.js',
+                options: {
+                    config: ".jscsrc"
+                }
+            }
+        },
 
         copy: {
             main: {
-                files: [
-                    {expand: true, cwd: 'src/js', src: '*', dest: 'build/src/js'}
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'src/js',
+                    src: '*',
+                    dest: 'build/src/js'
+                }]
             }
         },
 
@@ -88,46 +86,44 @@ module.exports = function (grunt) {
                     mode: 'zip',
                     archive: 'dist/<%= pkg.vendor %>_<%= pkg.name %>_<%= pkg.version %>.wgt'
                 },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'src',
-                        src: [
-                            'DESCRIPTION.md',
-                            'css/**/*',
-                            'doc/**/*',
-                            'images/**/*',
-                            'index.html',
-                            
-                            'config.xml'
-                        ]
-                    },
-                    {
-                        expand: true,
-                        cwd: 'build/lib',
-                        src: [
-                            'lib/**/*'
-                        ]
-                    },
-                    {
-                        expand: true,
-                        cwd: 'build/src',
-                        src: [
-                            'js/**/*'
-                        ]
-                    },
-                    {
-                        expand: true,
-                        cwd: '.',
-                        src: [
-                            'LICENSE'
-                        ]
-                    }
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'src',
+                    src: [
+                        'DESCRIPTION.md',
+                        'css/**/*',
+                        'doc/**/*',
+                        'images/**/*',
+                        'index.html',
+
+                        'config.xml'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: 'build/lib',
+                    src: [
+                        'lib/**/*'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: 'build/src',
+                    src: [
+                        'js/**/*'
+                    ]
+                }, {
+                    expand: true,
+                    cwd: '.',
+                    src: [
+                        'LICENSE'
+                    ]
+                }]
             }
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: {
                 src: ['build']
             },
@@ -159,14 +155,17 @@ module.exports = function (grunt) {
         },
 
         jasmine: {
-            test:{
+            test: {
                 src: ['src/js/*.js', '!src/js/main.js'],
                 options: {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],
-                    vendor: [
-                             'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
-                             'src/test/vendor/*.js']
+                    vendor: ['node_modules/jquery/dist/jquery.js',
+                        'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+
+                        'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
+                        'src/test/vendor/*.js'
+                    ]
                 }
             },
             coverage: {
@@ -176,24 +175,32 @@ module.exports = function (grunt) {
                     specs: '<%= jasmine.test.options.specs %>',
                     vendor: '<%= jasmine.test.options.vendor %>',
                     template: require('grunt-template-jasmine-istanbul'),
-                    templateOptions : {
+                    templateOptions: {
                         coverage: 'build/coverage/json/coverage.json',
-                        report: [
-                            {type: 'html', options: {dir: 'build/coverage/html'}},
-                            {type: 'cobertura', options: {dir: 'build/coverage/xml'}},
-                            {type: 'text-summary'}
-                        ]
+                        report: [{
+                            type: 'html',
+                            options: {
+                                dir: 'build/coverage/html'
+                            }
+                        }, {
+                            type: 'cobertura',
+                            options: {
+                                dir: 'build/coverage/xml'
+                            }
+                        }, {
+                            type: 'text-summary'
+                        }]
                     }
                 }
             }
         }
     });
 
-    
-    
+
+
     grunt.loadNpmTasks('grunt-contrib-jshint');
-     grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
-     grunt.loadNpmTasks('grunt-jscs');
+    grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
+    grunt.loadNpmTasks('grunt-jscs');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -202,17 +209,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('test', [
-        
+
         'jshint',
-         'jshint:grunt',
-         'jscs',
-         'jasmine:coverage'
-         
+        'jshint:grunt',
+        'jscs',
+        'jasmine:coverage'
+
     ]);
 
     grunt.registerTask('build', [
         'clean:temp',
-        
+
         'copy:main',
         'strip_code',
         'replace:version',
@@ -221,13 +228,13 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'jsbeautifier',
-        
+
         'test',
         'build'
     ]);
 
     grunt.registerTask('publish', [
         'default'
-        
+
     ]);
 };

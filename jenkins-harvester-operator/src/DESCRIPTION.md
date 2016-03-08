@@ -1,1 +1,1 @@
-This operator allows you to retrieve Build information from Jenkins.
+The Get Build Information operator is a WireCloud operator that provides the ability to harvest build data from a jenkins instance.

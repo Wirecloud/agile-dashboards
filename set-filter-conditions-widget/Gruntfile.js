@@ -1,17 +1,9 @@
-/*!
- *   Copyright 2014-2015 CoNWeT Lab., Universidad Politecnica de Madrid
+/*
+ * and-filter
+ * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
+ * Copyright (c) 2016 CoNWeT
+ * Licensed under the Apache2 license.
  */
 
 module.exports = function (grunt) {
@@ -21,17 +13,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
-
-        bower: {
-            install: {
-                options: {
-                    layout: function (type, component, source) {
-                        return type;
-                    },
-                    targetDir: './build/lib/lib'
-                }
-            }
-        },
 
         jshint: {
             options: {
@@ -140,11 +121,25 @@ module.exports = function (grunt) {
         },
 
         clean: {
+            options: {
+                force: true
+            },
             build: {
-                src: ['build', 'bower_components']
+                src: ['build']
             },
             temp: {
                 src: ['build/src']
+            }
+        },
+
+        jsbeautifier: {
+            files: ["Gruntfile.js"],
+            options: {
+                js: {
+                    spaceAfterAnonFunction: true,
+                    endWithNewline: false,
+                    jslintHappy: true
+                }
             }
         },
 
@@ -201,7 +196,8 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-bower-task');
+
+
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
     grunt.loadNpmTasks('grunt-jscs');
@@ -210,17 +206,20 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-strip-code');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('test', [
-        'bower:install',
+
         'jshint',
         'jshint:grunt',
         'jscs',
         'jasmine:coverage'
+
     ]);
 
     grunt.registerTask('build', [
         'clean:temp',
+
         'copy:main',
         'strip_code',
         'replace:version',
@@ -228,16 +227,14 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
+        'jsbeautifier',
+
         'test',
         'build'
     ]);
 
-    grunt.registerTask('release_metadata', [
-    ]);
-
     grunt.registerTask('publish', [
-        'release_metadata',
         'default'
-    ]);
 
+    ]);
 };

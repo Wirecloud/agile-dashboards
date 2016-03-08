@@ -11,6 +11,29 @@
     "use strict";
 
     var milestones = [];
+    var DAY_LENGTH = 86400000;
+
+    var oauth2_token;
+    var repoName;
+    var username;
+
+    //Stablish callbacks
+    var init = function init() {
+
+        MashupPlatform.wiring.registerStatusCallback(request_github_info);
+
+        //On preferences update
+        MashupPlatform.prefs.registerCallback(updatePrefs);
+        updatePrefs();
+    };
+
+    var updatePrefs = function updatePrefs() {
+        oauth2_token = MashupPlatform.prefs.get("oauth2-token").trim();
+        username = MashupPlatform.prefs.get("repo-owner").trim();
+        repoName = MashupPlatform.prefs.get("repo-name").trim();
+
+        request_github_info();
+    };
 
     var request_github_info = function request_github_info() {
 
@@ -18,14 +41,13 @@
             Accept: "application/vnd.github.v3.html+json"
         };
 
-        var oauth2_token = MashupPlatform.prefs.get('oauth2-token').trim();
         if (oauth2_token !== '') {
             requestHeaders.Authorization = 'token ' + oauth2_token;
         }
 
         if (MashupPlatform.operator.outputs['issue-list'].connected) {
 
-            MashupPlatform.http.makeRequest("https://api.github.com/repos/Wirecloud/wirecloud/issues", {
+            MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/issues", {
                 method: 'GET',
                 supportsAccessControl: true,
                 parameters: {
@@ -60,7 +82,7 @@
         }
 
         if (MashupPlatform.operator.outputs['commit-list'].connected) {
-            MashupPlatform.http.makeRequest("https://api.github.com/repos/Wirecloud/wirecloud/commits", {
+            MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/commits", {
                 method: 'GET',
                 supportsAccessControl: true,
                 parameters: {
@@ -165,7 +187,7 @@
                 milestones[i].startDate = milestones[i].endDate.substring(0, 7) + "-01";
             } else {
                 //The moment next to the previous sprint endDate
-                milestones[i].startDate = new Date(Date.parse(milestones[i - 1].endDate) + 1);
+                milestones[i].startDate = new Date(Date.parse(milestones[i - 1].endDate) + DAY_LENGTH);
             }
         }
     };
@@ -185,7 +207,6 @@
         return Date.parse(a.endDate) - Date.parse(b.endDate);
     };
 
-    request_github_info();
-    MashupPlatform.wiring.registerStatusCallback(request_github_info);
+    init();
 
 })();

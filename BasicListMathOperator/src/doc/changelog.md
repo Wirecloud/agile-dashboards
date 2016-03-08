@@ -1,7 +1,8 @@
-## v0.1.0 [Extra release info, e.g. release date]
+## v0.2.0
 
 Initial version
 
-- change 1
-- change 2
-- ...
+- Addition operation
+- Substraction operation
+- Multiplication operation
+- Division operation

@@ -1,16 +1,17 @@
 ## Introduction
 
-Get build info from jenkins
+The Get Build Information operator is a WireCloud operator that provides the ability to harvest build data from a jenkins instance.
 
 ## Settings
 
-## Wiring
+- `Jenkins URL`: The url of the Jenkins instance.
+- `Job Id`: The ID of the Jenkins job to be harvested.
 
-### Input Endpoints
+## Wiring
 
 ### Output Endpoints
 
-## Usage
+- `Build List`: The builds of the chosen Job. 
 
 ## Reference
 

@@ -1,7 +1,14 @@
-## v0.1.4 [Extra release info, e.g. release date]
+## v0.2.0 [Extra release info, e.g. release date]
 
-Initial version
+Version 0.2.0
 
-- change 1
-- change 2
-- ...
+- Added preferences to change the target repository.
+- Added generic metadata.
+- Added filter settings metadata.
+- Normalized issues.
+- Harvest milestones and tries to use them as agile sprints.
+
+Initial version (0.1.8)
+
+- Harvest commits.
+- Harvest issues.

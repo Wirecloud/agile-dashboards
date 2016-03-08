@@ -1,7 +1,10 @@
-## v0.1.0 [Extra release info, e.g. release date]
+## v0.2.0
 
-Initial version
+Version 0.2.0
 
-- change 1
-- change 2
-- ...
+- Added generic metadata.
+- Added available filters metadata.
+
+Initial version (0.1.8)
+
+- Harvest build info from jenkins

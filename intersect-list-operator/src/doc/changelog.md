@@ -1,7 +1,5 @@
-## v0.1.4 [Extra release info, e.g. release date]
+## v0.2.0 [Extra release info, e.g. release date]
 
-Initial version
+Initial version (v2.0)
 
-- change 1
-- change 2
-- ...
+- Intersect two lists.

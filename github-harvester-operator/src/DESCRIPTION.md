@@ -1,1 +1,1 @@
-This operator harvests data from GitHub. That is, it gets lists of issues (`List<Issue>`) from the configured repository.
+The GitHub Harvester operator is a WireCloud operator that provides the ability to harvest issues and commits from Github.

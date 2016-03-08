@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="reliability-chart-generator" version="0.1.9">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="reliability-chart-generator" version="0.2.0">
     <details>
         <title>Reliability Chart Generator</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -20,7 +20,7 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="issues-list" label="Issue List" description="List of issues to analyse. This list should provide all the issues (closed and opened) for the users for the period of time to analyse" type="text" friendcode="issue-list" />
+        <inputendpoint name="issues-list" label="Issue List" description="List of issues to analyse. This list should provide all the issues (closed and opened) for the users for the period of time to analyse" type="text" friendcode="normalized-agile-issues issue-list" />
         <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
     </wiring>
 

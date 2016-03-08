@@ -1,7 +1,7 @@
-## v0.1.8 [Extra release info, e.g. release date]
+## v0.2.0
 
-Initial version
+Initial version (v0.2.0)
 
-- change 1
-- change 2
-- ...
+- Packs both inputs into a single list.
+- If any of the inputs is a packed list it appends data to it. (a + [b,c] = [a,b,c])
+- Keeps original lists metadata if any.

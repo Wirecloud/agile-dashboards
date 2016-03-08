@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Conwet" name="gitlab-harvester" version="0.1.8">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Conwet" name="gitlab-harvester" version="0.2.0">
     <details>
         <title>Gitlab Harvester Operator</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -24,7 +24,7 @@
     </preferences>
 
     <wiring>
-        <outputendpoint name="issue-list" label="Issue List" description="Issues associated to the project" type="text" friendcode="issue-list list generic-filter" />
+        <outputendpoint name="issue-list" label="Issue List" description="Issues associated to the project" type="text" friendcode="normalized-agile-issues issue-list list generic-filter" />
         <outputendpoint name="commit-list" label="Commit List" description="Commits associated to the project" type="text" friendcode="commit-list list generic-filter" />
     </wiring>
 

@@ -1,7 +1,8 @@
-## v0.1.8 [Extra release info, e.g. release date]
+## v0.2.0
 
-Initial version
+Initial version (v0.2.0)
 
-- change 1
-- change 2
-- ...
+- Plots created line
+- Plots resolved line.
+- Plots updated line.
+- Plots progress columns.

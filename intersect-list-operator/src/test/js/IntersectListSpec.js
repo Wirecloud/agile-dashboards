@@ -1,7 +1,6 @@
-/*global $, MashupPlatform, MockMP, beforeAll, afterAll, beforeEach*/
+/*global $, MashupPlatform, MockMP, beforeAll, afterAll, beforeEach, checkEqual, calculate_intersection*/
 (function () {
     "use strict";
-
     jasmine.getFixtures().fixturesPath = 'src/test/fixtures/';
 
     var dependencyList = [

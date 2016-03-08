@@ -1,7 +1,7 @@
 Get Build Information operator
 ======================
 
-The Get Build Information operator is a WireCloud operator that provides ...
+The Get Build Information operator is a WireCloud operator that provides the ability to harvest build data from a jenkins instance.
 
 Build
 -----
@@ -42,23 +42,14 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+- `Jenkins URL`: The url of the Jenkins instance.
+- `Job Id`: The ID of the Jenkins job to be harvested.
 
 ## Wiring
 
-
-### Input Endpoints
-
-`Write here the input wiring endpoints`
-
-
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
-
-## Usage
-
+- `Build List`: The builds of the chosen Job. 
 
 ## Reference
 

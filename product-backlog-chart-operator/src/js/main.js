@@ -13,7 +13,7 @@
     var data = null;
 
     var init = function init() {
-        MashupPlatform.wiring.registerCallback("jira-issues", function (d) {
+        MashupPlatform.wiring.registerCallback("issues", function (d) {
             data = d;
             plot();
         });
@@ -86,7 +86,7 @@
         return series;
     };
 
-    //Helper function to sort the jira dates
+    //Helper function to sort the issue dates
     var sortDates = function sortDates(a, b) {
         //Splits dates on year and month
         var x = a.split("-");

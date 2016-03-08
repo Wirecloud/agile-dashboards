@@ -49,11 +49,11 @@ No settings needed for this operator to work
 
 ### Input Endpoints
 
--`Original list`: The list whose duplicates are to be removed.
+- `Original list`: The list whose duplicates are to be removed.
 
 ### Output Endpoints
 
--`Output list`: The `Original list` with no duplicated items. 
+- `Output list`: The `Original list` with no duplicated items. 
 
 ## Usage
 
