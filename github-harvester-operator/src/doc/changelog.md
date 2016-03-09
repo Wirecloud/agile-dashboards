@@ -1,4 +1,10 @@
-## v0.2.0 [Extra release info, e.g. release date]
+## v0.2.1
+
+Version 0.2.1
+
+- Added support for issue filtering by key.
+- Added support for issue filtering by label.
+- Normalized issues now have the issue key, the issue source (E.g: github) and the issue labels.
 
 Version 0.2.0
 

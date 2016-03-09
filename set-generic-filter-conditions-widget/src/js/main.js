@@ -29,6 +29,7 @@
         //Check if data has filter info
         if (!data.metadata || !data.metadata.filters || data.metadata.filters.length <= 0) {
             return; //No filters available
+
         }
         //Clear previous filters
         clearSelectors();
@@ -79,10 +80,19 @@
         dataSet.forEach(function (item) {
             var property = getProperty(item, filter.property);
             var display = getProperty(item, filter.display);
+
             if (!property || !display) {
                 return;
             }
-            if (!found[property]) {
+
+            if (Array.isArray(property)) {
+                for (var i = 0; i < property.length; i++) {
+                    if (!found[property[i]]) {
+                        found[property[i]] = true;
+                        entries.push({label: display[i], value: property[i]});
+                    }
+                }
+            } else if (!found[property]) {
                 found[property] = true;
                 entries.push({label: display, value: property});
             }

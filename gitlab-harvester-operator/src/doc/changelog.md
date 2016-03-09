@@ -1,6 +1,12 @@
-## v0.2.0
+## v0.2.1
 
-Initial version
+Version 0.2.1
+
+- Added support for issue filtering by key.
+- Added support for issue filtering by label.
+- Normalized issues now have the issue key, the issue source (E.g: gitlab) and the issue labels.
+
+Initial version (v0.2.0)
 
 - Harvests Gitlab issues.
 - Harvests Gitlab commits.
