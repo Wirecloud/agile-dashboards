@@ -34,9 +34,25 @@
         //Clear previous filters
         clearSelectors();
 
+        //Gets the saved values
+        var aux = MashupPlatform.widget.getVariable('chosenValues').get();
+        var chosenValues = null;
+        if (aux && aux !== "") {
+            chosenValues = JSON.parse(aux);
+        }
+        
         var dict = data.metadata.filters;
         dict.forEach(function (filter) {
-            createSelector(filter);
+            var chosenValue = "";
+            //Searchs for the current filter saved value
+            if(chosenValues) {
+                chosenValues.some(function (value) {
+                    if (value.name === filter.name) {
+                        chosenValue = value.value;
+                    }
+                });
+            }
+            createSelector(filter, chosenValue);
         });
         sendEvents();
     };
@@ -69,7 +85,7 @@
     };
 
     //Creates a new selector based on the input filter
-    var createSelector = function createSelector (filter) {
+    var createSelector = function createSelector (filter, chosenValue) {
         //Clear body
         var body = document.getElementById('filters');
         var div = document.createElement('div');
@@ -89,7 +105,7 @@
             if (!property || !display) {
                 return;
             }
-
+            //If its a list loop through it
             if (Array.isArray(property)) {
                 for (var i = 0; i < property.length; i++) {
                     if (!found[property[i]]) {
@@ -97,14 +113,17 @@
                         entries.push({label: display[i], value: property[i]});
                     }
                 }
+            //If its a single value
             } else if (!found[property]) {
                 found[property] = true;
                 entries.push({label: display, value: property});
             }
         });
-
         select.addEntries(entries);
         select.addEventListener("change", sendEvents.bind(this));
+
+        //Updates the default value
+        select.setValue(chosenValue);
 
         //Add the selector to the view
         title.insertInto(div);
@@ -118,14 +137,22 @@
 
     //Build the filters from the selected data and push it
     var sendEvents = function sendEvents() {
+        //Wipes selected values
+        var newValues = [];
 
         var filters = [];
         selectors.forEach(function (selector) {
             var val = selector.getValue();
             if (val !== '') {
                 filters.push({type: selector.attr.type || "eq", value: val, attr: selector.attr.compare || selector.attr.property, name: selector.attr.name});
+                //Saves the selected value
+                newValues.push({name: selector.attr.name, value: val});
             }
         });
+
+        //Updates the new values
+        var chosenValues = MashupPlatform.widget.getVariable('chosenValues');
+        chosenValues.set(JSON.stringify(newValues));
 
         MashupPlatform.wiring.pushEvent('filter-conditions', filters);
     };
