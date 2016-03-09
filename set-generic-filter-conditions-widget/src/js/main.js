@@ -53,6 +53,11 @@
 
     //Get nested property of an object
     var getProperty = function getProperty (item, attr) {
+        //If theres no attr then the result is the original item
+        if (!attr || attr === "") {
+            return item;
+        }
+        //Search for the propertys
         attr = attr.split(".");
         for (var i = 0; i < attr.length; i++) {
             if (!item[attr[i]]) {
