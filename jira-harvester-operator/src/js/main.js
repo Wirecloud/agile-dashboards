@@ -103,6 +103,8 @@
                 filters.push({name: "Sprints", base: "metadata.versions", property: "name", display: "name", compare: "versions", type: "some"});
                 filters.push({name: "Assignee", property: "assigneeId", display: "assignee"});
                 filters.push({name: "Status", property: "status", display: "status"});
+                filters.push({name: "Type", property: "type", display: "type", type: "eq"});
+                filters.push({name: "Issue Key", property: "key", display: "key"});
                 msg.metadata.filters = filters;
 
                 //Pushes the list of issues
@@ -126,6 +128,11 @@
     var normalizeIssue = function normalizeIssue (issue) {
         var result = {};
 
+        result.key = issue.key;
+        result.from = "jira";
+        result.labels = [];
+
+        //Jira dependent properties.
         result.type = issue.fields.issuetype.name || "";
         result.jira = {};
         result.jira.components = issue.fields.components;
