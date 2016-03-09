@@ -37,21 +37,24 @@
         //Gets the saved values
         var aux = MashupPlatform.widget.getVariable('chosenValues').get();
         var chosenValues = null;
+        //Check if the value can be parsed and parse it
         if (aux && aux !== "") {
             chosenValues = JSON.parse(aux);
         }
-        
+
+        //Loop through the filters to create each one
         var dict = data.metadata.filters;
         dict.forEach(function (filter) {
             var chosenValue = "";
             //Searchs for the current filter saved value
-            if(chosenValues) {
+            if (chosenValues) {
                 chosenValues.some(function (value) {
                     if (value.name === filter.name) {
                         chosenValue = value.value;
                     }
                 });
             }
+            //Creates a selector for the current filter
             createSelector(filter, chosenValue);
         });
         sendEvents();
@@ -140,6 +143,7 @@
         //Wipes selected values
         var newValues = [];
 
+        //Loop through the selectors to gather the chosen values and build the filters.
         var filters = [];
         selectors.forEach(function (selector) {
             var val = selector.getValue();
@@ -154,6 +158,7 @@
         var chosenValues = MashupPlatform.widget.getVariable('chosenValues');
         chosenValues.set(JSON.stringify(newValues));
 
+        //Push the filter conditions
         MashupPlatform.wiring.pushEvent('filter-conditions', filters);
     };
 
