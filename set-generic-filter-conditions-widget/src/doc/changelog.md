@@ -1,4 +1,8 @@
-## v0.2.0
+## v0.2.1
+
+Version 0.2.1
+
+- Allows filtering if target attribute is a list of items, adding an option with each unique item of the list.
 
 Initial version (v0.2.0)
 
