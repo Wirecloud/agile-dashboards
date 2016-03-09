@@ -73,6 +73,8 @@
                     filters.push({name: "Sprints", base: "metadata.versions", property: "name", display: "name", compare: "versions", type: "some"});
                     filters.push({name: "Assignee", property: "assignee", display: "assignee"});
                     filters.push({name: "Status", property: "status", display: "status"});
+                    filters.push({name: "Label", property: "labels", display: "labels", type: "some"});
+                    filters.push({name: "Issue Key", property: "key", display: "key"});
                     issues.metadata.filters = filters;
 
                     MashupPlatform.wiring.pushEvent("issue-list", issues);
@@ -122,6 +124,13 @@
     //Removes useless response JSON data and gives normalized format
     var normalizeIssue = function normalizeIssue (issue) {
         var result = {};
+
+        result.key = "#" + issue.number;
+        result.from = "github";
+        result.labels = [];
+        issue.labels.forEach(function (label) {
+            result.labels.push(label.name);
+        });
 
         result.type = null;
 
