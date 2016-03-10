@@ -1,4 +1,8 @@
-## v0.2.1
+## v0.2.2
+
+Version 0.2.2
+
+- Added persistent choices to the condition selectors so that condition choices are saved and loaded on further sessions.
 
 Version 0.2.1
 
