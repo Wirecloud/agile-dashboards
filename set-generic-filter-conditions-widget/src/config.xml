@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="set-generic-filter-conditions" version="0.2.1">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="set-generic-filter-conditions" version="0.2.2">
     <details>
         <title>Generic filter conditions</title>
         <homepage>https://127.0.0.1</homepage>
@@ -18,7 +18,11 @@
     <requirements>
         <feature name="StyledElements"/>
     </requirements>
-    
+
+    <persistentvariables>
+        <variable name="chosenValues" type="text"/>
+    </persistentvariables>
+
     <wiring>
         <inputendpoint name="input" label="Input data" type="text" friendcode="generic-filter"/>
         <outputendpoint name="filter-conditions" label="Filter conditions" type="text" friendcode="condition-list"/>
