@@ -12,7 +12,8 @@
 
     var data = null;
 
-    var statusList, priorityList, assigneeList, typeList;
+    //Initialize as empty data.
+    var statusList = [], priorityList = [], assigneeList = [], typeList = [];
 
     var init = function init() {
         MashupPlatform.wiring.registerCallback("issue-list", function (values) {
