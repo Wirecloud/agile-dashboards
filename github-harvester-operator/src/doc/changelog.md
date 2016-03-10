@@ -1,4 +1,9 @@
-## v0.2.1
+## v0.2.2
+
+Version 0.2.2
+
+- Normalized commits.
+- Added month filter for commits.
 
 Version 0.2.1
 

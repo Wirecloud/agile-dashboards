@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="github-harvester" version="0.2.1">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="github-harvester" version="0.2.2">
     <details>
         <title>GitHub Harvester</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -23,7 +23,7 @@
 
     <wiring>
         <outputendpoint name="issue-list" label="⊱Issue List" description="Issues associated to the project" type="text" friendcode="normalized-agile-issues issue-list list generic-filter" />
-        <outputendpoint name="commit-list" label="Commit List" description="Commits associated to the project" type="text" friendcode="commit-list list generic-filter" />
+        <outputendpoint name="commit-list" label="Commit List" description="Commits associated to the project" type="text" friendcode="normalized-agile-commits commit-list list generic-filter" />
     </wiring>
 
     <scripts>
