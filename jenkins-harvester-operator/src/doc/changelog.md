@@ -1,4 +1,9 @@
-## v0.2.0
+## v0.2.1
+
+Version 0.2.1
+
+- Added build ID filter.
+- Added build URL to each build data.
 
 Version 0.2.0
 

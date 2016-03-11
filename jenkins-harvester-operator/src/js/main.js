@@ -43,6 +43,7 @@
 
                     build_info.push({
                         id: build.id,
+                        buildURL: build.url,
                         result: build.result,
                         duration: build.duration || 0,
                         timestamp: build.timestamp,
@@ -66,6 +67,7 @@
                 filters.push({name: "Date", property: "month", display: "month"});
                 filters.push({name: "User", property: "user", display: "user"});
                 filters.push({name: "Result", property: "result", display: "result"});
+                filters.push({name: "Build id", property: "id", display: "id"});
                 build_info.metadata.filters = filters;
 
                 MashupPlatform.wiring.pushEvent("build-list", build_info);
