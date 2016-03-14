@@ -92,7 +92,11 @@
                 },
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
-                    var commits = JSON.parse(response.responseText);
+                    var data = JSON.parse(response.responseText);
+                    var commits = [];
+                    for (var i = 0; i < data.length; i++) {
+                        commits.push(normalizeCommit(data[i]));
+                    }
 
                     //Add some metadata
                     commits.metadata = {};
@@ -101,14 +105,25 @@
                     commits.metadata.verbose = "Github commits";
                     //filter metadata
                     var filters = [];
-                    filters.push({name: "Author", property: "commit.author.name", display: "commit.author.name"});
+                    filters.push({name: "Author", property: "author", display: "author"});
+                    filters.push({name: "Month", property: "month", display: "month"});
                     commits.metadata.filters = filters;
-
 
                     MashupPlatform.wiring.pushEvent("commit-list", commits);
                 }
             });
         }
+    };
+
+    //Removes useless JSON data and gives a normalized format
+    var normalizeCommit = function normalizeCommit (commit) {
+        var result = {};
+
+        result.author = commit.commit.author.name;
+        result.month = commit.commit.author.date.substring(0, 7);
+        result.timestamp = Date.parse(commit.author.date);
+
+        return result;
     };
 
     var normalizeData = function normalizeData (data) {

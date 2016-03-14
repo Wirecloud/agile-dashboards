@@ -1,1 +1,1 @@
-This operator allows you to [...]
+The Workload Chart Generator operator is a WireCloud operator that provides the ability to plot workload charts of a agile project based on assigned issues or the number of commits made by each author.

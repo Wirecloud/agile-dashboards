@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="workload-chart-generator" version="0.2.0">
+    <details>
+        <title>Workload Chart Generator</title>
+        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image>images/catalogue.png</image>
+        <smartphoneimage></smartphoneimage>
+        <description>Generates the workload chart from a set of issues or commits</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="title" type="text" label="Chart Title" description="Title used for the chart" default=""/>
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="issues" label="Issues" description="Source issues" type="text" friendcode="normalized-agile-issues" />
+        <inputendpoint name="commits" label="Commits" description="Soruce commtis" type="text" friendcode="" />
+        <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>

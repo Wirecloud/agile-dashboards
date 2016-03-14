@@ -1,7 +1,7 @@
 Workload Chart Generator operator
 ======================
 
-The Workload Chart Generator operator is a WireCloud operator that provides ...
+The Workload Chart Generator operator is a WireCloud operator that provides the ability to plot workload charts of a agile project based on assigned issues or the number of commits made by each author.
 
 Build
 -----
@@ -42,23 +42,24 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+- `Chart Title`: The title for the chart.
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
+- `Issues`: The input issues
+- `Commits`: The input commits
 
 
 ### Output Endpoints
 
-
-`Write here the output wiring endpoints`
+- `Chart Data Model`: The chart data model to be passed to the Highcharts widget.
 
 ## Usage
 
+Plug in the issues/commits you want analyzed and plug the output to the Highcharts widget.
+You can harvest the issues/commits with the github or gitlab harvesters and filter them using the `set-generic-filter-conditions` operator and the `and-filter-operator`.
 
 ## Reference
 
