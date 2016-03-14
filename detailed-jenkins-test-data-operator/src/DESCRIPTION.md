@@ -1,0 +1,1 @@
+The Detailed Jenkins test report data operator is a WireCloud operator that provides the ability to harvest detailed data about the test passed by a build. This is usefull for comparing each test duration between two builds using the `jenkins-test-time-difference operator`.

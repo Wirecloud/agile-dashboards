@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="detailed-jenkins-test-data" version="0.2.0">
+    <details>
+        <title>Detailed Jenkins test report data</title>
+        <homepage>https://repo.conwet.fi.upm.es/Wirecloud/agile-dashboards</homepage>
+        <authors>Alejandro Rodríguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Harvest more detailed data about the tests done to a build.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="max" label="Max queries" description="Limit the max amount of queries to be made by the operator. If the input data is not filtered, there might be a large amount of requests." type="text" default="Wirecloud" />
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="build" type="text" label="Jenkins builds" description="The jenkins builds to be analyzed" friendcode="build-list build"/>
+        <outputendpoint name="test-data" type="text" label="Test data" description="Test data about the test done to the input build" friendcode=""/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="jenkins-test-time-difference" version="0.2.0">
+<details>
+  <title>Jenkins test time difference widget</title>
+  <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
+  <authors>Alejandro Rodríguez</authors>
+  <email>alex.rodriguez@conwet.com</email>
+  <image></image>
+  <smartphoneimage></smartphoneimage>
+  <description>Displays the time difference between all the test done by two builds.</description>
+  <longdescription>DESCRIPTION.md</longdescription>
+  <changelog>doc/changelog.md</changelog>
+  <doc>doc/index.md</doc>
+  <license>MIT</license>
+  <issuetracker></issuetracker>
+</details>
+
+  <requirements>
+      <feature name="StyledElements"/>
+  </requirements>
+
+<wiring>
+  <inputendpoint name="test-list" type="text" label="Build Test List" description="List of tests passed by the builds to be displayed on the widget" friendcode="build-list"/>
+</wiring>
+
+<contents src="index.html"  useplatformstyle="true"/>
+<rendering height="47" width="10"/>
+</widget>
