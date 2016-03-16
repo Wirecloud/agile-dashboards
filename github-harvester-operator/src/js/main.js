@@ -14,6 +14,7 @@
     var DAY_LENGTH = 86400000;
 
     var oauth2_token;
+    var user, pass;
     var repoName;
     var username;
 
@@ -32,6 +33,10 @@
         username = MashupPlatform.prefs.get("repo-owner").trim();
         repoName = MashupPlatform.prefs.get("repo-name").trim();
 
+        //Updates the Login credentials
+        user = MashupPlatform.prefs.get("username");
+        pass = MashupPlatform.prefs.get("passwd");
+
         request_github_info();
     };
 
@@ -41,8 +46,12 @@
             Accept: "application/vnd.github.v3.html+json"
         };
 
+        //Choose authentication method if any
         if (oauth2_token !== '') {
             requestHeaders.Authorization = 'token ' + oauth2_token;
+        } else if (user !== "" && pass !== "") {
+            var token = btoa(user + ":" + pass); //Build the basic authentication token
+            requestHeaders.Authorization = "Basic " + token;
         }
 
         if (MashupPlatform.operator.outputs['issue-list'].connected) {
