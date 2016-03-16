@@ -1,4 +1,10 @@
-## v0.2.2
+## v0.2.3
+
+Version 0.2.3
+
+- Added support for Basic authentication.
+- Added username and password preferences to configure the Basic authentication.
+- If Oauth2 token is also provided, the operator will use Oauth2.
 
 Version 0.2.2
 
