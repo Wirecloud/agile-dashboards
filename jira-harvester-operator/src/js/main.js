@@ -105,6 +105,7 @@
                 filters.push({name: "Status", property: "status", display: "status"});
                 filters.push({name: "Type", property: "type", display: "type", type: "eq"});
                 filters.push({name: "Issue Key", property: "key", display: "key"});
+                filters.push({name: "Creation month", property: "month", display: "month"});
                 msg.metadata.filters = filters;
 
                 //Pushes the list of issues
@@ -156,6 +157,9 @@
 
         result.updatedDate = issue.fields.updated || null;
         result.updatedTimestamp = Date.parse(issue.fields.updated) || null;
+
+        result.month = issue.fields.created.substring(0, 7);
+
 
         result.versions = [];
         if (issue.fields.fixVersions && issue.fields.fixVersions[0]) {

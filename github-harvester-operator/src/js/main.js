@@ -84,6 +84,7 @@
                     filters.push({name: "Status", property: "status", display: "status"});
                     filters.push({name: "Label", property: "labels", display: "labels", type: "some"});
                     filters.push({name: "Issue Key", property: "key", display: "key"});
+                    filters.push({name: "Creation month", property: "month", display: "month"});
                     issues.metadata.filters = filters;
 
                     MashupPlatform.wiring.pushEvent("issue-list", issues);
@@ -179,6 +180,8 @@
 
         result.updatedDate = issue.updated_at || null;
         result.updatedTimestamp = Date.parse(issue.updated_at) || null;
+
+        result.month = issue.created_at.substring(0, 7);
 
         //Harvest versions
         result.versions = [];
