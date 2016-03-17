@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="issue-splitter" version="0.2.0">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="issue-splitter" version="0.2.1">
     <details>
         <title>Issue Splitter</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -22,6 +22,8 @@
         <outputendpoint name="priority-list" type="text" label="Issue priority list" friendcode="normalized-priority-list list"/>
         <outputendpoint name="assignee-list" type="text" label="Issue assignee list" friendcode="normalized-assignee-list list"/>
         <outputendpoint name="type-list" type="text" label="Issue type list" friendcode="normalized-type-list list"/>
+        <outputendpoint name="sprint-list" type="text" label="Issue sprint list" friendcode="normalized-sprint-list list"/>
+        <outputendpoint name="month-list" type="text" label="Issue month list" friendcode="normalized-month-list list"/>
     </wiring>
 
     <scripts>

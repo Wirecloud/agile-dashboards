@@ -1,4 +1,9 @@
-## v0.2.0
+## v0.2.1
+
+Version 0.2.1
+
+- Added month splitter.
+- Added sprint splitter.
 
 Initial version (v0.2.0)
 
