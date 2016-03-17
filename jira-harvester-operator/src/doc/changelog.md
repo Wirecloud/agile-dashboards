@@ -1,4 +1,9 @@
-## v0.2.1
+## v0.2.2
+
+Version 0.2.2
+
+- Added creation month data to normalized issues.
+- Added creation month filter metadata.
 
 Version 0.2.1
 

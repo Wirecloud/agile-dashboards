@@ -1,5 +1,5 @@
 {
-  "name": "issue-splitter",
+  "name": "labels-to-dataserie",
   "description": "This package.json file is only used for installing npm dependencies. But this is not an installable node package, but a WireCloud operator. Take a look into src/config.xml for more details about this operator",
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -16,5 +16,5 @@
     "grunt-text-replace": "~0.4.0"
   },
   "vendor": "CoNWet",
-  "version": "0.2.1"
+  "version": "0.2.0"
 }
