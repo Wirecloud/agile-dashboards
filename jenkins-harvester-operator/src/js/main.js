@@ -25,7 +25,7 @@
                     revision = null;
                     user = 'aarranz';
                     for (j = 0; j < build.actions.length; j++) {
-                        if ('causes' in build.actions[j] && 'userId' in build.actions[j].causes[0]) {
+                        if ('causes' in build.actions[j] && build.actions[j].causes[0] && 'userId' in build.actions[j].causes[0]) {
                             user = build.actions[j].causes[0].userId;
                         } else if ('failCount' in build.actions[j]) {
                             testResults = {
