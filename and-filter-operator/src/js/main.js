@@ -98,7 +98,7 @@
         }
 
         //Save the metadata if any
-        filtered.metadata = original_list.metadata;
+        filtered.metadata = original_list.metadata || {};
 
         //Add appliedFilters metadata
         filtered.metadata.filtered = appliedFilters;
