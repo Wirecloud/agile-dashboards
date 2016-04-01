@@ -18,7 +18,7 @@ Generates a table to see the time difference betweent the tests of two Jenkins b
 
 ## Usage
 
-To use this operator plug in a test list from the `detailed-jenkins-test-data operator`. To gather the tests passed by two builds, as required for this widget to work, two and filters can be used, merging together both builds before passing it to the `detailed-jenkins-test-data operator` by using the `union-list operator`.
+To use this operator plug in a test list from the `detailed-jenkins-test-data operator` and plug the `Data and Structure` endpoint to the `data table viewer widget`. To gather the tests passed by two builds, as required for this widget to work, two and filters can be used, merging together both builds before passing it to the `detailed-jenkins-test-data operator` by using the `union-list operator`.
 
 Rows will be displayed with colors: danger color (red by default) when the test time increased, info color (blue by default) when there's no change in test time, and success color (green by default) when the test time decreased.
 
