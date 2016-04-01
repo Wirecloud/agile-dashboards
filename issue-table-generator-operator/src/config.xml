@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="issue-table-generator" version="0.2.0">
+    <details>
+        <title>Issue table generator</title>
+        <authors>Alejandro Rodríguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Generates a data table for the input agile issues.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <wiring>
+        <inputendpoint name="issues" type="text" label="Issues" description="The issues to be plotted on the table" friendcode="normalized-agile-issues"/>
+        <outputendpoint name="dataset" type="text" label="Data and Structure" description="A JSON or an object with two fields: structure (for the structure of the data) and data (the data ifself)"  friendcode="dataset"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
