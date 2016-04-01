@@ -4,6 +4,7 @@ Version 0.2.4
 
 - Added creation month data to normalized issues.
 - Added creation month filter metadata.
+- Added issue title to normalized issues.
 
 Version 0.2.3
 

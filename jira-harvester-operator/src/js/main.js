@@ -130,6 +130,7 @@
         var result = {};
 
         result.key = issue.key;
+        result.title = issue.fields.summary || "";
         result.from = "jira";
         result.labels = [];
 

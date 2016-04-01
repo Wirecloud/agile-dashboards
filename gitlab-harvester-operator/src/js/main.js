@@ -167,6 +167,7 @@
 
         result.key = "#" + issue.iid;
         result.from = "gitlab";
+        result.title = issue.title || "";
         result.labels = issue.label;
 
         result.type = null;
