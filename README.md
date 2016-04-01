@@ -23,9 +23,17 @@
 
 ## [issue-splitter-operator](./issue-splitter-operator)
 
+## [issue-table-generator-operator](./issue-table-generator-operator)
+
 ## [jenkins-harvester-operator](./jenkins-harvester-operator)
 
-## [jenkins-project-build-list-widget](./jenkins-project-build-list-widget)
+## [jenkins-project-build-list-operator](./jenkins-project-build-list-widget)
+
+## [jenkins-project-build-list-widget](./jenkins-project-build-list-widget) (DEPRECATED, use jenkins-project-build-list-operator)
+
+## [detailed-jenkins-test-data-operator](./detailed-jenkins-test-data-operator)
+
+## [jenkins-test-time-difference-table-operator](./jenkins-test-time-difference-table-operator)
 
 ## [set-filter-conditions-widget](./set-filter-conditions-widget)
 
@@ -47,7 +55,11 @@
 
 ## [pie-chart-generator-operator](./pie-chart-generator-operator)
 
+## [column-chart-generator-operator](./column-chart-generator-operator)
+
 ## [product-backlog-chart-operator](./product-backlog-chart-operator)
+
+## [labels-to-dataserie-operator](./labels-to-dataserie-operator)
 
 ## [union-list-operator](./union-list-operator)
 
