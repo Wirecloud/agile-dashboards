@@ -1,4 +1,10 @@
-## v0.2.4
+## v0.2.5
+
+Version 0.2.5
+
+- Issues now contain data about the previous milestones it had.
+- Data is only harvested once. (For example, when you enter and leave the wiring view data won't be harvested again). To harvest data again, the page must be refreshed.
+- Previously harvested data is pushed through the wiring as before, though.
 
 Version 0.2.4
 
