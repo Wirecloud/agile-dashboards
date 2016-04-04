@@ -18,7 +18,7 @@
     var repoName;
     var username;
 
-    var issueData;
+    var issueData, commitData;
     var requestHeaders;
 
     var eventsToDo;
@@ -26,7 +26,7 @@
     //Stablish callbacks
     var init = function init() {
 
-        MashupPlatform.wiring.registerStatusCallback(request_github_info);
+        MashupPlatform.wiring.registerStatusCallback(pushInfo);
 
         //On preferences update
         MashupPlatform.prefs.registerCallback(updatePrefs);
@@ -45,6 +45,16 @@
         request_github_info();
     };
 
+    //Tries to push data and if theres no data harvest it.
+    var pushInfo = function pushInfo() {
+        if (issueData) {
+            MashupPlatform.wiring.pushEvent("issue-list", issueData);
+        } else {
+            request_github_info();
+        }
+    };
+
+    //Harvest data from Github
     var request_github_info = function request_github_info() {
 
         requestHeaders = {
@@ -110,23 +120,23 @@
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
                     var data = JSON.parse(response.responseText);
-                    var commits = [];
+                    commitData = [];
                     for (var i = 0; i < data.length; i++) {
-                        commits.push(normalizeCommit(data[i]));
+                        commitData.push(normalizeCommit(data[i]));
                     }
 
                     //Add some metadata
-                    commits.metadata = {};
-                    commits.metadata.type = "list";
-                    commits.metadata.tag = "Commit";
-                    commits.metadata.verbose = "Github commits";
+                    commitData.metadata = {};
+                    commitData.metadata.type = "list";
+                    commitData.metadata.tag = "Commit";
+                    commitData.metadata.verbose = "Github commits";
                     //filter metadata
                     var filters = [];
                     filters.push({name: "Author", property: "author", display: "author"});
                     filters.push({name: "Month", property: "month", display: "month"});
-                    commits.metadata.filters = filters;
+                    commitData.metadata.filters = filters;
 
-                    MashupPlatform.wiring.pushEvent("commit-list", commits);
+                    MashupPlatform.wiring.pushEvent("commit-list", commitData);
                 }
             });
         }
