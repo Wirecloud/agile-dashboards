@@ -18,10 +18,15 @@
     var repoName;
     var username;
 
+    var issueData, commitData;
+    var requestHeaders;
+
+    var eventsToDo;
+
     //Stablish callbacks
     var init = function init() {
 
-        MashupPlatform.wiring.registerStatusCallback(request_github_info);
+        MashupPlatform.wiring.registerStatusCallback(pushInfo);
 
         //On preferences update
         MashupPlatform.prefs.registerCallback(updatePrefs);
@@ -40,9 +45,19 @@
         request_github_info();
     };
 
+    //Tries to push data and if theres no data harvest it.
+    var pushInfo = function pushInfo() {
+        if (issueData) {
+            MashupPlatform.wiring.pushEvent("issue-list", issueData);
+        } else {
+            request_github_info();
+        }
+    };
+
+    //Harvest data from Github
     var request_github_info = function request_github_info() {
 
-        var requestHeaders = {
+        requestHeaders = {
             Accept: "application/vnd.github.v3.html+json"
         };
 
@@ -66,17 +81,17 @@
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
                     milestones = [];
-                    var issues = normalizeData(JSON.parse(response.responseText));
+                    issueData = normalizeData(JSON.parse(response.responseText));
 
                     //Calculate the sprints
                     guessMilestonesBeginDate ();
 
                     //Add some metadata
-                    issues.metadata = {};
-                    issues.metadata.versions = milestones;
-                    issues.metadata.type = "list";
-                    issues.metadata.tag = "Issue";
-                    issues.metadata.verbose = "Github issues";
+                    issueData.metadata = {};
+                    issueData.metadata.versions = milestones;
+                    issueData.metadata.type = "list";
+                    issueData.metadata.tag = "Issue";
+                    issueData.metadata.verbose = "Github issues";
                     //filter metadata
                     var filters = [];
                     filters.push({name: "Sprints", base: "metadata.versions", property: "name", display: "name", compare: "versions", type: "some"});
@@ -85,12 +100,14 @@
                     filters.push({name: "Label", property: "labels", display: "labels", type: "some"});
                     filters.push({name: "Issue Key", property: "key", display: "key"});
                     filters.push({name: "Creation month", property: "month", display: "month"});
-                    issues.metadata.filters = filters;
+                    issueData.metadata.filters = filters;
 
-                    MashupPlatform.wiring.pushEvent("issue-list", issues);
+                    MashupPlatform.wiring.pushEvent("issue-list", issueData);
+
+                    //Harvest extra data such as event data
+                    harvestEvents();
                 }
             });
-
         }
 
         if (MashupPlatform.operator.outputs['commit-list'].connected) {
@@ -103,26 +120,65 @@
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
                     var data = JSON.parse(response.responseText);
-                    var commits = [];
+                    commitData = [];
                     for (var i = 0; i < data.length; i++) {
-                        commits.push(normalizeCommit(data[i]));
+                        commitData.push(normalizeCommit(data[i]));
                     }
 
                     //Add some metadata
-                    commits.metadata = {};
-                    commits.metadata.type = "list";
-                    commits.metadata.tag = "Commit";
-                    commits.metadata.verbose = "Github commits";
+                    commitData.metadata = {};
+                    commitData.metadata.type = "list";
+                    commitData.metadata.tag = "Commit";
+                    commitData.metadata.verbose = "Github commits";
                     //filter metadata
                     var filters = [];
                     filters.push({name: "Author", property: "author", display: "author"});
                     filters.push({name: "Month", property: "month", display: "month"});
-                    commits.metadata.filters = filters;
+                    commitData.metadata.filters = filters;
 
-                    MashupPlatform.wiring.pushEvent("commit-list", commits);
+                    MashupPlatform.wiring.pushEvent("commit-list", commitData);
                 }
             });
         }
+    };
+
+    //Harvest event data
+    var harvestEvents = function harvestEvents() {
+        eventsToDo = issueData.length;
+        issueData.forEach(function (issue) {
+            harvestIssueEvents(issue);
+        });
+    };
+
+    var harvestIssueEvents = function harvestIssueEvents (issue) {
+
+        MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/issues/" + issue.key.substring(1, issue.key.length) + "/events", {
+            method: 'GET',
+            supportsAccessControl: true,
+            requestHeaders: requestHeaders,
+            onSuccess: function (response) {
+                var data = JSON.parse(response.responseText);
+
+                data.forEach(function (event) {
+                    if (event.event === "milestoned") {
+                        if (issue.versions.indexOf(event.milestone.title) === -1) {
+                            issue.versions.push(event.milestone.title);
+                            addMilestones (event.milestone.title, event.milestone.due_on);
+                        }
+                    }
+                });
+            },
+            onComplete: function (response) {
+                if (--eventsToDo === 0) {
+                    //Update repository milestones, just in case any new milestone was found
+                    guessMilestonesBeginDate();
+                    issueData.metadata.versions = milestones;
+
+                    //Push the new data
+                    MashupPlatform.wiring.pushEvent("issue-list", issueData);
+                }
+            }
+        });
     };
 
     //Removes useless JSON data and gives a normalized format
