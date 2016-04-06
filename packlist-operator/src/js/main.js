@@ -54,7 +54,7 @@
             result.push(itemB);
 
             //Looks for metadata in the base items
-            var metadata;
+            var metadata = {};
             if (itemA.metadata) {
                 metadata = itemA.metadata;
             } else {
