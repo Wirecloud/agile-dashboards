@@ -2,14 +2,26 @@
 
     "use strict";
 
-    var get_build_info = function get_build_info() {
-        var url = MashupPlatform.prefs.get('jenkins_server') + 'job/' + MashupPlatform.prefs.get('job_id') + '/api/json';
+    var build_info;
+    var previous_url = "";
 
-        MashupPlatform.http.makeRequest(url, {
+    //Pushes previous data if available.
+    var pushData = function pushData () {
+        if (build_info && previous_url === MashupPlatform.prefs.get('jenkins_server') + 'job/' + MashupPlatform.prefs.get('job_id') + '/api/json') {
+            MashupPlatform.wiring.pushEvent("build-list", build_info);
+        } else {
+            get_build_info();
+        }
+    };
+
+    var get_build_info = function get_build_info() {
+        previous_url = MashupPlatform.prefs.get('jenkins_server') + 'job/' + MashupPlatform.prefs.get('job_id') + '/api/json';
+
+        MashupPlatform.http.makeRequest(previous_url, {
             method: 'GET',
             parameters: {"depth": 1},
             onSuccess: function (response) {
-                var i, j, build_info, build, data, user, testResults, revision;
+                var i, j, build, data, user, testResults, revision;
 
                 data = JSON.parse(response.responseText);
 
@@ -75,7 +87,7 @@
         });
     };
 
-    get_build_info();
-    MashupPlatform.wiring.registerStatusCallback(get_build_info);
+    pushData();
+    MashupPlatform.wiring.registerStatusCallback(pushData);
 
 })();

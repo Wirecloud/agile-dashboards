@@ -12,31 +12,56 @@
 
     var count = 0;
 
+    var data;
+    var previousQuery = [];
+
     var init = function init() {
         MashupPlatform.wiring.registerCallback("build", function (builds) {
+
             if (!builds) {
+                previousQuery = null;
                 return;
             }
+
+            //Check if its the same query as the previous one
+            if (previousQuery.length === builds.length) {
+                var sameQuery = true;
+                for (var i = 0; i < builds.length; i++) {
+                    if (previousQuery[i] !== builds[i].buildURL) {
+                        sameQuery = false;
+                    }
+                }
+
+                //If its the same query, send previous data.
+                if (sameQuery) {
+                    MashupPlatform.wiring.pushEvent("test-data", data);
+                    return;
+                }
+            }
+
+            //If its not the same query, new data must be harvested.
 
             //Check if the max amount is exceded
             if (builds.length > MashupPlatform.prefs.get("max").trim()) {
                 throw new MashupPlatform.wiring.EndpointTypeError('Input data was larger than max');
             }
             //Harvest the data for all input builds
-            var result = [];
+            data = [];
+            previousQuery = [];
             if (Array.isArray(builds)) {
                 count = builds.length;
                 builds.forEach(function (build) {
-                    harvestTestData (build, result);
+                    previousQuery.push(build.buildURL);
+                    harvestTestData (build);
                 });
             } else {
                 count = 1;
-                harvestTestData (builds, result);
+                harvestTestData (builds);
             }
         });
     };
 
-    var harvestTestData = function harvestTestData (build, result) {
+    var harvestTestData = function harvestTestData (build) {
         //Get the base uri of the build
         var url = build.buildURL;
         if (!url || url === "") {
@@ -49,13 +74,13 @@
             parameters: {"depth": 1},
             onSuccess: function (response) {
                 //Push the data to a list
-                var data = JSON.parse(response.responseText);
-                result.push(data);
+                var res = JSON.parse(response.responseText);
+                data.push(res);
             },
             onComplete: function () {
                 //Wait for all the http requests to end.
                 if (--count === 0) {
-                    MashupPlatform.wiring.pushEvent("test-data", result);
+                    MashupPlatform.wiring.pushEvent("test-data", data);
                 }
             }
         });

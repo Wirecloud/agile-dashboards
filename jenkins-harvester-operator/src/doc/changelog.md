@@ -1,4 +1,8 @@
-## v0.2.2
+## v0.2.3
+
+Version 0.2.3
+
+- Data is only harvested once. (For example, when you enter and leave the wiring view data won't be harvested again). To harvest data again, the page must be refreshed.
 
 Version 0.2.2
 
