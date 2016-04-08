@@ -17,7 +17,3 @@ This operator allows you to harvest Jira issue data.
 ### Output Endpoints
 
 - `Jira Issues`: A list of Jira issues associated to the target component.
-
-## Reference
-
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)

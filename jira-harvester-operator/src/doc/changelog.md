@@ -1,4 +1,9 @@
-## v0.2.2
+## v0.2.3
+
+Version 0.2.3
+
+- Changed type of the password preference to `"password"`.
+- Removed unused Oauth2 preference.
 
 Version 0.2.2
 
