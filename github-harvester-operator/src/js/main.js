@@ -270,7 +270,7 @@
 
         for (var i = 0; i < milestones.length; i++) {
             //Skip milestones with no endDate
-            if (milestones[i].endDate === null) {
+            if (!milestones[i].endDate) {
                 continue;
             }
 
