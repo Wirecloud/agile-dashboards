@@ -54,10 +54,6 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 - `Jira Issues`: A list of Jira issues associated to the target component.
 
-## Reference
-
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)
-
 ## Copyright and License
 
 Copyright (c) 2016 Conwet

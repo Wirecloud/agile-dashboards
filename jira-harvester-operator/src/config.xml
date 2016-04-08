@@ -22,8 +22,7 @@
         <preference name="component" label="Jira project component" type="text" default="" />
 
         <preference name="username" label="Jira username" type="text" default="" />
-        <preference name="passwd" label="Jira Password" type="text" default="" />
-        <preference name="oauth2-token" label="OAuth2 Token" type="text" default="" />
+        <preference name="passwd" label="Jira Password" type="password" default="" />
     </preferences>
 
     <wiring>

@@ -18,7 +18,6 @@
         };
 
     var token;
-    var oauth2Token;
 
     var projectId = "APP";
 
@@ -34,9 +33,6 @@
     };
 
     var updatePrefs = function updatePrefs() {
-        //Updates the OAUTH token
-        oauth2Token = MashupPlatform.prefs.get("oauth2-token");
-
         //Updates the Login credentials
         token = btoa(MashupPlatform.prefs.get("username") + ":" + MashupPlatform.prefs.get("passwd"));
         requestHeaders.Authorization = "Basic " + token;
