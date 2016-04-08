@@ -1,0 +1,1 @@
+Generates a table to see the time difference betweent the tests of two Jenkins builds.

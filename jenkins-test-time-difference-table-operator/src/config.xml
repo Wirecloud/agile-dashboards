@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="jenkins-test-time-difference-table" version="0.2.0">
+    <details>
+        <title>Jenkins Test Time Difference Table Generator</title>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Generates a table to see the time difference betweent the tests of two Jenkins builds.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="decimals" label="Number of decimals" description="The amount of decimals to be shown" type="number" default="3" />
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="test-list" type="text" label="Build Test List" description="List of tests passed by the builds to be displayed on the widget" friendcode="build-list"/>
+        <outputendpoint name="dataset" type="text" label="Data and Structure" description="A JSON or an object with two fields: structure (for the structure of the data) and data (the data ifself)"  friendcode="dataset"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>

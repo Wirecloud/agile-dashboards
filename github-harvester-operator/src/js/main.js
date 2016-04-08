@@ -208,6 +208,7 @@
 
         result.key = "#" + issue.number;
         result.from = "github";
+        result.title = issue.title || "";
         result.labels = [];
         issue.labels.forEach(function (label) {
             result.labels.push(label.name);
