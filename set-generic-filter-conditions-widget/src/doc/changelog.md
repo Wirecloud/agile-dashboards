@@ -1,14 +1,16 @@
-## v0.2.2
+## v0.3.0
 
-Version 0.2.2
+- Fixed changelog format to the one expected by wirecloud.
+
+## v0.2.2
 
 - Added persistent choices to the condition selectors so that condition choices are saved and loaded on further sessions.
 
-Version 0.2.1
+## 0.2.1
 
 - Allows filtering if target attribute is a list of items, adding an option with each unique item of the list.
 
-Initial version (v0.2.0)
+## v0.2.0
 
 - Created dynamically selectors to filter the input data.
 - Gets from the input data metadata the available filters (therefore requires that metadata to work).
