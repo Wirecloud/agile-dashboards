@@ -1,6 +1,8 @@
-## v0.1.8
+## v0.3.0
 
-Initial version (v0.1.8)
+- Fixed changelog format to the one expected by wirecloud.
+
+## v0.1.8
 
 - Calculate the maximun & minimun of the list of values..
 - Calculate the arithmetic mean and standard deviation of the list of values..

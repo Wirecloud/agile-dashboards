@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="detailed-jenkins-test-data" version="0.2.0">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="detailed-jenkins-test-data" version="0.3.0">
     <details>
         <title>Detailed Jenkins test report data</title>
         <homepage>https://repo.conwet.fi.upm.es/Wirecloud/agile-dashboards</homepage>

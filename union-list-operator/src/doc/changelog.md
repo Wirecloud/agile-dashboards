@@ -1,6 +1,8 @@
-## v0.2.0 [Extra release info, e.g. release date]
+## v0.3.0
 
-Initial version (v0.2.0)
+- Fixed changelog format to the one expected by wirecloud.
+
+## v0.2.0
 
 - Performs the union of two lists.
 - Supports nested lists.

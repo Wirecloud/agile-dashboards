@@ -1,23 +1,25 @@
-## v0.2.3
+## v0.3.0
 
-Version 0.2.3
+- Fixed changelog format to the one expected by wirecloud.
+
+## v0.2.3
 
 - Added creation month data to normalized issues.
 - Added creation month filter metadata.
 - Added issue title to normalized issues.
 
-Version 0.2.2
+## v0.2.2
 
 - Normalized commits.
 - Added month filter for commits.
 
-Version 0.2.1
+## v0.2.1
 
 - Added support for issue filtering by key.
 - Added support for issue filtering by label.
 - Normalized issues now have the issue key, the issue source (E.g: gitlab) and the issue labels.
 
-Initial version (v0.2.0)
+## v0.2.0
 
 - Harvests Gitlab issues.
 - Harvests Gitlab commits.
