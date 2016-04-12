@@ -128,6 +128,7 @@
         result.key = issue.key;
         result.title = issue.fields.summary || "";
         result.from = "jira";
+        result.link = baseURI + "/browse/" + issue.key;
         result.labels = [];
 
         //Jira dependent properties.
