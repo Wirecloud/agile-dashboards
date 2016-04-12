@@ -209,6 +209,8 @@
         result.key = "#" + issue.number;
         result.from = "github";
         result.title = issue.title || "";
+        //Link to the issue webpage
+        result.link = issue.html_url;
         result.labels = [];
         issue.labels.forEach(function (label) {
             result.labels.push(label.name);

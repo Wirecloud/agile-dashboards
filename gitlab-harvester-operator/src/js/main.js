@@ -9,6 +9,7 @@
     "use strict";
 
     var baseURI = "https://repo.conwet.fi.upm.es/api/v3";
+    var issueBaseURI = "";
     var projectID = "101";
 
     var milestones = [];
@@ -63,6 +64,7 @@
                 for (var i = 0; i < projects.length; i++) {
                     if (projects[i].name_with_namespace === projectName) {
                         projectID = projects[i].id;
+                        issueBaseURI = projects[i].web_url;
                         break;
                     }
                 }
@@ -168,6 +170,9 @@
         result.key = "#" + issue.iid;
         result.from = "gitlab";
         result.title = issue.title || "";
+
+        //Link to the issue webpage
+        result.link = issueBaseURI + "/issues/" + issue.iid;
         result.labels = issue.label;
 
         result.type = null;
