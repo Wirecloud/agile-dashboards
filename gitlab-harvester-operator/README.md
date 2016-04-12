@@ -43,7 +43,7 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 ## Settings
 
 - `Gitlab URL` : URL to the gitlab server. (https://your.gitlab.server.com)
-- `Gitlab project name` : Name of the gitlab project.
+- `Gitlab project full name` : Name of the gitlab project. This has the following format: username / project name. This can be easily found on the home page of the Gitlab instance.
 - `Private token` : Private token to be used for authentication
 - `Oauth2 token` : Oath2 token to be used for authentication
 
@@ -58,11 +58,7 @@ Only one of both tokens is needed in order to harvest data.
 
 ## Usage
 
-This operator needs to have configured the gitlab URL, and project name and the token of at least one of the available authentication methods (Private token or OAuth2).
-
-## Reference
-
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)
+This operator needs to have configured the gitlab URL, project name, and the token of at least one of the available authentication methods (Private token or OAuth2).
 
 ## Copyright and License
 
