@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="burndownchart-click" version="0.3.0">
+    <details>
+        <title>Burndown chart click operator</title>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>The best project ever.</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <wiring>
+        <inputendpoint name="click" label="Selected data" description="The data from the highcharts click event" type="text" friendcode="selected-data" />
+        <inputendpoint name="input-issues" label="Issues" description="The same input of the burndwon chart generator" type="text" friendcode="normalized-agile-issues issue-list list generic-filter"/>
+        <outputendpoint name="output-issues" label="Selected Issues" description="The issues closed on the chosen day of the burndown chart" type="text" friendcode="normalized-agile-issues issue-list list generic-filter"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
