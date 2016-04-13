@@ -61,6 +61,10 @@
 
 ## [labels-to-dataserie-operator](./labels-to-dataserie-operator)
 
+## [burndownchart-click-operator](./burndownchart-click-operator)
+
+## [open-issue-webpage-operator](./open-issue-webpage-operator)
+
 ## [union-list-operator](./union-list-operator)
 
 ## [intersect-list-operator](./intersect-list-operator)
