@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="open-issue-webpage" version="0.3.0">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="open-item-webpage" version="0.3.0">
     <details>
-        <title>Open issue webpage</title>
+        <title>Open item webpage</title>
         <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
         <email>alex.rodriguez@conwet.com</email>
         <image></image>
         <smartphoneimage></smartphoneimage>
-        <description>Opens the issue webpage on the browser</description>
+        <description>Opens the item webpage on the browser</description>
         <longdescription>DESCRIPTION.md</longdescription>
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
@@ -20,7 +20,7 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="issue" type="text" label="Agile issue" description="The issue to fetch" friendcode="build-list"/>
+        <inputendpoint name="item" type="text" label="Item" description="The item whose webpage is to be fetched"/>
     </wiring>
 
     <scripts>
