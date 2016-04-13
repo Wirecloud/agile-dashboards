@@ -1,3 +1,7 @@
+## v0.3.1
+
+- Added link field to the builds so that it works with the `open-item-website-operator`.
+
 ## v0.3.0
 
 - Fixed changelog format to the one expected by wirecloud.

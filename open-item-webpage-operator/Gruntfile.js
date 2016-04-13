@@ -1,5 +1,5 @@
 /*
- * open-issue-webpage
+ * open-item-webpage
  *
  *
  * Copyright (c) 2016 CoNWet

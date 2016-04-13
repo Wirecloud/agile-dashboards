@@ -1,5 +1,5 @@
 /*
- * open-issue-webpage
+ * open-item-webpage
  *
  *
  * Copyright (c) 2016 CoNWet
@@ -13,25 +13,25 @@
     var lastLinks = [];
 
     var init = function init () {
-        MashupPlatform.wiring.registerCallback("issue", function (issue) {
+        MashupPlatform.wiring.registerCallback("item", function (item) {
             var max = MashupPlatform.prefs.get("max");
             //If max is 0 or input is null, nothing to be done.
-            if (max === 0 || !issue) {
+            if (max === 0 || !item) {
                 return;
             }
 
             var links = [];
             //If input is an array, get as many links as the max preference allows
-            if (Array.isArray(issue)) {
-                for (var i = 0; i < issue.length; i++) {
+            if (Array.isArray(item)) {
+                for (var i = 0; i < item.length; i++) {
                     if (max > 0 && i > max - 1) {
                         break;
                     }
-                    links.push(issue[i].link);
+                    links.push(item[i].link);
                 }
             } else {
                 //If input is just one, grab its link
-                links.push(issue.link);
+                links.push(item.link);
             }
 
             //Open tabs

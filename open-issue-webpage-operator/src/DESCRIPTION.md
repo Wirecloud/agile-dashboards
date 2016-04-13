@@ -1,2 +1,0 @@
-The Open issue webpage operator is a WireCloud operator that provides the ability to open browser tabs with the input issue website.
-It opens the `link` property of the input item, so it can be used with anything that has said property.
