@@ -63,7 +63,7 @@
 
 ## [burndownchart-click-operator](./burndownchart-click-operator)
 
-## [open-issue-webpage-operator](./open-issue-webpage-operator)
+## [open-item-webpage-operator](./open-item-webpage-operator)
 
 ## [union-list-operator](./union-list-operator)
 
