@@ -55,6 +55,7 @@
 
                     build_info.push({
                         id: build.id,
+                        link: build.url, //Compatibility with the issues harvesters / open website operator
                         buildURL: build.url,
                         result: build.result,
                         duration: build.duration || 0,
