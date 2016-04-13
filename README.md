@@ -35,7 +35,7 @@
 
 ## [jenkins-test-time-difference-table-operator](./jenkins-test-time-difference-table-operator)
 
-## [set-filter-conditions-widget](./set-filter-conditions-widget)
+## [set-filter-conditions-widget](./set-filter-conditions-widget) (DEPRECATED, use set-generic-filter-conditions-widget)
 
 ## [set-generic-filter-conditions-widget](./set-generic-filter-conditions-widget)
 
