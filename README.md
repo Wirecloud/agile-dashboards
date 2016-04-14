@@ -1,78 +1,71 @@
-# Widget / Operator index
+# List of available resources for Agile-Mashup (widgets and operators)
 
+## Harvesters (Harvest phase)
 
-## [and-filter-operator](./and-filter-operator)
+* [Get-coverage-report-coveralls-operator](./get-coverage-report-coveralls-operator)
+* [Get-coverage-report-jenkins-operator](./get-coverage-report-jenkins-operator)
+* [Get-file-coverage-coveralls-operator](./get-file-coverage-coveralls-operator)
+* [Get-file-coverage-jenkins-operator](./get-file-coverage-jenkins-operator)
+* [Github-harvester-operator](./github-harvester-operator)
+* [Gitlab-harvester-operator](./gitlab-harvester-operator)
+* [Jenkins-harvester-operator](./jenkins-harvester-operator)
+* [Jenkins-project-build-list-operator](./jenkins-project-build-list-widget)
+* [Jira-harvester-operator](./jira-harvester-operator)
 
-## [calculate-tendency-operator](./calculate-tendency-operator)
+## Data operators (Data Transformation phase)
 
-## [file-coverage-chart-generator-operator](./file-coverage-chart-generator-operator)
+### Filters
 
-## [get-coverage-report-coveralls-operator](./get-coverage-report-coveralls-operator)
+* [And-filter-operator](./and-filter-operator)
 
-## [get-coverage-report-jenkins-operator](./get-coverage-report-jenkins-operator)
+### List Operators
 
-## [get-file-coverage-coveralls-operator](./get-file-coverage-coveralls-operator)
+* [Basic-list-math-operator](./BasicListMathOperator)
+* [Intersect-list-operator](./intersect-list-operator)
+* [Packlist-operator](./packlist-operator)
+* [RemoveDuplicates-list-operator](./removeDuplicates-list-operator)
+* [SetDifference-list-operator](./setDifference-list-operator)
+* [Union-list-operator](./union-list-operator)
 
-## [get-file-coverage-jenkins-operator](./get-file-coverage-jenkins-operator)
+### Statisticals
 
-## [github-harvester-operator](./github-harvester-operator)
+* [Calculate-tendency-operator](./calculate-tendency-operator)
+* [Labels-to-dataserie-operator](./labels-to-dataserie-operator)
 
-## [gitlab-harvester-operator](./gitlab-harvester-operator)
+### Splitters
 
-## [jira-harvester-operator](./jira-harvester-operator)
+* [Build-splitter-operator](./build-splitter-operator)
+* [Changes-splitter-operator](./changes-splitter-operator)
+* [Issue-splitter-operator](./issue-splitter-operator)
+* [Test-Report-splitter-operator](./test-report-splitter-operator)
 
-## [issue-splitter-operator](./issue-splitter-operator)
+## Datamodel Adapter (Visualization Preparation phase)
 
-## [issue-table-generator-operator](./issue-table-generator-operator)
+### Generic
 
-## [jenkins-harvester-operator](./jenkins-harvester-operator)
+* [Burndown-chart-generator-operator](./burndown-chart-generator-operator)
+* [Burndownchart-click-operator](./burndownchart-click-operator)
+* [Column-chart-generator-operator](./column-chart-generator-operator)
+* [Pie-chart-generator-operator](./pie-chart-generator-operator)
+* [Trend-chart-generator-operator](./trend-chart-generator-operator)
 
-## [jenkins-project-build-list-operator](./jenkins-project-build-list-widget)
+### Domain-dependent
+* [File-Coverage-chart-generator-operator](./file-coverage-chart-generator-operator)
+* [Issue-table-generator-operator](./issue-table-generator-operator)
+* [Detailed-jenkins-test-data-operator](./detailed-jenkins-test-data-operator)
+* [Jenkins-test-time-difference-table-operator](./jenkins-test-time-difference-table-operator)
+* [Reliability-chart-generator-operator](./reliability-chart-generator-operator)
+* [Workload-chart-generator-operator](./workload-chart-generator-operator)
+* [Product-backlog-chart-operator](./product-backlog-chart-operator)
+* [Open-item-webpage-operator](./open-item-webpage-operator)
 
-## [jenkins-project-build-list-widget](./jenkins-project-build-list-widget) (DEPRECATED, use jenkins-project-build-list-operator)
+## Widgets (both viewers and forms)
 
-## [detailed-jenkins-test-data-operator](./detailed-jenkins-test-data-operator)
+* [Data-table-viewer-widget](https://github.com/Wirecloud/data-table-viewer-widget)
+* [HighCharts-widget](https://github.com/Wirecloud/highcharts-widget)
+* [Set-generic-filter-conditions-widget](./set-generic-filter-conditions-widget)
 
-## [jenkins-test-time-difference-table-operator](./jenkins-test-time-difference-table-operator)
+## Old stuff (deprecated)
 
-## [set-filter-conditions-widget](./set-filter-conditions-widget) (DEPRECATED, use set-generic-filter-conditions-widget)
-
-## [set-generic-filter-conditions-widget](./set-generic-filter-conditions-widget)
-
-## [build-splitter-operator](./build-splitter-operator)
-
-## [test-report-splitter-operator](./test-report-splitter-operator)
-
-## [changes-splitter-operator](./changes-splitter-operator)
-
-## [reliability-chart-generator-operator](./reliability-chart-generator-operator)
-
-## [trend-chart-generator-operator](./trend-chart-generator-operator)
-
-## [workload-chart-generator-operator](./workload-chart-generator-operator)
-
-## [burndown-chart-generator-operator](./burndown-chart-generator-operator)
-
-## [pie-chart-generator-operator](./pie-chart-generator-operator)
-
-## [column-chart-generator-operator](./column-chart-generator-operator)
-
-## [product-backlog-chart-operator](./product-backlog-chart-operator)
-
-## [labels-to-dataserie-operator](./labels-to-dataserie-operator)
-
-## [burndownchart-click-operator](./burndownchart-click-operator)
-
-## [open-item-webpage-operator](./open-item-webpage-operator)
-
-## [union-list-operator](./union-list-operator)
-
-## [intersect-list-operator](./intersect-list-operator)
-
-## [setDifference-list-operator](./setDifference-list-operator)
-
-## [packlist-operator](./packlist-operator)
-
-## [basic-list-math-operator](./BasicListMathOperator)
-
-## [removeDuplicates-list-operator](./removeDuplicates-list-operator)
+* [jenkins-project-build-list-widget](./jenkins-project-build-list-widget) (try jenkins-project-build-list-operator)
+* [set-filter-conditions-widget](./set-filter-conditions-widget) (try set-generic-filter-conditions-widget)
