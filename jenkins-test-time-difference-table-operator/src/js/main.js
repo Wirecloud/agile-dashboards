@@ -27,7 +27,8 @@
     };
 
     var calculateDifference = function calculateDifference () {
-        if (!data) {
+        //Wait for data from two builds at least
+        if (!data || !data[0] || !data[1]) {
             return;
         }
 
