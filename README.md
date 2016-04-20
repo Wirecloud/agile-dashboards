@@ -50,6 +50,7 @@
 * [Trend-chart-generator-operator](./trend-chart-generator-operator)
 
 ### Domain-dependent
+
 * [File-Coverage-chart-generator-operator](./file-coverage-chart-generator-operator)
 * [Issue-table-generator-operator](./issue-table-generator-operator)
 * [Detailed-jenkins-test-data-operator](./detailed-jenkins-test-data-operator)
