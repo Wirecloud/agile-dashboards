@@ -58,6 +58,8 @@
 * [Workload-chart-generator-operator](./workload-chart-generator-operator)
 * [Product-backlog-chart-operator](./product-backlog-chart-operator)
 * [Open-item-webpage-operator](./open-item-webpage-operator)
+* [Get-closing-commit-operator](./get-closing-commit-operator) (Only works with github harvester)
+* [Git-blame-operator](./git-blame-operator) (Only works with gituhb harvester)
 
 ## Widgets (both viewers and forms)
 
