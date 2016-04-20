@@ -134,6 +134,7 @@
                     var filters = [];
                     filters.push({name: "Author", property: "author", display: "author"});
                     filters.push({name: "Month", property: "month", display: "month"});
+                    filters.push({name: "Commit Sha", property: "sha", display: "sha"});
                     commitData.metadata.filters = filters;
 
                     MashupPlatform.wiring.pushEvent("commit-list", commitData);
@@ -158,14 +159,35 @@
             requestHeaders: requestHeaders,
             onSuccess: function (response) {
                 var data = JSON.parse(response.responseText);
+                var closingCommitFound = false;
 
                 data.forEach(function (event) {
+                    //Harvest previous milestones
                     if (event.event === "milestoned") {
                         if (issue.versions.indexOf(event.milestone.title) === -1) {
                             issue.versions.push(event.milestone.title);
                             addMilestones (event.milestone.title, event.milestone.due_on);
                         }
                     }
+
+                    //Closing commit only makes sense if the issue is closed.
+                    if (issue.status === "closed") {
+                        //Harvest closing commit references if any
+                        if (event.event === "closed") {
+                            if (event.commit_id) {
+                                issue.closingCommit = event.commit_id;
+                                issue.closingCommitUri = event.commit_url;
+                                closingCommitFound = true;
+                            }
+                        } else if (event.event === "referenced" && !closingCommitFound) {
+                            if (event.commit_id) {
+                                issue.closingCommit = event.commit_id;
+                                issue.closingCommitUri = event.commit_url;
+                                closingCommitFound = true;
+                            }
+                        }
+                    }
+
                 });
             },
             onComplete: function (response) {
@@ -185,9 +207,19 @@
     var normalizeCommit = function normalizeCommit (commit) {
         var result = {};
 
+        //Id
+        result.sha = commit.sha;
+
+        //Creation data
         result.author = commit.commit.author.name;
         result.month = commit.commit.author.date.substring(0, 7);
         result.timestamp = Date.parse(commit.author.date);
+
+        //Commit data
+        result.parents = commit.parents;
+        result.stats = commit.stats;
+        result.files = commit.files;
+        result.message = commit.message;
 
         return result;
     };

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="get-closing-commit" version="0.3.0">
+    <details>
+        <title>Get closing commit</title>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Gets the clossing commit of an issue</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <preferences>
+        <preference name="oauth2-token" label="OAuth2 Token" description="Oauth2 token. This is the recommended authentication type" type="text" default="" />
+        <preference name="username" label="Github login username" description="Username to be used for basic authentication. Not needed if an Oauth2 token is provided" type="text" default="" />
+        <preference name="passwd" label="Password" type="password" description="Password to be used for basic authentication. Not needed if an Oauth2 token is provided" default="" />
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="issue" label="Target issue" description="" type="text" friendcode="normalized-agile-issue" />
+        <outputendpoint name="commit" label="Closing Commit" description="The commit that closed the input issue" type="text" friendcode="normalized-agile-commit" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
