@@ -2,8 +2,6 @@
 (function () {
     "use strict";
 
-    jasmine.getFixtures().fixturesPath = 'src/test/fixtures/';
-
     var dependencyList = [
         'script',
         'div',
@@ -21,7 +19,6 @@
 
         beforeEach(function () {
             MashupPlatform.reset();
-            widget = new GetClosingCommit();
         });
 
         it("Dummy test", function () {

@@ -1,6 +1,6 @@
 /*
  * get-closing-commit
- * 
+ *
  *
  * Copyright (c) 2016 CoNWeT
  * Licensed under the MIT license.
@@ -96,7 +96,6 @@ module.exports = function (grunt) {
                             'doc/**/*',
                             'images/**/*',
                             'index.html',
-                            
                             'config.xml'
                         ]
                     },
