@@ -1,3 +1,9 @@
+## v0.3.2
+
+- Added clossing commit to the harvested issues.
+- Added sha property to the normalized commits.
+- Added sha filter condition for the commits.
+
 ## v0.3.1
 
 - Added issue webpage link to the normalized issues.
