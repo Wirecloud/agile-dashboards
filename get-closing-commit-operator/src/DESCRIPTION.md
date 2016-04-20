@@ -1,0 +1,1 @@
+The Get issue closing commit operator is a WireCloud operator that provides the ability to get the commit that close an issue.
