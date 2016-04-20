@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="git-blame" version="0.3.0">
+    <details>
+        <title>Git blame operator</title>
+        <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Blames people</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/index.md</doc>
+        <license>MIT</license>
+        <issuetracker></issuetracker>
+    </details>
+
+    <wiring>
+        <inputendpoint name="commit" label="Closing Commit" description="The commit that closed the input issue" type="text" friendcode="normalized-agile-commit" />
+        <outputendpoint name="blame-table" label="Blame table" description="The commit that closed the input issue" type="text" friendcode="normalized-agile-commit" />
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"/>
+    </scripts>
+
+</operator>

@@ -1,0 +1,1 @@
+The Git blame for bugs operator is a WireCloud operator that provides the ability to get the owners of the deleted lines of code on a commit.
