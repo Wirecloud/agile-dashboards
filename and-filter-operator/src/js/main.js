@@ -13,7 +13,30 @@
     var original_list = null;
     var filters = [];
     var appliedFilters = {};
+    var filtered;
 
+    var init = function init () {
+
+        MashupPlatform.wiring.registerCallback("original-list", function (_original_list) {
+            if (JSON.stringify(original_list) !== JSON.stringify(_original_list)) {
+                original_list = _original_list;
+                filter();
+            }
+        });
+
+        MashupPlatform.wiring.registerCallback("condition-list", function (_filters) {
+            appliedFilters = {};
+            filters = build_filters(_filters);
+            filter();
+        });
+
+        MashupPlatform.wiring.registerStatusCallback(pushData);
+
+    };
+
+    var pushData = function pushData () {
+        MashupPlatform.wiring.pushEvent('filtered-list', filtered);
+    };
 
     //Get nested property of an object
     var getProperty = function getProperty (item, attr) {
@@ -80,7 +103,7 @@
     };
 
     var filter = function filter() {
-        var filtered = [];
+        filtered = [];
 
         if (original_list == null) {
             return;
@@ -107,15 +130,6 @@
         MashupPlatform.wiring.pushEvent('filtered-list', filtered);
     };
 
-    MashupPlatform.wiring.registerCallback("original-list", function (_original_list) {
-        original_list = _original_list;
-        filter();
-    });
-
-    MashupPlatform.wiring.registerCallback("condition-list", function (_filters) {
-        appliedFilters = {};
-        filters = build_filters(_filters);
-        filter();
-    });
+    init ();
 
 })();
