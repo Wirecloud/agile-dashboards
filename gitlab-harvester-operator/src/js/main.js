@@ -15,6 +15,8 @@
     var milestones = [];
     var DAY_LENGTH = 86400000;
 
+    var issues;
+
     var requestHeaders = {
             Accept: "application/json"
         };
@@ -39,11 +41,66 @@
         pushInfo();
     };
 
+
     //Sends events through the connected outputs
     var pushInfo = function pushInfo() {
-        //if (MashupPlatform.operator.outputs['issue-list'].connected) {
-        requestIssues();
-        //}
+        //Harvest issues
+        if (MashupPlatform.operator.outputs['issue-list'].connected) {
+            var page = 1;
+            milestones = [];
+            issues = [];
+            var leftIssues = MashupPlatform.prefs.get("max");
+
+            //Check if there are no issues to harvest
+            if (leftIssues === 0) {
+                return;
+            }
+            //If max issues is negative -> unlimited
+            var unlimited = false;
+            if (leftIssues < 0) {
+                unlimited = true;
+                leftIssues = 100; //This is for setting the issues per page to 100 later
+            }
+
+            //Recursively harvest data pages
+            var harvestFunc = function (res) {
+                if (res && leftIssues > 0) {
+                    page++;
+                    requestIssues(page, leftIssues).then(harvestFunc);
+                    if (!unlimited) { // Do not decrease leftIssues if its unlimited
+                        leftIssues -= 100;
+                    }
+                } else {
+                    //Calculate the sprints
+                    guessMilestonesBeginDate ();
+
+                    //Add some metadata
+                    issues.metadata = {};
+                    issues.metadata.versions = milestones;
+                    issues.metadata.type = "list";
+                    issues.metadata.tag = "Issues";
+                    issues.metadata.verbose = "Gitlab issues";
+                    //filter metadata
+                    var filters = [];
+                    filters.push({name: "Sprints", base: "metadata.versions", property: "name", display: "name", compare: "versions", type: "some"});
+                    filters.push({name: "Assignee", property: "assignee", display: "assignee"});
+                    filters.push({name: "Status", property: "status", display: "status"});
+                    filters.push({name: "Label", property: "labels", display: "labels", type: "some"});
+                    filters.push({name: "Issue Key", property: "key", display: "key"});
+                    filters.push({name: "Creation month", property: "month", display: "month"});
+                    issues.metadata.filters = filters;
+
+                    //Push the final data
+                    MashupPlatform.wiring.pushEvent("issue-list", issues);
+                }
+            };
+            //Start harvesting issues
+            requestIssues(page, leftIssues).then(harvestFunc);
+            if (!unlimited) { // Do not decrease leftIssues if its unlimited
+                leftIssues -= 100;
+            }
+        }
+
         //if (MashupPlatform.operator.outputs['commit-list'].connected) {
         requestCommits();
         //}
@@ -73,40 +130,31 @@
     };
 
     //Request all the issues of the project
-    var requestIssues = function requestIssues () {
-        MashupPlatform.http.makeRequest (baseURI + "/projects/" + projectID + "/issues", {
-            method: 'GET',
-            supportsAccessControl: true,
-            parameters: {
-                state: 'all',
-                per_page: 100
-            },
-            requestHeaders: requestHeaders,
-            onSuccess: function (response) {
-                milestones = [];
-                var issues = normalizeData(JSON.parse(response.responseText));
+    var requestIssues = function requestIssues (page, pageSize) {
+        return new Promise (function (fulfill, reject) {
+            MashupPlatform.http.makeRequest (baseURI + "/projects/" + projectID + "/issues", {
+                method: 'GET',
+                supportsAccessControl: true,
+                parameters: {
+                    state: 'all',
+                    per_page: pageSize,
+                    page: page
+                },
+                requestHeaders: requestHeaders,
+                onSuccess: function (response) {
+                    //If there's no data, its probably the last page.
+                    if (JSON.parse(response.responseText).length === 0) {
+                        fulfill(false);
+                        return;
+                    }
 
-                //Calculate the sprints
-                guessMilestonesBeginDate ();
-
-                //Add some metadata
-                issues.metadata = {};
-                issues.metadata.versions = milestones;
-                issues.metadata.type = "list";
-                issues.metadata.tag = "Issues";
-                issues.metadata.verbose = "Gitlab issues";
-                //filter metadata
-                var filters = [];
-                filters.push({name: "Sprints", base: "metadata.versions", property: "name", display: "name", compare: "versions", type: "some"});
-                filters.push({name: "Assignee", property: "assignee", display: "assignee"});
-                filters.push({name: "Status", property: "status", display: "status"});
-                filters.push({name: "Label", property: "labels", display: "labels", type: "some"});
-                filters.push({name: "Issue Key", property: "key", display: "key"});
-                filters.push({name: "Creation month", property: "month", display: "month"});
-                issues.metadata.filters = filters;
-
-                MashupPlatform.wiring.pushEvent("issue-list", issues);
-            }
+                    issues = issues.concat(normalizeData(JSON.parse(response.responseText)));
+                    fulfill(true);
+                },
+                onError: function (response) {
+                    reject(false);
+                }
+            });
         });
     };
 
