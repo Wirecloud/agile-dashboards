@@ -42,21 +42,7 @@
         user = MashupPlatform.prefs.get("username");
         pass = MashupPlatform.prefs.get("passwd");
 
-        request_github_info();
-    };
-
-    //Tries to push data and if theres no data harvest it.
-    var pushInfo = function pushInfo() {
-        if (issueData) {
-            MashupPlatform.wiring.pushEvent("issue-list", issueData);
-        } else {
-            request_github_info();
-        }
-    };
-
-    //Harvest data from Github
-    var request_github_info = function request_github_info() {
-
+        //Build the request headers
         requestHeaders = {
             Accept: "application/vnd.github.v3.html+json"
         };
@@ -69,20 +55,49 @@
             requestHeaders.Authorization = "Basic " + token;
         }
 
+
+        request_github_info();
+    };
+
+    //Tries to push data and if theres no data harvest it.
+    var pushInfo = function pushInfo() {
+        if (issueData) {
+            MashupPlatform.wiring.pushEvent("issue-list", issueData);
+        } else {
+            request_github_info();
+        }
+    };
+
+    //Harvest commits and issues, only if they are connected to something through wiring
+    var request_github_info = function request_github_info () {
+
+        //Harvest issues
         if (MashupPlatform.operator.outputs['issue-list'].connected) {
+            var page = 1;
+            milestones = [];
+            issueData = [];
+            var leftIssues = MashupPlatform.prefs.get("max");
 
-            MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/issues", {
-                method: 'GET',
-                supportsAccessControl: true,
-                parameters: {
-                    state: 'all',
-                    per_page: 100
-                },
-                requestHeaders: requestHeaders,
-                onSuccess: function (response) {
-                    milestones = [];
-                    issueData = normalizeData(JSON.parse(response.responseText));
+            //Check if there are no issues to harvest
+            if (leftIssues === 0) {
+                return;
+            }
+            //If max issues is negative -> unlimited
+            var unlimited = false;
+            if (leftIssues < 0) {
+                unlimited = true;
+                leftIssues = 100; //This is for setting the issues per page to 100 later
+            }
 
+            //Recursively harvest data pages
+            var harvestFunc = function (res) {
+                if (res && leftIssues > 0) {
+                    page++;
+                    request_github_issues(page, leftIssues).then(harvestFunc);
+                    if (!unlimited) { // Do not decrease leftIssues if its unlimited
+                        leftIssues -= 100;
+                    }
+                } else {
                     //Calculate the sprints
                     guessMilestonesBeginDate ();
 
@@ -102,45 +117,88 @@
                     filters.push({name: "Creation month", property: "month", display: "month"});
                     issueData.metadata.filters = filters;
 
+                    //Push basic data
                     MashupPlatform.wiring.pushEvent("issue-list", issueData);
 
                     //Harvest extra data such as event data
                     harvestEvents();
                 }
-            });
+            };
+            //Start harvesting issues
+            request_github_issues(page, leftIssues).then(harvestFunc);
+            if (!unlimited) { // Do not decrease leftIssues if its unlimited
+                leftIssues -= 100;
+            }
         }
 
+        //Harvest commits
         if (MashupPlatform.operator.outputs['commit-list'].connected) {
-            MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/commits", {
+            request_github_commits();
+        }
+    };
+
+    //Creates a promise that harvest a  page of issues
+    var request_github_issues = function request_github_issues (page, pageSize) {
+        return new Promise (function (fulfill, reject) {
+            MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/issues", {
                 method: 'GET',
                 supportsAccessControl: true,
                 parameters: {
-                    per_page: 100
+                    state: 'all',
+                    per_page: pageSize,
+                    page: page
                 },
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
-                    var data = JSON.parse(response.responseText);
-                    commitData = [];
-                    for (var i = 0; i < data.length; i++) {
-                        commitData.push(normalizeCommit(data[i]));
+                    //If there's no data, its probably the last page.
+                    if (JSON.parse(response.responseText).length === 0) {
+                        fulfill(false);
+                        return;
                     }
 
-                    //Add some metadata
-                    commitData.metadata = {};
-                    commitData.metadata.type = "list";
-                    commitData.metadata.tag = "Commit";
-                    commitData.metadata.verbose = "Github commits";
-                    //filter metadata
-                    var filters = [];
-                    filters.push({name: "Author", property: "author", display: "author"});
-                    filters.push({name: "Month", property: "month", display: "month"});
-                    filters.push({name: "Commit Sha", property: "sha", display: "sha"});
-                    commitData.metadata.filters = filters;
+                    issueData = issueData.concat(normalizeData(JSON.parse(response.responseText)));
 
-                    MashupPlatform.wiring.pushEvent("commit-list", commitData);
+                    fulfill(true);
+                },
+                onError: function (response) {
+                    reject(false);
                 }
             });
-        }
+        });
+    };
+
+    //Harvest data from Github
+    var request_github_commits = function request_github_commits() {
+
+        MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/commits", {
+            method: 'GET',
+            supportsAccessControl: true,
+            parameters: {
+                per_page: 100
+            },
+            requestHeaders: requestHeaders,
+            onSuccess: function (response) {
+                var data = JSON.parse(response.responseText);
+                commitData = [];
+                for (var i = 0; i < data.length; i++) {
+                    commitData.push(normalizeCommit(data[i]));
+                }
+
+                //Add some metadata
+                commitData.metadata = {};
+                commitData.metadata.type = "list";
+                commitData.metadata.tag = "Commit";
+                commitData.metadata.verbose = "Github commits";
+                //filter metadata
+                var filters = [];
+                filters.push({name: "Author", property: "author", display: "author"});
+                filters.push({name: "Month", property: "month", display: "month"});
+                filters.push({name: "Commit Sha", property: "sha", display: "sha"});
+                commitData.metadata.filters = filters;
+
+                MashupPlatform.wiring.pushEvent("commit-list", commitData);
+            }
+        });
     };
 
     //Harvest event data
