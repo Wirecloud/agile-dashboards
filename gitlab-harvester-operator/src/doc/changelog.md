@@ -1,3 +1,8 @@
+## v0.3.2
+
+- Added issue query pagination, allowing to get more than 100 issues.
+- Added the `Max issues` preference that controls the ammount of issues harvested.
+
 ## v0.3.1
 
 - Added issue webpage link to the normalized issues.

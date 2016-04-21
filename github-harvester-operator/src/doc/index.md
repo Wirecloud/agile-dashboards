@@ -6,6 +6,7 @@ The GitHub Harvester operator is a WireCloud operator that provides the ability 
 
 - `Repository owner username`: The Github username of the repository owner.
 - `Repository name`: The name of the target repository.
+- `Max issues`: The ammount of issues to be harvested. If set to a negative number, there's  no limit to the ammount of issues harvested, while setting it to 0 shuts down the issue harvesting.
 - `OAuth2 token`: The token to authenticate on Github. This is the primary way of authentication.
 - `Github login username`: Your Github user to use Basic authentication.
 - `Github login password`: Your Github password to use Basic authentication.
@@ -24,7 +25,3 @@ Configure the needed settings and connect the issue / commit list to the desired
 Oauth2 authentication takes preference, therefore, if both means of authentication are provided, only Oauth2 will be used.
 
 If the repository is public, it can be accessed without authentication. Github may restrict the number of queries done while not authenticated, though.
-
-## Reference
-
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)

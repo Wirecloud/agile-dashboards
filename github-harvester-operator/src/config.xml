@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="github-harvester" version="0.3.2">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="github-harvester" version="0.3.3">
     <details>
         <title>GitHub Harvester</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -18,6 +18,7 @@
     <preferences>
         <preference name="repo-owner" label="Repository owner username" description="The username of the repository owner" type="text" default="Wirecloud" />
         <preference name="repo-name" label="Repository name" description="Name of the repository" type="text" default="wirecloud" />
+        <preference name="max" label="Max issues" description="How many issues will be harvested" type="number" default="100" />
         <preference name="oauth2-token" label="OAuth2 Token" description="Oauth2 token. This is the recommended authentication type" type="text" default="" />
         <preference name="username" label="Github login username" description="Username to be used for basic authentication. Not needed if an Oauth2 token is provided" type="text" default="" />
         <preference name="passwd" label="Password" type="password" description="Password to be used for basic authentication. Not needed if an Oauth2 token is provided" default="" />
