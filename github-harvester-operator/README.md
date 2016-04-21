@@ -44,6 +44,7 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 - `Repository owner username`: The Github username of the repository owner.
 - `Repository name`: The name of the target repository.
+- `Max issues`: The ammount of issues to be harvested. If set to a negative number, there's  no limit to the ammount of issues harvested, while setting it to 0 shuts down the issue harvesting.
 - `OAuth2 token`: The token to authenticate on Github. This is the primary way of authentication.
 - `Github login username`: Your Github user to use Basic authentication.
 - `Github login password`: Your Github password to use Basic authentication.
