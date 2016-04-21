@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Conwet" name="gitlab-harvester" version="0.3.1">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="Conwet" name="gitlab-harvester" version="0.3.2">
     <details>
         <title>Gitlab Harvester Operator</title>
         <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
@@ -18,6 +18,7 @@
     <preferences>
         <preference name="gitlab-url" label="Gitlab URL" type="text" default="https://repo.conwet.fi.upm.es" />
         <preference name="project-name" label="Gitlab project full name" type="text" default="WireCloud / agile-dashboards " />
+        <preference name="max" label="Max issues" description="How many issues will be harvested" type="number" default="100" />
         <preference name="private-token" label="Private Token" type="text" default="" />
         <preference name="oauth2-token" label="OAuth2 Token" type="text" default="" />
     </preferences>
