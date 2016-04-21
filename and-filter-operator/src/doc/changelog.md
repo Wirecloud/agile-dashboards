@@ -1,3 +1,7 @@
+## v0.3.1
+
+- Data is only pushed once per wiring update.
+
 ## v0.3.0
 
 - Fixed changelog format to the one expected by wirecloud.

@@ -16,8 +16,11 @@
 
     var init = function init() {
         MashupPlatform.wiring.registerCallback("input", function (d) {
-            data = d;
-            calculateFilters();
+            //Only update if the input data is new
+            if (JSON.stringify(data) !== JSON.stringify(d)) {
+                data = d;
+                calculateFilters();
+            }
         });
     };
 
