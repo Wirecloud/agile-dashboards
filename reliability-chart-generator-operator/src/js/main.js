@@ -28,7 +28,20 @@
                     {name: "Closed", y: done},
                     {name: "Pending", y: failed}
                 ]
-            }]
+            }],
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.percentage:.1f}%'
+                    }
+                }
+            },
+            tooltip: {
+                borderColor: '#7cb5ec',
+                headerFormat: '<b style="color:{point.color}">{point.key}</b><br />',
+                pointFormat: '<b>{point.y}</b> issues ({point.percentage:.0f}%)<br/>',
+            },
         };
 
     };
