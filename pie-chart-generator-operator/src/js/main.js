@@ -69,7 +69,20 @@
             },
             series: [{
                 data: series
-            }]
+            }],
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}: {point.percentage:.1f}%'
+                    }
+                }
+            },
+            tooltip: {
+                borderColor: '#7cb5ec',
+                headerFormat: '<b style="color:{point.color}">{point.key}</b><br />',
+                pointFormat: '<b>{point.y:.1f}</b> ({point.percentage:.0f}%)<br/>',
+            },
         };
 
         //Push the highcharts options
