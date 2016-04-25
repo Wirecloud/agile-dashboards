@@ -14,7 +14,7 @@ Generates a table to see the time difference betweent the tests of two Jenkins b
 
 ### Output Endpoints
 
-- `Data and Structure`: The table configuration and data to be plotted. This should be passed to the `data table viewer widget`.
+- `Table Data Model`: The table configuration and data to be plotted. This should be passed to the `data table viewer widget`.
 
 ## Usage
 

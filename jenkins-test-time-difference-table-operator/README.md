@@ -52,7 +52,7 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ### Output Endpoints
 
-- `Data and Structure`: The table configuration and data to be plotted. This should be passed to the `data table viewer widget`.
+- `Table Data Model`: The table configuration and data to be plotted. This should be passed to the `data table viewer widget`.
 
 ## Usage
 

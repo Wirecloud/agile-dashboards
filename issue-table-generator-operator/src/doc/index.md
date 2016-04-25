@@ -11,7 +11,7 @@ This creates the expected input for the `data table viewer widget`.
 
 ### Output Endpoints
 
-- `Data and Structure`: The table configuration and data to be plotted. This should be passed to the `data table viewer widget`.
+- `Table Data Model`: The table configuration and data to be plotted. This should be passed to the `data table viewer widget`.
 
 ## Usage
 

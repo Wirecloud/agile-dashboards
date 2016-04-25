@@ -10,7 +10,7 @@ The Git blame for bugs operator is a WireCloud operator that provides the abilit
 
 ### Output Endpoints
 
-- `Blame table`: The table settings to display the blamed authors. This should be used with the data-viewer operator
+- `Table Data Model`: The table settings to display the blamed authors. This should be used with the data-viewer operator
 
 ## Usage
 
