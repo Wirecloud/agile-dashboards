@@ -16,7 +16,7 @@
 
     <wiring>
         <inputendpoint name="commit" label="Closing Commit" description="The commit that closed the input issue" type="text" friendcode="normalized-agile-commit" />
-        <outputendpoint name="blame-table" label="Blame table" description="The commit that closed the input issue" type="text" friendcode="normalized-agile-commit" />
+        <outputendpoint name="blame-table" label="Table Data Model" description="The commit that closed the input issue" type="text" friendcode="normalized-agile-commit" />
     </wiring>
 
     <scripts>

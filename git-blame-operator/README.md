@@ -48,7 +48,7 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ### Output Endpoints
 
-- `Blame table`: The table settings to display the blamed authors. This should be used with the data-viewer operator
+- `Table Data Model`: The table settings to display the blamed authors. This should be used with the data-viewer operator
 
 ## Usage
 
