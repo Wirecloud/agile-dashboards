@@ -47,6 +47,7 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 - `Jira project component`:  The name of the component.
 - `Jira username`: Your Jira username.
 - `Jira password`: Your Jira password.
+- `Max issues`: The max amount of issues to be harvested.
 
 ## Wiring
 

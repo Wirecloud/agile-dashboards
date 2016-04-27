@@ -9,8 +9,6 @@
 (function () {
     "use strict";
 
-    var baseURI = "http://jira.fiware.org";
-
     var requestHeaders = {
             Accept: "application/json",
             "Content-Type": "Application/json",
@@ -19,9 +17,11 @@
 
     var token;
 
-    var projectId = "APP";
+    var baseURI;
+    var projectId;
+    var component;
 
-    var component = "Wirecloud";
+    var msg;
 
     var init = function init() {
 
@@ -45,13 +45,20 @@
 
         //Updates the target component
         component = MashupPlatform.prefs.get("component");
-        pushInfo();
+
+        //Harvest data
+        msg = null;
+        requestProjectVersions();
     };
 
     //Sends events through the connected outputs
     var pushInfo = function pushInfo() {
-        //Gets version info and all component issues
-        requestProjectVersions();
+        // send data if available
+        if (msg) {
+            MashupPlatform.wiring.pushEvent("jira-issues", msg);
+        } else {
+            requestProjectVersions();
+        }
     };
 
     // Request all the versions of the project (sprints)
@@ -78,15 +85,19 @@
     // Request all the issues associated to the component
     var requestComponentIssues = function requestComponentIssues(versions) {
         //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
-
-        MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?jql=component%3D" + component + "&maxResults=1000&expand=changelog", {
+        var jql = "";
+        if (component !== "") {
+            jql = "jql=component=" + component * "&";
+        }
+        var max = MashupPlatform.prefs.get("max");
+        MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?" + jql + "maxResults=" + max + "&expand=changelog", {
             method: 'GET',
             supportsAccessControl: false,
 
             requestHeaders: requestHeaders,
             onSuccess: function (response) {
                 var data = JSON.parse(response.responseText);
-                var msg = normalizeData(data.issues);
+                msg = normalizeData(data.issues);
 
                 //Add some metadata
                 msg.metadata = {};
@@ -102,6 +113,9 @@
                 filters.push({name: "Type", property: "type", display: "type", type: "eq"});
                 filters.push({name: "Issue Key", property: "key", display: "key"});
                 filters.push({name: "Creation month", property: "month", display: "month"});
+
+                filters.push({name: "Component", property: "jira.components", display: "jira.components", type: "some"});
+
                 msg.metadata.filters = filters;
 
                 //Pushes the list of issues
@@ -134,15 +148,19 @@
         //Jira dependent properties.
         result.type = issue.fields.issuetype.name || "";
         result.jira = {};
-        result.jira.components = issue.fields.components;
+        result.jira.components = issue.fields.components.map (function (component) {
+            return component.name;
+        });
         result.jira.projectName = issue.fields.name;
         result.jira.projectKey = issue.fields.key;
         result.jira.priority = issue.fields.priority ? issue.fields.priority.name : null;
 
         result.creatorId = issue.fields.creator.name;
         result.creator = issue.fields.creator.displayName;
-        result.assigneeId = issue.fields.assignee.name;
-        result.assignee = issue.fields.assignee.displayName;
+        if (issue.fields.assignee) {
+            result.assigneeId = issue.fields.assignee.name;
+            result.assignee = issue.fields.assignee.displayName;
+        }
 
         result.status = issue.fields.status.name;
 

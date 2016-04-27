@@ -1,3 +1,9 @@
+## v0.3.2
+
+- Added max preference to set the amount of issues to be harvested.
+- Can now harvest without a set component (harvests any issues of the project).
+- Added component filter.
+
 ## v0.3.1
 
 - Added issue webpage link to the normalized issues.
