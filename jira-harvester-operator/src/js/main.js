@@ -87,7 +87,7 @@
         //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
         var jql = "";
         if (component !== "") {
-            jql = "jql=component=" + component * "&";
+            jql = "jql=component=" + component + "&";
         }
         var max = MashupPlatform.prefs.get("max");
         MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?" + jql + "maxResults=" + max + "&expand=changelog", {
