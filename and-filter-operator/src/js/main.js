@@ -6,6 +6,8 @@
  * Licensed under the Apache2 license.
  */
 
+ /*global MashupPlatform */
+
 (function () {
 
     "use strict";
@@ -20,6 +22,7 @@
         MashupPlatform.wiring.registerCallback("original-list", function (_original_list) {
             if (JSON.stringify(original_list) !== JSON.stringify(_original_list)) {
                 original_list = _original_list;
+
                 filter();
             }
         });
@@ -119,17 +122,28 @@
         } else {
             filtered = original_list.slice(0);
         }
-
         //Save the metadata if any
-        filtered.metadata = original_list.metadata || {};
-
+        filtered.metadata = {};
         //Add appliedFilters metadata
         filtered.metadata.filtered = appliedFilters;
-
 
         MashupPlatform.wiring.pushEvent('filtered-list', filtered);
     };
 
     init ();
+
+    /* test-code */
+    var test = {};
+
+    test.getProperty = getProperty;
+    test.EQ_FILTER = EQ_FILTER;
+    test.EQ_FILTER = EQ_FILTER;
+    test.IN_FILTER = IN_FILTER;
+    test.RANGE_FILTER = RANGE_FILTER;
+    test.SOME_FILTER = SOME_FILTER;
+
+    window.AndFilter = test;
+
+    /* end-test-code */
 
 })();
