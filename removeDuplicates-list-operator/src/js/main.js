@@ -94,7 +94,8 @@
 
     init();
     /* test-code */
-
+    window.checkEqual = checkEqual;
+    window.removeDuplicates = removeDuplicates;
     /* end-test-code */
 
 })();
