@@ -14,16 +14,18 @@
     var labelList;
 
     var init = function init () {
-        MashupPlatform.wiring.registerCallback("data-serie", function (data) {
-            dataSerie = data;
-            build_column_chart();
-        });
+        MashupPlatform.wiring.registerCallback("data-serie", dataSerieCallback);
+        MashupPlatform.wiring.registerCallback("label-list", labelSerieCallback);
+    };
 
-        MashupPlatform.wiring.registerCallback("label-list", function (labels) {
-            labelList = labels;
-            build_column_chart();
-        });
+    var dataSerieCallback = function dataSerieCallback (data) {
+        dataSerie = data;
+        build_column_chart();
+    };
 
+    var labelSerieCallback = function labelSerieCallback (labels) {
+        labelList = labels;
+        build_column_chart();
     };
 
     var build_column_chart = function build_column_chart() {
@@ -61,5 +63,15 @@
     };
 
     init();
+
+    /* test-code */
+    var test = {};
+
+    test.init = init;
+    test.dataSerieCallback = dataSerieCallback;
+    test.labelSerieCallback = labelSerieCallback;
+
+    window.ColumnChartGenerator = test;
+    /* end-test-code */
 
 })();
