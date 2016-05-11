@@ -130,9 +130,19 @@
         }
     };
 
-    MashupPlatform.wiring.registerCallback("issues-list", function (_issue_list) {
+    var issueListCallback = function issueListCallback (_issue_list) {
         issue_list = _issue_list;
         plot_chart();
-    });
+    };
+
+    MashupPlatform.wiring.registerCallback("issues-list", issueListCallback);
+
+    /* test-code */
+    var test = {};
+
+    test.issueListCallback = issueListCallback;
+
+    window.ReliabilityChartGenerator = test;
+    /* end-test-code */
 
 })();
