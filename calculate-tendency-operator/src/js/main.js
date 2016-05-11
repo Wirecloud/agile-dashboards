@@ -14,7 +14,7 @@
         return JSON.stringify({value: value});
     };
 
-    MashupPlatform.wiring.registerCallback("value-list", function (values) {
+    var valuesCallback = function valuesCallback (values) {
         var i, average, count, maximum, minimum, sorted_values, sum = 0;
 
         count = values.length;
@@ -35,7 +35,6 @@
 
         count = values.length;
         average = sum / count;
-
         MashupPlatform.wiring.pushEvent("minimum", marshall(minimum));
         MashupPlatform.wiring.pushEvent("maximum", marshall(maximum));
         MashupPlatform.wiring.pushEvent("arithmetic-mean", marshall(average));
@@ -57,7 +56,6 @@
             }
             MashupPlatform.wiring.pushEvent("median", marshall(median));
         }
-
         if (MashupPlatform.operator.outputs.mode.connected) {
             var numMapping = {};
             var greatestFreq = 0;
@@ -86,10 +84,16 @@
             MashupPlatform.wiring.pushEvent('standard-deviation', marshall(standarddeviation));
         }
 
-    }.bind(this));
+    };
+
+    MashupPlatform.wiring.registerCallback("value-list", valuesCallback);
 
     /* test-code */
+    var test = {};
 
+    test.valuesCallback = valuesCallback;
+
+    window.CalculateTendency = test;
     /* end-test-code */
 
 })();
