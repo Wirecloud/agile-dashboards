@@ -1,3 +1,7 @@
+## v0.3.3
+
+- Fixed harvesting issues from other projects.
+
 ## v0.3.2
 
 - Added max preference to set the amount of issues to be harvested.

@@ -85,10 +85,11 @@
     // Request all the issues associated to the component
     var requestComponentIssues = function requestComponentIssues(versions) {
         //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
-        var jql = "";
+        var jql = "jql=project=" + projectId;
         if (component !== "") {
-            jql = "jql=component=" + component + "&";
+            jql += " AND component=" + component;
         }
+        jql += "&";
         var max = MashupPlatform.prefs.get("max");
         MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?" + jql + "maxResults=" + max + "&expand=changelog", {
             method: 'GET',
