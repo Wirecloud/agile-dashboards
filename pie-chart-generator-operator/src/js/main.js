@@ -10,21 +10,25 @@
 
     "use strict";
 
-    var numberSerie = null;
-    var labelSerie = null;
-
     var init = function init() {
+        MashupPlatform.wiring.registerCallback("number-serie", numberSerieCallback);
+        MashupPlatform.wiring.registerCallback("label-serie", labelSerieCallback);
+    };
 
-        MashupPlatform.wiring.registerCallback("number-serie", function (data) {
-            numberSerie = data;
-            build_pie_chart();
-        });
+    var labelSerieCallback = function labelSerieCallback (data) {
+        if (data) {
+            var labelSerie = toNumberSerie(data);
+            labelSerie = calculateSeries(labelSerie);
+            build_pie_chart(labelSerie);
+        }
+    };
 
-        MashupPlatform.wiring.registerCallback("label-serie", function (data) {
-            labelSerie = toNumberSerie(data);
-            build_pie_chart();
-        });
-
+    var numberSerieCallback = function numberSerieCallback (data) {
+        if (data) {
+            var numberSerie = data;
+            numberSerie = calculateSeries(numberSerie);
+            build_pie_chart(numberSerie);
+        }
     };
 
     var toNumberSerie = function toNumberSerie (serie) {
@@ -51,12 +55,7 @@
         return result;
     };
 
-    var build_pie_chart = function build_pie_chart() {
-        //Wait for data
-        if (numberSerie === null && labelSerie === null) {
-            return;
-        }
-        var series = calculateSeries(labelSerie || numberSerie);
+    var build_pie_chart = function build_pie_chart(series) {
         var options = {
             chart: {
                 type: 'pie'
@@ -92,7 +91,8 @@
     init();
 
     /* test-code */
-
+    window.labelSerieCallback = labelSerieCallback;
+    window.numberSerieCallback = numberSerieCallback;
     /* end-test-code */
 
 })();
