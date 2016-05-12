@@ -74,19 +74,21 @@
         MashupPlatform.wiring.pushEvent("packed-list", result);
     };
 
-    //Bindea los endpoints para recibir los valores
-    MashupPlatform.wiring.registerCallback("inputA", function (list) {
+    var inputACallback = function inputACallback (list) {
         itemA = list;
         pack(itemA, itemB);
-    });
-
-    MashupPlatform.wiring.registerCallback("inputB", function (list) {
+    };
+    var inputBCallback = function inputBCallback (list) {
         itemB = list;
         pack(itemA, itemB);
-    });
+    };
+    //Bindea los endpoints para recibir los valores
+    MashupPlatform.wiring.registerCallback("inputA", inputACallback);
+    MashupPlatform.wiring.registerCallback("inputB", inputBCallback);
 
     /* test-code */
-
+    window.inputACallback = inputACallback;
+    window.inputBCallback = inputBCallback;
     /* end-test-code */
 
 })();
