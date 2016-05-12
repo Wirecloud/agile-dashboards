@@ -51,10 +51,7 @@
             });
         }
 
-        //If theres data --> redraw
-        if (series.length > 0) {
-            plot();
-        }
+        plot();
     };
 
     //Gets the metadata, if any
@@ -118,14 +115,22 @@
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };
 
-    //Callback for the endpoints
-    MashupPlatform.wiring.registerCallback("timestamps", function (data) {
+    var timestampCallback = function timestampCallback (data) {
         timestamps = data;
         build_series();
-    });
-    MashupPlatform.wiring.registerCallback("data-serie", function (data) {
+    };
+    var dataserieCallback = function dataserieCallback (data) {
         values = data;
         build_series();
-    });
+    };
+
+    //Callback for the endpoints
+    MashupPlatform.wiring.registerCallback("timestamps", timestampCallback);
+    MashupPlatform.wiring.registerCallback("data-serie", dataserieCallback);
+
+    /* test-code */
+    window.timestampCallback = timestampCallback;
+    window.dataserieCallback = dataserieCallback;
+    /* end-test-code */
 
 })();
