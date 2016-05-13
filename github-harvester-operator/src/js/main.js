@@ -183,6 +183,9 @@
                 for (var i = 0; i < data.length; i++) {
                     commitData.push(normalizeCommit(data[i]));
                 }
+                // Revert the order so newer commits are last
+                // This is for the graphs to sow first on the left and latest on the right
+                commitData.reverse();
 
                 //Add some metadata
                 commitData.metadata = {};
@@ -288,6 +291,10 @@
         for (var i = 0; i < data.length; i++) {
             result.push(normalizeIssue(data[i]));
         }
+
+        // Revert the order so newer issues are last
+        // This is for the graphs to sow first on the left and latest on the right
+        result.reverse();
 
         return result;
     };

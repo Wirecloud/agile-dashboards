@@ -1,6 +1,7 @@
 ## v0.3.3
 
 - Fixed harvesting issues from other projects.
+- Issues and commits are now ordered from oldest to newest so that in graphs latest issues are shown on the right.
 
 ## v0.3.2
 
