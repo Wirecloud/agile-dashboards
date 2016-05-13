@@ -2,6 +2,7 @@
 
 - Fixed harvesting issues from other projects.
 - Issues and commits are now ordered from oldest to newest so that in graphs latest issues are shown on the right.
+- Added pagination.
 
 ## v0.3.2
 
