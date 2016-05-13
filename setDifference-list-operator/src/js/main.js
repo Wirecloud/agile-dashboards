@@ -62,38 +62,48 @@
         var result = [];
         //Si uno de ellos no es una lista no existe la diferencia
         if (!Array.isArray(listA) || !Array.isArray(listB)) {
-            //MashupPlatform.operator.log("Input endpoint is not a list");
             return result;
         }
-        //Solo calcula la diferecnia si ambas listas contienen valores
-        if (listA.length !== 0 && listB.length !== 0) {
-            listA.forEach(function (a) {
-                if (!listB.some(function (b) {
-                    if (checkEqual(a, b)) {
-                        return true; // Deja de buscar
-                    }
-                    return false; //Sigue buscando
-                })) {
-                    result.push(a);
-                }
-            });
+
+        if (listA.length === 0) {
+            return listB;
+        } else if (listB.length === 0) {
+            return listA;
         }
+
+        //Solo calcula la diferecnia si ambas listas contienen valores
+        listA.forEach(function (a) {
+            if (!listB.some(function (b, i) {
+                if (checkEqual(a, b)) {
+                    listB.splice(i, 1);
+                    return true; // Deja de buscar
+                }
+                return false; //Sigue buscando
+            })) {
+                result.push(a);
+            }
+        });
+
+        listB.forEach(function (elem) {
+            result.push(elem);
+        });
         return result;
     };
 
     //Bindea los endpoints para recibir los valores
     MashupPlatform.wiring.registerCallback("list-A", function (list) {
-        list_A = list;
+        list_A = list.splice(0);
         MashupPlatform.wiring.pushEvent("complement-list", calculate_complement(list_A, list_B));
     });
     MashupPlatform.wiring.registerCallback("list-B", function (list) {
-        list_B = list;
+        list_B = list.splice(0);
         //Envia la lista calculada
         MashupPlatform.wiring.pushEvent("complement-list", calculate_complement(list_A, list_B));
     });
 
     /* test-code */
-
+    window.checkEqual = checkEqual;
+    window.calculate_complement = calculate_complement;
     /* end-test-code */
 
 })();
