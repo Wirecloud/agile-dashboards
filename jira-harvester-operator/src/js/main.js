@@ -133,6 +133,10 @@
             result.push(normalizeIssue(data[i]));
         }
 
+        // Revert the order so newer issues are last
+        // This is for the graphs to sow first on the left and latest on the right
+        result.reverse();
+
         return result;
     };
 

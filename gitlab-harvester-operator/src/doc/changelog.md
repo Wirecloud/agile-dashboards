@@ -2,6 +2,7 @@
 
 - Added issue query pagination, allowing to get more than 100 issues.
 - Added the `Max issues` preference that controls the ammount of issues harvested.
+- Issues and commits are now ordered from oldest to newest so that in graphs latest issues are shown on the right.
 
 ## v0.3.1
 
