@@ -70,36 +70,41 @@
 
     //Harvest commits and issues, only if they are connected to something through wiring
     var request_github_info = function request_github_info () {
+        var max = MashupPlatform.prefs.get("max");
+        var page;
+        //Check if there are no issues to harvest
+        if (max === 0) {
+            return;
+        }
+        //If max issues is negative -> unlimited
+        var unlimited = false;
+        if (max < 0) {
+            unlimited = true;
+            max = 100; //This is for setting the issues per page to 100 later
+        }
 
         //Harvest issues
         if (MashupPlatform.operator.outputs['issue-list'].connected) {
-            var page = 1;
+            page = 1;
             milestones = [];
             issueData = [];
-            var leftIssues = MashupPlatform.prefs.get("max");
-
-            //Check if there are no issues to harvest
-            if (leftIssues === 0) {
-                return;
-            }
-            //If max issues is negative -> unlimited
-            var unlimited = false;
-            if (leftIssues < 0) {
-                unlimited = true;
-                leftIssues = 100; //This is for setting the issues per page to 100 later
-            }
+            var leftIssues = max;
 
             //Recursively harvest data pages
-            var harvestFunc = function (res) {
+            var harvestIssueFunc = function (res) {
                 if (res && leftIssues > 0) {
                     page++;
-                    request_github_issues(page, leftIssues).then(harvestFunc);
+                    request_github_issues(page, leftIssues).then(harvestIssueFunc);
                     if (!unlimited) { // Do not decrease leftIssues if its unlimited
                         leftIssues -= 100;
                     }
                 } else {
                     //Calculate the sprints
                     guessMilestonesBeginDate ();
+
+                    // Revert the order so newer issues are last
+                    // This is for the graphs to sow first on the left and latest on the right
+                    issueData.reverse();
 
                     //Add some metadata
                     issueData.metadata = {};
@@ -125,7 +130,7 @@
                 }
             };
             //Start harvesting issues
-            request_github_issues(page, leftIssues).then(harvestFunc);
+            request_github_issues(page, leftIssues).then(harvestIssueFunc);
             if (!unlimited) { // Do not decrease leftIssues if its unlimited
                 leftIssues -= 100;
             }
@@ -133,7 +138,44 @@
 
         //Harvest commits
         if (MashupPlatform.operator.outputs['commit-list'].connected) {
-            request_github_commits();
+            page = 1;
+            issueData = [];
+            var leftCommits = max;
+            commitData = [];
+
+            //Recursively harvest data pages
+            var harvestCommitFunc = function (res) {
+                if (res && leftCommits > 0) {
+                    page++;
+                    request_github_commits(page, leftCommits).then(harvestCommitFunc);
+                    if (!unlimited) { // Do not decrease leftCommits if its unlimited
+                        leftCommits -= 100;
+                    }
+                } else {
+                    // Revert the order so newer commits are last
+                    // This is for the graphs to sow first on the left and latest on the right
+                    commitData.reverse();
+
+                    //Add some metadata
+                    commitData.metadata = {};
+                    commitData.metadata.type = "list";
+                    commitData.metadata.tag = "Commit";
+                    commitData.metadata.verbose = "Github commits";
+                    //filter metadata
+                    var filters = [];
+                    filters.push({name: "Author", property: "author", display: "author"});
+                    filters.push({name: "Month", property: "month", display: "month"});
+                    filters.push({name: "Commit Sha", property: "sha", display: "sha"});
+                    commitData.metadata.filters = filters;
+
+                    MashupPlatform.wiring.pushEvent("commit-list", commitData);
+                }
+            };
+            //Start harvesting issues
+            request_github_commits(page, leftCommits).then(harvestCommitFunc);
+            if (!unlimited) { // Do not decrease leftCommits if its unlimited
+                leftCommits -= 100;
+            }
         }
     };
 
@@ -168,36 +210,35 @@
     };
 
     //Harvest data from Github
-    var request_github_commits = function request_github_commits() {
+    var request_github_commits = function request_github_commits(page, pageSize) {
+        return new Promise (function (fulfill, reject) {
+            MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/commits", {
+                method: 'GET',
+                supportsAccessControl: true,
+                parameters: {
+                    per_page: pageSize,
+                    page: page
+                },
+                requestHeaders: requestHeaders,
+                onSuccess: function (response) {
+                    var data = JSON.parse(response.responseText);
 
-        MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/commits", {
-            method: 'GET',
-            supportsAccessControl: true,
-            parameters: {
-                per_page: 100
-            },
-            requestHeaders: requestHeaders,
-            onSuccess: function (response) {
-                var data = JSON.parse(response.responseText);
-                commitData = [];
-                for (var i = 0; i < data.length; i++) {
-                    commitData.push(normalizeCommit(data[i]));
+                    //If there's no data, its probably the last page.
+                    if (data.length === 0) {
+                        fulfill(false);
+                        return;
+                    }
+
+                    for (var i = 0; i < data.length; i++) {
+                        commitData.push(normalizeCommit(data[i]));
+                    }
+
+                    fulfill(true);
+                },
+                onError: function (response) {
+                    reject(false);
                 }
-
-                //Add some metadata
-                commitData.metadata = {};
-                commitData.metadata.type = "list";
-                commitData.metadata.tag = "Commit";
-                commitData.metadata.verbose = "Github commits";
-                //filter metadata
-                var filters = [];
-                filters.push({name: "Author", property: "author", display: "author"});
-                filters.push({name: "Month", property: "month", display: "month"});
-                filters.push({name: "Commit Sha", property: "sha", display: "sha"});
-                commitData.metadata.filters = filters;
-
-                MashupPlatform.wiring.pushEvent("commit-list", commitData);
-            }
+            });
         });
     };
 

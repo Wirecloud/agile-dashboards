@@ -16,12 +16,12 @@
         };
 
     var token;
-
     var baseURI;
     var projectId;
     var component;
+    var issues;
 
-    var msg;
+    var versions;
 
     var init = function init() {
 
@@ -47,15 +47,15 @@
         component = MashupPlatform.prefs.get("component");
 
         //Harvest data
-        msg = null;
+        issues = null;
         requestProjectVersions();
     };
 
     //Sends events through the connected outputs
     var pushInfo = function pushInfo() {
         // send data if available
-        if (msg) {
-            MashupPlatform.wiring.pushEvent("jira-issues", msg);
+        if (issues) {
+            MashupPlatform.wiring.pushEvent("jira-issues", issues);
         } else {
             requestProjectVersions();
         }
@@ -72,39 +72,50 @@
                 var data = JSON.parse(response.responseText);
 
                 //Normalize versions
-                var versions = [];
+                versions = [];
                 data.forEach(function (version) {
                     versions.push({name: version.name, startDate: version.startDate, endDate: version.releaseDate});
                 });
 
-                requestComponentIssues(versions);
+                harvestIssues();
             }
         });
     };
 
-    // Request all the issues associated to the component
-    var requestComponentIssues = function requestComponentIssues(versions) {
-        //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
-        var jql = "";
-        if (component !== "") {
-            jql = "jql=component=" + component + "&";
-        }
-        var max = MashupPlatform.prefs.get("max");
-        MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?" + jql + "maxResults=" + max + "&expand=changelog", {
-            method: 'GET',
-            supportsAccessControl: false,
+    var harvestIssues = function harvestIssues () {
+        var page = 1;
+        issues = [];
+        var leftIssues = MashupPlatform.prefs.get("max");
 
-            requestHeaders: requestHeaders,
-            onSuccess: function (response) {
-                var data = JSON.parse(response.responseText);
-                msg = normalizeData(data.issues);
+        //Check if there are no issues to harvest
+        if (leftIssues === 0) {
+            return;
+        }
+        //If max issues is negative -> unlimited
+        var unlimited = false;
+        if (leftIssues < 0) {
+            unlimited = true;
+            leftIssues = 100; //This is for setting the issues per page to 100 later
+        }
+
+        //Recursively harvest data pages
+        var harvestFunc = function (res) {
+            if (res && leftIssues > 0) {
+                page++;
+                //Clamp it to 100
+                var toRequest = leftIssues > 100 ? 100 : leftIssues;
+                requestComponentIssues(page, toRequest).then(harvestFunc);
+                if (!unlimited) { // Do not decrease leftIssues if its unlimited
+                    leftIssues -= toRequest;
+                }
+            } else {
 
                 //Add some metadata
-                msg.metadata = {};
-                msg.metadata.versions = versions; // :)
-                msg.metadata.type = "list";
-                msg.metadata.tag = "Issue";
-                msg.metadata.verbose = "Jira issues";
+                issues.metadata = {};
+                issues.metadata.versions = versions; // :)
+                issues.metadata.type = "list";
+                issues.metadata.tag = "Issue";
+                issues.metadata.verbose = "Jira issues";
                 //Add filter configuration
                 var filters = [];
                 filters.push({name: "Sprints", base: "metadata.versions", property: "name", display: "name", compare: "versions", type: "some"});
@@ -116,11 +127,51 @@
 
                 filters.push({name: "Component", property: "jira.components", display: "jira.components", type: "some"});
 
-                msg.metadata.filters = filters;
+                issues.metadata.filters = filters;
 
-                //Pushes the list of issues
-                MashupPlatform.wiring.pushEvent("jira-issues", msg);
+                //Push basic data
+                MashupPlatform.wiring.pushEvent("jira-issues", issues);
             }
+        };
+        //Start harvesting issues
+        var toRequest = leftIssues > 100 ? 100 : leftIssues;
+        requestComponentIssues(page, toRequest).then(harvestFunc);
+        if (!unlimited) { // Do not decrease leftIssues if its unlimited
+            leftIssues -= toRequest;
+        }
+    };
+
+    // Request all the issues associated to the component
+    var requestComponentIssues = function requestComponentIssues(page, pageSize) {
+        //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
+        return new Promise (function (fulfill, reject) {
+            var jql = "jql=project=" + projectId;
+            if (component !== "") {
+                jql += " AND component=" + component;
+            }
+            jql += "&";
+
+            MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?" + jql + "startAt=" + page + "&maxResults=" + pageSize + "&expand=changelog", {
+                method: 'GET',
+                supportsAccessControl: false,
+
+                requestHeaders: requestHeaders,
+                onSuccess: function (response) {
+                    var data = JSON.parse(response.responseText);
+
+                    //If there's no data, its probably the last page.
+                    if (data.length === 0) {
+                        fulfill(false);
+                        return;
+                    }
+
+                    issues = issues.concat(normalizeData(data.issues));
+                    fulfill(true);
+                },
+                onError: function (response) {
+                    reject(false);
+                }
+            });
         });
     };
 
@@ -131,6 +182,10 @@
         for (var i = 0; i < data.length; i++) {
             result.push(normalizeIssue(data[i]));
         }
+
+        // Revert the order so newer issues are last
+        // This is for the graphs to sow first on the left and latest on the right
+        result.reverse();
 
         return result;
     };

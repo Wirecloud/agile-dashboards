@@ -44,7 +44,7 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 - `Gitlab URL` : URL to the gitlab server. (https://your.gitlab.server.com)
 - `Gitlab project full name` : Name of the gitlab project. This has the following format: username / project name. This can be easily found on the home page of the Gitlab instance.
-- `Max issues`: The ammount of issues to be harvested. If set to a negative number, there's  no limit to the ammount of issues harvested, while setting it to 0 shuts down the issue harvesting.
+- `Max`: The ammount of issues and commits to be harvested. If set to a negative number, there's  no limit to the ammount of items harvested, while setting it to 0 shuts down harvesting.
 - `Private token` : Private token to be used for authentication
 - `Oauth2 token` : Oath2 token to be used for authentication
 
