@@ -145,15 +145,20 @@
     var requestComponentIssues = function requestComponentIssues(page, pageSize) {
         //http://jira.fiware.org/rest/api/2/search?jql=component%3DWirecloud&maxResults=1000
         return new Promise (function (fulfill, reject) {
-            var jql = "jql=project=" + projectId;
+            var jql = "project=" + projectId;
             if (component !== "") {
                 jql += " AND component=" + component;
             }
-            jql += "&";
 
-            MashupPlatform.http.makeRequest (baseURI + "/rest/api/latest/search?" + jql + "startAt=" + page + "&maxResults=" + pageSize + "&expand=changelog", {
+            MashupPlatform.http.makeRequest(baseURI + "/rest/api/latest/search", {
                 method: 'GET',
                 supportsAccessControl: false,
+                parameters: {
+                    jql: jql,
+                    startAt: page,
+                    maxResults: pageSize,
+                    expand: "changelog"
+                },
 
                 requestHeaders: requestHeaders,
                 onSuccess: function (response) {
