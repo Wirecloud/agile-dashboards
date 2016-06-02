@@ -1,3 +1,7 @@
+## v0.3.4
+
+- Fixed Jira queries not adding their parameters.
+
 ## v0.3.3
 
 - Fixed harvesting issues from other projects.
