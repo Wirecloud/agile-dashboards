@@ -81,8 +81,3 @@ This widgets are used to plot charts and tables with the data calculated by the 
 
 * [Data-table-viewer-widget](https://github.com/Wirecloud/data-table-viewer-widget)
 * [HighCharts-widget](https://github.com/Wirecloud/highcharts-widget)
-
-## Old stuff (deprecated)
-
-* [jenkins-project-build-list-widget](./jenkins-project-build-list-widget) (try jenkins-project-build-list-operator)
-* [set-filter-conditions-widget](./set-filter-conditions-widget) (try set-generic-filter-conditions-widget)

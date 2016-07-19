@@ -80,7 +80,7 @@
     test.stateFunc = stateFunc;
     test.setVersions = function (ver) {
         versions = ver;
-    }
+    };
     test.contentBuilderDueDate = contentBuilderDueDate;
 
     window.IssueTableGenerator = test;
