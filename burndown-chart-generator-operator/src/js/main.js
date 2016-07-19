@@ -17,37 +17,39 @@
     var version = null;
 
     var init = function init() {
-        MashupPlatform.wiring.registerCallback("issues", function (data) {
-            sprint = data;
-            version = null;
-            if (sprint.length === 0) {
-                cleanPlot("Input data is empty :(");
-                return;
+        MashupPlatform.wiring.registerCallback("issues", issueCallback);
+    };
+
+    var issueCallback = function issueCallback (data) {
+        sprint = data;
+        version = null;
+        if (sprint.length === 0) {
+            cleanPlot("Input data is empty :(");
+            return;
+        }
+
+        //Get the filtered sprint. If none is chosen try with the first available version
+        if (data.metadata && data.metadata.filtered && data.metadata.filtered.Sprints) {
+            version = data.metadata.filtered.Sprints;
+        } else {
+            version = sprint[0].versions[0];
+        }
+
+
+        if (!checkOneSprint()) {
+            cleanPlot("All input issues must be from the same sprint");
+            return;
+        }
+
+        //Get version data
+        data.metadata.versions.forEach(function (ver) {
+            if (ver.name === version) {
+                startDate = ver.startDate;
+                endDate = ver.endDate;
             }
-
-            //Get the filtered sprint. If none is chosen try with the first available version
-            if (data.metadata.filtered && data.metadata.filtered.Sprints) {
-                version = data.metadata.filtered.Sprints;
-            } else {
-                version = sprint[0].versions[0];
-            }
-
-
-            if (!checkOneSprint()) {
-                cleanPlot("All input issues must be from the same sprint");
-                return;
-            }
-
-            //Get version data
-            data.metadata.versions.forEach(function (ver) {
-                if (ver.name === version) {
-                    startDate = ver.startDate;
-                    endDate = ver.endDate;
-                }
-            });
-
-            plot();
         });
+
+        plot();
     };
 
     // Calculates the reference data series
@@ -58,7 +60,6 @@
         days.forEach(function (d, index) {
             serie.push([index + 1, issuesCount - factor * index]);
         });
-
         return serie;
     };
 
@@ -77,7 +78,6 @@
             }
             dailyCount = 0;
             for (var i = 0; i < issues.length; i++) {
-
                 if (day >= Date.parse(issues[i].resolutionDate) - DAY_LENGTH + 1) {
                     dailyCount++;
                     issues.splice(i, 1); //Removes it
@@ -190,4 +190,13 @@
 
     //Init the operator
     init();
+
+    /* test-code */
+    var test = {};
+
+    test.init = init;
+    test.issueCallback = issueCallback;
+
+    window.BurndownChartGenerator = test;
+    /* end-test-code */
 })();

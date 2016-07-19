@@ -60,7 +60,14 @@
     init();
 
     /* test-code */
+    var test = {};
 
+    test.init = init;
+    test.issue_list_callback = function (values) {
+        data = values;
+        calculateOutputs();
+    };
+    window.IssueSplitter = test;
     /* end-test-code */
 
 })();

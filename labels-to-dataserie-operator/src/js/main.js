@@ -13,13 +13,15 @@
     var dataSerie = [], labelSerie = [];
 
     var init = function init() {
-        MashupPlatform.wiring.registerCallback("label-list", function (data) {
-            //Update current data and push it
-            toNumberSerie(data);
-            pushData();
-        });
+        MashupPlatform.wiring.registerCallback("label-list", labelListCallback);
 
         MashupPlatform.wiring.registerStatusCallback (pushData);
+    };
+
+    var labelListCallback = function labelListCallback (data) {
+        //Update current data and push it
+        toNumberSerie(data);
+        pushData();
     };
 
     var toNumberSerie = function toNumberSerie (labels) {
@@ -50,7 +52,7 @@
 
     init();
     /* test-code */
-
+    window.labelListCallback = labelListCallback;
     /* end-test-code */
 
 })();

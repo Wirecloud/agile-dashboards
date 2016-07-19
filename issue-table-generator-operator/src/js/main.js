@@ -21,7 +21,9 @@
     var generateDataset = function generateDataset(data) {
 
         //Saves version data for the dueDate content builder
-        versions = data.metadata.versions;
+        if (data && data.metadata) {
+            versions = data.metadata.versions;
+        }
 
         //Issue table structure
         var structure = [
@@ -49,7 +51,6 @@
         if (issue.dueDate) {
             return issue.dueDate;
         }
-
         var ver = issue.versions[0];
 
         for (var i = 0; i < versions.length; i++) {
@@ -57,7 +58,7 @@
                 return versions[i].endDate;
             }
         }
-        //If it has no version not dueDate, leave cell blank
+        //If it has no version nor dueDate, leave cell blank
         return "";
     };
 
@@ -71,5 +72,19 @@
     };
 
     init();
+
+    /* test-code */
+    var test = {};
+
+    test.generateDataset = generateDataset;
+    test.stateFunc = stateFunc;
+    test.setVersions = function (ver) {
+        versions = ver;
+    }
+    test.contentBuilderDueDate = contentBuilderDueDate;
+
+    window.IssueTableGenerator = test;
+
+    /* end-test-code */
 
 })();

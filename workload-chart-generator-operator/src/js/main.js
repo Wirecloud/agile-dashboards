@@ -12,25 +12,26 @@
     "use strict";
 
     var init = function init() {
+        MashupPlatform.wiring.registerCallback("issues", issuesCallback);
+        MashupPlatform.wiring.registerCallback("commits", commitsCallback);
+    };
 
-        MashupPlatform.wiring.registerCallback("issues", function (data) {
-            var series = calculateIssueSeries(data);
-            if (series.months.length === 1) {
-                build_pie_chart(series.serie);
-            } else {
-                build_column_chart(series.serie, series.months, "Issues");
-            }
-        });
+    var issuesCallback = function issuesCallback (data) {
+        var series = calculateIssueSeries(data);
+        if (series.months.length === 1) {
+            build_pie_chart(series.serie);
+        } else {
+            build_column_chart(series.serie, series.months, "Issues");
+        }
+    };
 
-        MashupPlatform.wiring.registerCallback("commits", function (data) {
-            var series = calculateCommitSeries(data);
-            if (series.months.length === 1) {
-                build_pie_chart(series.serie);
-            } else {
-                build_column_chart(series.serie, series.months, "Commits");
-            }
-        });
-
+    var commitsCallback = function commitsCallback (data) {
+        var series = calculateCommitSeries(data);
+        if (series.months.length === 1) {
+            build_pie_chart(series.serie);
+        } else {
+            build_column_chart(series.serie, series.months, "Commits");
+        }
     };
 
     //Get the series to be plotted from the provided commits
@@ -166,7 +167,7 @@
     init();
 
     /* test-code */
-
+    window.issuesCallback = issuesCallback;
+    window.commitsCallback = commitsCallback;
     /* end-test-code */
-
 })();
