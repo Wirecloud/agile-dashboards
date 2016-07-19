@@ -1,6 +1,12 @@
+This set of Wirecloud components allow the creation and visualization of agile dashboards to check easily the progress and status of agile projects using charts and table to plot the data.
+
+Currently Github, Gitlab, Jira and Jenkins are supported.
+
 # List of available resources for Agile-Mashup (widgets and operators)
 
 ## Harvesters (Harvest phase)
+
+This operators harvest data from the online tools, such as Github.
 
 * [Get-coverage-report-coveralls-operator](./get-coverage-report-coveralls-operator)
 * [Get-coverage-report-jenkins-operator](./get-coverage-report-jenkins-operator)
@@ -16,9 +22,14 @@
 
 ### Filters
 
+These components are used to filter the data obtained through the harvesters.
+
 * [And-filter-operator](./and-filter-operator)
+* [Set-generic-filter-conditions-widget](./set-generic-filter-conditions-widget)
 
 ### List Operators
+
+These operators perform basic operations on a list.
 
 * [Basic-list-math-operator](./BasicListMathOperator)
 * [Intersect-list-operator](./intersect-list-operator)
@@ -34,6 +45,8 @@
 
 ### Splitters
 
+These operators are used to get detailed properties of the harvested data.
+
 * [Build-splitter-operator](./build-splitter-operator)
 * [Changes-splitter-operator](./changes-splitter-operator)
 * [Issue-splitter-operator](./issue-splitter-operator)
@@ -41,16 +54,18 @@
 
 ## Datamodel Adapter (Visualization Preparation phase)
 
+This widgets are used to plot charts and tables with the data calculated by the previous components.
+
 ### Generic
 
-* [Burndown-chart-generator-operator](./burndown-chart-generator-operator)
-* [Burndownchart-click-operator](./burndownchart-click-operator)
 * [Column-chart-generator-operator](./column-chart-generator-operator)
 * [Pie-chart-generator-operator](./pie-chart-generator-operator)
 * [Trend-chart-generator-operator](./trend-chart-generator-operator)
 
 ### Domain-dependent
 
+* [Burndown-chart-generator-operator](./burndown-chart-generator-operator)
+* [Burndownchart-click-operator](./burndownchart-click-operator)
 * [File-Coverage-chart-generator-operator](./file-coverage-chart-generator-operator)
 * [Issue-table-generator-operator](./issue-table-generator-operator)
 * [Detailed-jenkins-test-data-operator](./detailed-jenkins-test-data-operator)
@@ -66,7 +81,6 @@
 
 * [Data-table-viewer-widget](https://github.com/Wirecloud/data-table-viewer-widget)
 * [HighCharts-widget](https://github.com/Wirecloud/highcharts-widget)
-* [Set-generic-filter-conditions-widget](./set-generic-filter-conditions-widget)
 
 ## Old stuff (deprecated)
 
