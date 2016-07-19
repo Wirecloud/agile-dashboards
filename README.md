@@ -1,4 +1,4 @@
-This set of Wirecloud components allow the creation and visualization of agile dashboards where you can easily check the progress and status of agile projects using charts and table to plot the data.
+This set of Wirecloud components allow the creation and visualization of agile dashboards where you can easily check the progress and status of agile projects using charts and tables to plot the data.
 
 Currently Github, Gitlab, Jira and Jenkins are supported.
 
