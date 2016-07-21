@@ -1,3 +1,7 @@
+## v0.3.2
+
+- Fixed AndFilter destroying filtered list metadata
+
 ## v0.3.1
 
 - Data is only pushed once per wiring update.

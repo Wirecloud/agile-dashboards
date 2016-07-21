@@ -123,7 +123,7 @@
             filtered = original_list.slice(0);
         }
         //Save the metadata if any
-        filtered.metadata = {};
+        filtered.metadata = original_list.metadata || {};
         //Add appliedFilters metadata
         filtered.metadata.filtered = appliedFilters;
 
