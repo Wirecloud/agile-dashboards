@@ -312,7 +312,7 @@
         //Creation data
         result.author = commit.commit.author.name;
         result.month = commit.commit.author.date.substring(0, 7);
-        result.timestamp = Date.parse(commit.author.date);
+        result.timestamp = Date.parse(commit.commit.author.date);
 
         //Commit data
         result.parents = commit.parents;
