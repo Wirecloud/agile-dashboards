@@ -1,10 +1,13 @@
 /*
- * burndownchart-click
+ * burndownchart-click-operator
+ * https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards
  *
- *
- * Copyright (c) 2016 CoNWet
- * Licensed under the MIT license.
+ * Copyright (c) 2016 CoNWeT
+ * Licensed under the Apache2 license.
  */
+
+var ConfigParser = require('wirecloud-config-parser');
+var parser = new ConfigParser('src/config.xml');
 
 module.exports = function (grunt) {
 
@@ -12,7 +15,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
-        pkg: grunt.file.readJSON('package.json'),
+        metadata: parser.getData(),
 
         jshint: {
             options: {
@@ -81,7 +84,7 @@ module.exports = function (grunt) {
             widget: {
                 options: {
                     mode: 'zip',
-                    archive: 'dist/<%= pkg.vendor %>_<%= pkg.name %>_<%= pkg.version %>.wgt'
+                    archive: 'dist/<%= metadata.vendor %>_<%= metadata.name %>_<%= metadata.version %>.wgt'
                 },
                 files: [
                     {
@@ -130,26 +133,15 @@ module.exports = function (grunt) {
             }
         },
 
-        replace: {
-            version: {
-                overwrite: true,
-                src: ['src/config.xml'],
-                replacements: [{
-                    from: /version=\"[0-9]+\.[0-9]+\.[0-9]+(([ab]|rc)?[0-9]+)?(-dev)?\"/g,
-                    to: 'version="<%= pkg.version %>"'
-                }]
-            }
-        },
-
         jasmine: {
             test: {
-                src: ['src/js/*.js', '!src/js/main.js'],
+                src: ['src/js/*.js'],
                 options: {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],
-                    vendor: [
-                        'node_modules/jquery/dist/jquery.js',
+                    vendor: ['node_modules/jquery/dist/jquery.js',
                         'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+
                         'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
                         'src/test/vendor/*.js'
                     ]
@@ -172,10 +164,20 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+
+        wirecloud: {
+            options: {
+                overwrite: false
+            },
+            publish: {
+                file: 'dist/<%= metadata.vendor %>_<%= metadata.name %>_<%= metadata.version %>.wgt'
+            }
         }
 
     });
 
+    grunt.loadNpmTasks('grunt-wirecloud');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
     grunt.loadNpmTasks('grunt-jscs');
@@ -196,7 +198,6 @@ module.exports = function (grunt) {
         'clean:temp',
         'copy:main',
         'strip_code',
-        'replace:version',
         'compress:widget'
     ]);
 
@@ -205,5 +206,9 @@ module.exports = function (grunt) {
         'build'
     ]);
 
+    grunt.registerTask('publish', [
+        'default',
+        'wirecloud'
+    ]);
 
 };
