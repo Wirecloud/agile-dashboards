@@ -20,8 +20,8 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="number-serie" label="Number Data Serie" description="Source data series with numeric values" type="text" friendcode="data-serie list" />
-        <inputendpoint name="label-serie" label="Label Data Serie" description="Soruce data series with names" type="text" friendcode="data-serie list" />
+        <inputendpoint name="number-serie" label="Number Data Serie" description="Source data series with numeric values" type="text" friendcode="number-serie" />
+        <inputendpoint name="label-serie" label="Label Data Serie" description="Soruce data series with names" type="text" friendcode="label-serie" />
 
         <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
     </wiring>

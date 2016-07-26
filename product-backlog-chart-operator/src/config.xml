@@ -20,7 +20,7 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="issues" label="Issues" type="text" friendcode="normalized-agile-issues" />
+        <inputendpoint name="issues" label="Issues" type="text" friendcode="normalized-agile-issues issue-list" />
         <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
     </wiring>
 

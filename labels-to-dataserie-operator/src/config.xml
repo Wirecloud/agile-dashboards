@@ -16,9 +16,10 @@
     </details>
 
     <wiring>
-        <inputendpoint name="label-list" label="Label List" type="text" friendcode="label-list" />
-        <outputendpoint name="data-serie" label="Data serie" type="text" />
-        <outputendpoint name="label-serie" label="Reduced label serie" type="text"/>
+        <inputendpoint name="label-list" label="Label List" type="text" friendcode="label-serie" />
+
+        <outputendpoint name="data-serie" label="Data serie" type="text" friendcode="number-serie"/>
+        <outputendpoint name="label-serie" label="Reduced label serie" type="text" friendcode="label-serie" />
     </wiring>
 
     <scripts>

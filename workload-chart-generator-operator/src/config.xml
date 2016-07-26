@@ -20,8 +20,9 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="issues" label="Issues" description="Source issues" type="text" friendcode="normalized-agile-issues" />
-        <inputendpoint name="commits" label="Commits" description="Soruce commtis" type="text" friendcode="" />
+        <inputendpoint name="issues" label="Issues" description="Source issues" type="text" friendcode="normalized-agile-issues issue-list" />
+        <inputendpoint name="commits" label="Commits" description="Soruce commtis" type="text" friendcode="normalized-agile-commits commit-list" />
+
         <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
     </wiring>
 

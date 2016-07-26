@@ -20,9 +20,8 @@
     </preferences>
 
     <wiring>
-        <inputendpoint name="data-serie" label="Data serie"  type="text" />
-        <inputendpoint name="label-list" label="Label list" description="The label for each of the columns" type="text" />
-
+        <inputendpoint name="data-serie" label="Data serie"  type="text" friendcode="number-serie" />
+        <inputendpoint name="label-list" label="Label list" description="The label for each of the columns" type="text" friendcode="label-serie" />
 
         <outputendpoint name="chart-options" label="Chart Data Model" description="Chart options" type="text" friendcode="highchart-options" />
     </wiring>
