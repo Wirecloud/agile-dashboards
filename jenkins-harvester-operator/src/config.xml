@@ -2,7 +2,6 @@
 <operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="jenkins-harvester" version="0.3.1">
     <details>
         <title>Jenkins Harvester</title>
-        <homepage>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa.git</homepage>
         <authors>Álvaro Arranz</authors>
         <email>aarranz@fi.upm.es</email>
         <image>images/catalogue.png</image>
@@ -12,7 +11,8 @@
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
         <license>Apache2</license>
-        <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/articulo-rafa/issues</issuetracker>
+        <homepage>https://github.com/Wirecloud/agile-dashboards</homepage>
+        <issuetracker>https://github.com/Wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
     <preferences>

@@ -2,7 +2,6 @@
 <operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="test-report-splitter" version="0.1.8">
     <details>
         <title>&lt;Test Report&gt; Splitter</title>
-        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
         <authors>Álvaro Arranz</authors>
         <email>aarranz@fi.upm.es</email>
         <description>Splits test report information into several endpoints</description>
@@ -11,6 +10,8 @@
         <doc>doc/index.md</doc>
         <license>Apache2</license>
         <image>images/catalogue.png</image>
+        <homepage>https://github.com/Wirecloud/agile-dashboards</homepage>
+        <issuetracker>https://github.com/Wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
     <wiring>

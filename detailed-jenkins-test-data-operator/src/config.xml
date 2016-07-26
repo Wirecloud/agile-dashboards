@@ -2,7 +2,6 @@
 <operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="detailed-jenkins-test-data" version="0.3.0">
     <details>
         <title>Detailed Jenkins test report data</title>
-        <homepage>https://repo.conwet.fi.upm.es/Wirecloud/agile-dashboards</homepage>
         <authors>Alejandro Rodríguez &lt;alex.rodriguez@conwet.com&gt;</authors>
         <email>alex.rodriguez@conwet.com</email>
         <image></image>
@@ -12,7 +11,8 @@
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
         <license>MIT</license>
-        <issuetracker></issuetracker>
+        <homepage>https://github.com/Wirecloud/agile-dashboards</homepage>
+        <issuetracker>https://github.com/Wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
     <preferences>

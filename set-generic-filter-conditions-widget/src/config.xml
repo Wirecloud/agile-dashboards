@@ -2,7 +2,6 @@
 <widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="set-generic-filter-conditions" version="0.3.1">
     <details>
         <title>Generic filter conditions</title>
-        <homepage>https://127.0.0.1</homepage>
         <authors>Alejandro Rodriguez</authors>
         <email>alex.rodriguez@conwet.com</email>
         <image>images/catalogue.png</image>
@@ -12,7 +11,8 @@
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
         <license>MIT</license>
-        <issuetracker></issuetracker>
+        <homepage>https://github.com/Wirecloud/agile-dashboards</homepage>
+        <issuetracker>https://github.com/Wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
     <requirements>

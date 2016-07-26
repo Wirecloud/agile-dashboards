@@ -2,7 +2,6 @@
 <operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="list-intersection" version="0.3.0">
     <details>
         <title>List intersection</title>
-        <homepage>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards</homepage>
         <authors>Alejandro Rodriguez</authors>
         <image>images/catalogue.png</image>
         <smartphoneimage></smartphoneimage>
@@ -11,7 +10,8 @@
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
         <license>Apache2</license>
-        <issuetracker>https://repo.conwet.fi.upm.es/wirecloud/agile-dashboards/issues</issuetracker>
+        <homepage>https://github.com/Wirecloud/agile-dashboards</homepage>
+        <issuetracker>https://github.com/Wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
     <wiring>

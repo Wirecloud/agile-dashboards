@@ -11,7 +11,8 @@
         <changelog>doc/changelog.md</changelog>
         <doc>doc/index.md</doc>
         <license>MIT</license>
-        <issuetracker></issuetracker>
+        <homepage>https://github.com/Wirecloud/agile-dashboards</homepage>
+        <issuetracker>https://github.com/Wirecloud/agile-dashboards/issues</issuetracker>
     </details>
 
     <preferences>
