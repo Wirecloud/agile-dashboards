@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="calculate-tendency" version="0.3.0">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="calculate-tendency" version="0.3.1">
     <details>
         <title>Calculate Tendency</title>
         <authors>Álvaro Arranz</authors>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="jenkins-test-time-difference" version="0.2.0">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="jenkins-test-time-difference" version="0.2.1">
 <details>
   <title>Jenkins test time difference widget</title>
   <authors>Alejandro Rodríguez</authors>

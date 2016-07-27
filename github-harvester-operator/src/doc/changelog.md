@@ -1,3 +1,7 @@
+## v0.3.4
+
+Updated IssueTracker and webpage
+
 ## v0.3.3
 
 - Added issue and commit query pagination, allowing to get more than 100 items.

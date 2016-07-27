@@ -1,3 +1,7 @@
+## v0.3.3
+
+Updated IssueTracker and webpage
+
 ## v0.3.2
 
 - Added query pagination, allowing to get more than 100 items.

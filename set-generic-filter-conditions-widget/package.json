@@ -17,5 +17,5 @@
     "grunt-text-replace": "~0.4.0"
   },
   "vendor": "CoNWet",
-  "version": "0.3.1"
+  "version": "0.3.2"
 }

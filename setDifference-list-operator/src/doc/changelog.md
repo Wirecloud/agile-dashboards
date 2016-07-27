@@ -1,3 +1,7 @@
+## v0.3.2
+
+Updated IssueTracker and webpage
+
 ## v0.3.1
 
 - Fixed not calculating the difference properly.

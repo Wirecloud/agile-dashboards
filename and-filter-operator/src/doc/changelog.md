@@ -1,3 +1,7 @@
+## v0.3.3
+
+Updated IssueTracker and webpage
+
 ## v0.3.2
 
 - Fixed AndFilter destroying filtered list metadata

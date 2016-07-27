@@ -1,3 +1,7 @@
+## v0.3.5
+
+Updated IssueTracker and webpage
+
 ## v0.3.4
 
 - Fixed Jira queries not adding their parameters.

@@ -1,7 +1,7 @@
-## v0.3.0 [Extra release info, e.g. release date]
+## v0.3.1
+
+Updated IssueTracker and webpage
+
+## v0.3.0
 
 Initial version
-
-- change 1
-- change 2
-- ...
