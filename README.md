@@ -4,6 +4,10 @@ Currently Github, Gitlab, Jira and Jenkins are supported.
 
 Example dashboard to check Wirecloud's development on Github: [Wirecloud example](https://wirecloud.conwet.fi.upm.es/alex.rodriguez/Example#view=workspace)
 
+<iframe width="420" height="315" src="https://wirecloud.conwet.fi.upm.es/alex.rodriguez/Example?mode=embedded&theme=wirecloud.defaulttheme#view=workspace&tab=GithubDashboard" frameborder="0" allowfullscreen></iframe>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/QH2-TGUlwu4" frameborder="0" allowfullscreen></iframe>
+
 # List of available resources for Agile-Mashup (widgets and operators)
 
 ## Harvesters (Harvest phase)
