@@ -2,6 +2,8 @@ This set of Wirecloud components allow the creation and visualization of agile d
 
 Currently Github, Gitlab, Jira and Jenkins are supported.
 
+Example dashboard to check Wirecloud's development on Github: [Wirecloud example](https://wirecloud.conwet.fi.upm.es/alex.rodriguez/Example#view=workspace)
+
 # List of available resources for Agile-Mashup (widgets and operators)
 
 ## Harvesters (Harvest phase)
