@@ -24,7 +24,8 @@
         //Create the serie
         var i, data = [];
         for (i = 0; i < timestamps.length; i++) {
-            data.push({x: timestamps[i], y: serie[i]});
+            var time = new Date(timestamps[i]).getTime();
+            data.push({x: time, y: serie[i], originalStamp: timestamps[i]});
         }
         return data;
     };
@@ -53,6 +54,13 @@
 
         plot();
     };
+
+    var dataHandler = function dataHandler (point) {
+        var filterBy = point.originalStamp;
+        var meta = timestamps.metadata;
+        return [{type: meta.filterAttributeType || "eq", value: filterBy, attr: meta.filterAttribute}];
+    };
+
 
     //Gets the metadata, if any
     var getMetadataTag = function getMetadataTag(o) {
@@ -108,11 +116,15 @@
             series: series
         };
 
+        if (timestamps.metadata && timestamps.metadata.filterAttribute) {
+            options.dataHandler = dataHandler;
+        }
+
         max = MashupPlatform.prefs.get('max').trim();
         if (max !== '') {
             options.yAxis.max = parseInt(max, 10);
         }
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
+        MashupPlatform.wiring.pushEvent("chart-options", options);
     };
 
     var timestampCallback = function timestampCallback (data) {

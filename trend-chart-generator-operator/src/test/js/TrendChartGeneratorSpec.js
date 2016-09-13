@@ -31,8 +31,9 @@
                 expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalled();
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
-                expect(args.series).toEqual([{name: "values", data: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}, {x: 4, y: 1}]}]);
+                var args = call[1];
+                var expected = [{name: "values", data: [{x: 1, y: 1, originalStamp: 1}, {x: 2, y: 2, originalStamp: 2}, {x: 3, y: 3, originalStamp: 3}, {x: 4, y: 1, originalStamp: 4}]}];
+                expect(args.series).toEqual(expected);
             });
 
             it("Should work with multiple series", function() {
@@ -47,8 +48,9 @@
                 expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalled();
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
-                expect(args.series).toEqual([{name: "things", data: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}, {x: 4, y: 1}]}, {name: "values", data: [{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 1}, {x: 4, y: 2}]}]);
+                var args = call[1];
+                var expected = [{name: "things", data: [{x: 1, y: 1, originalStamp: 1}, {x: 2, y: 2, originalStamp: 2}, {x: 3, y: 3, originalStamp: 3}, {x: 4, y: 1, originalStamp: 4}]}, {name: "values", data: [{x: 1, y: 1, originalStamp: 1}, {x: 2, y: 2, originalStamp: 2}, {x: 3, y: 1, originalStamp: 3}, {x: 4, y: 2, originalStamp: 4}]}];
+                expect(args.series).toEqual(expected);
             });
 
             it("Should exit if timestamps length its not the same as the dataserie length", function () {
