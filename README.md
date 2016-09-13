@@ -67,7 +67,6 @@ This widgets are used to plot charts and tables with the data calculated by the 
 ### Domain-dependent
 
 * [Burndown-chart-generator-operator](./burndown-chart-generator-operator)
-* [Burndownchart-click-operator](./burndownchart-click-operator)
 * [File-Coverage-chart-generator-operator](./file-coverage-chart-generator-operator)
 * [Issue-table-generator-operator](./issue-table-generator-operator)
 * [Detailed-jenkins-test-data-operator](./detailed-jenkins-test-data-operator)
