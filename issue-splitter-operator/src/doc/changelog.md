@@ -1,3 +1,8 @@
+## v0.3.2
+
+- Adds metadata to all outputs.
+- filterProperty metadata value.
+
 ## v0.3.1
 
 Updated IssueTracker and webpage

@@ -2,11 +2,6 @@
 (function () {
     "use strict";
 
-    var dependencyList = [
-        'script',
-        'div',
-    ];
-
     describe("Test IssueSplitter", function () {
         beforeAll(function () {
             window.MashupPlatform = new MockMP.MockMP();
@@ -70,11 +65,17 @@
     });
 
     var checkWiringCallbacks = function checkWiringCallbacks (status, priority, assignee, type, sprint, month) {
+        status.metadata = {filterAttribute: "status"};
         expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("status-list", status);
+        priority.metadata = {filterAttribute: "priority"};
         expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("priority-list", priority);
+        assignee.metadata = {filterAttribute: "assignee"};
         expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("assignee-list", assignee);
+        type.metadata = {filterAttribute: "type"};
         expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("type-list", type);
+        sprint.metadata = {filterAttribute: "versions", filterAttributeType: "some"};
         expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("sprint-list", sprint);
+        month.metadata = {filterAttribute: "month"};
         expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("month-list", month);
     };
 })();
