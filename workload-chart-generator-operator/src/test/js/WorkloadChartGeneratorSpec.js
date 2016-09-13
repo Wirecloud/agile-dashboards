@@ -27,7 +27,7 @@
                 issuesCallback (issues);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
 
                 expect(args.series[0].data).toEqual([{name: "juan", y:2}, {name: "paco", y:1}]);
             });
@@ -43,7 +43,7 @@
                 issuesCallback (issues);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
 
                 expect(args.series).toEqual([{name:"juan", data: [2]}, {name: "paco", data: [1, 2]}]);
             });
@@ -61,7 +61,7 @@
                 commitsCallback(commits);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args.series[0].data).toEqual([{name:"juan", y: 2}, {name:"paco", y: 1}]);
             });
 
@@ -77,7 +77,7 @@
                 commitsCallback(commits);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args.series).toEqual([{name:"juan", data: [2]}, {name: "paco", data: [1, 2]}]);
             });
         });

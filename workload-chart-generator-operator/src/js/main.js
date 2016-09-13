@@ -103,6 +103,20 @@
         return {serie: result, months: months};
     };
 
+    var columnDataHandler = function columnDataHandler (col) {
+        var month = col.category;
+        var assignee = col.series.name;
+        return [
+                {type: "eq", value: month, attr: "month"},
+                {type: "eq", value: assignee, attr: "assignee"}
+                ];
+    };
+
+    var pieDataHandler = function pieDataHandler (pie) {
+        var filterBy = pie.name;
+        return [{type: "eq", value: filterBy, attr: "assignee"}];
+    };
+
     var build_column_chart = function build_column_chart(serie, months, type) {
         //Convert it to the highcharts series
         var series = [];
@@ -134,9 +148,13 @@
             },
             series: series
         };
+
+        options.dataHandler = columnDataHandler;
+
         //Push the highcharts options
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
+        MashupPlatform.wiring.pushEvent("chart-options", options);
     };
+
 
     var build_pie_chart = function build_pie_chart(series) {
         //Wait for data
@@ -160,8 +178,11 @@
                 data: serie
             }]
         };
+
+        options.dataHandler = pieDataHandler;
+
         //Push the highcharts options
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
+        MashupPlatform.wiring.pushEvent("chart-options", options);
     };
 
     init();

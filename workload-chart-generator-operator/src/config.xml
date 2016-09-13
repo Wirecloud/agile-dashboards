@@ -1,10 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="workload-chart-generator" version="0.3.1">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="workload-chart-generator" version="0.3.2">
     <details>
         <title>Workload Chart Generator</title>
         <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
         <email>alex.rodriguez@conwet.com</email>
-        <image>images/catalogue.png</image>
         <smartphoneimage></smartphoneimage>
         <description>Generates the workload chart from a set of issues or commits</description>
         <longdescription>DESCRIPTION.md</longdescription>
