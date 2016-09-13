@@ -14,7 +14,7 @@
 
             it ("Should accept empty data series", function () {
                 ColumnChartGenerator.dataSerieCallback(null);
-                expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("chart-options", "{}");
+                expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("chart-options", {});
             });
 
             it ("Should accept data series", function () {
@@ -22,7 +22,7 @@
                 ColumnChartGenerator.dataSerieCallback(serie);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args.series).toEqual([{data: [1, 4, 2]}]);
                 expect(args.xAxis).toEqual({categories: ""});
                 expect(args.yAxis).toEqual({title: {text: ""}});
@@ -37,7 +37,7 @@
 
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args.series).toEqual([{data: [1, 4, 2]}]);
                 expect(args.xAxis).toEqual({categories: labels});
                 expect(args.yAxis).toEqual({title: {text: ""}});
@@ -54,8 +54,8 @@
 
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
-                expect(args.series).toEqual([{data: [1, 4, 2]}]);
+                var args = call[1];
+                expect(JSON.stringify(args.series[0].data)).toEqual(JSON.stringify([1, 4, 2]));
                 expect(args.xAxis).toEqual({categories: labels});
                 expect(args.yAxis).toEqual({title: {text: "name"}});
             });

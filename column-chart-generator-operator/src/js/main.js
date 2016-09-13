@@ -28,11 +28,17 @@
         build_column_chart();
     };
 
+    var dataHandler = function dataHandler (col) {
+        var filterBy = col.category;
+        var meta = labelList.metadata;
+        return [{type: meta.filterAttributeType || "eq", value: filterBy, attr: meta.filterAttribute}];
+    };
+
     var build_column_chart = function build_column_chart() {
 
         //If theres no data clean the chart and leave
         if (!dataSerie) {
-            MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify({}));
+            MashupPlatform.wiring.pushEvent("chart-options", {});
             return;
         }
 
@@ -59,7 +65,11 @@
             }]
         };
 
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
+        if (labelList && labelList.metadata && labelList.metadata.filterAttribute) {
+            options.dataHandler = dataHandler;
+        }
+
+        MashupPlatform.wiring.pushEvent("chart-options", options);
     };
 
     init();
