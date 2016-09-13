@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="build-splitter" version="0.1.9">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="build-splitter" version="0.1.10">
     <details>
         <title>&lt;Build&gt; Splitter</title>
         <authors>Álvaro Arranz</authors>
@@ -23,6 +23,7 @@
         <outputendpoint name="revision-list" type="text" label="Revision List" description="List with the revision number of the last commit included in the builds" friendcode="build-revision-list list"/>
         <outputendpoint name="test-report-list" type="text" label="⊱Test Report List" description="List with the test reports of the builds. Test report information can be splitted using the &lt;Test Report&gt; Splitter operator" friendcode="test-report-list list"/>
         <outputendpoint name="timestamp-list" type="text" label="Timestamp List" description="List with the timestamp when the builds were launched" friendcode="timestamp-list list"/>
+        <outputendpoint name="month-list" type="text" label="Month List" description="List with the month when the builds were launched" friendcode="month-list list"/>
     </wiring>
 
     <scripts>

@@ -16,7 +16,8 @@
             cause_list = [],
             revision_list = [],
             test_report_list = [],
-            timestamp_list = [];
+            timestamp_list = [],
+            month_list = [];
 
         build_list.forEach(function (build) {
             if (typeof build !== 'object' || !('id' in build) || !('duration' in build)) {
@@ -30,17 +31,34 @@
             revision_list.push(build.revision);
             test_report_list.push(build.testResults);
             timestamp_list.push(build.timestamp);
+            month_list.push(build.month);
         });
 
         //Adds metadata
-        build_id_list.metadata = {type: "build", tag: "Build"};
-        duration_list.metadata = {type: "number", tag: "Duration", "verbose": "Build duration"};
-        changes_list.metadata = {type: "number", tag: "Changes", "verbose": "Build changes"};
-        cause_list.metadata = {type: "text", tag: "Cause"};
-        revision_list.metadata = {type: "revision", tag: "Revision"};
-        test_report_list.metadata = {type: "test_report", tag: "Test report"};
-        timestamp_list.metadata = {type: "timestamp", tag: "Date", verbose: "Build date"};
 
+        build_id_list.metadata = {type: "build", tag: "Build"};
+        build_id_list.metadata.filterAttribute = "id";
+
+        duration_list.metadata = {type: "number", tag: "Duration", "verbose": "Build duration"};
+        duration_list.metadata.filterAttribute = "duration";
+
+        changes_list.metadata = {type: "number", tag: "Changes", "verbose": "Build changes"};
+        changes_list.metadata.filterAttribute = "changes";
+
+        cause_list.metadata = {type: "text", tag: "Cause"};
+        cause_list.metadata.filterAttribute = "cause";
+
+        revision_list.metadata = {type: "revision", tag: "Revision"};
+        revision_list.metadata.filterAttribute = "revision";
+
+        test_report_list.metadata = {type: "test_report", tag: "Test report"};
+        test_report_list.metadata.filterAttribute = "testResults";
+
+        timestamp_list.metadata = {type: "timestamp", tag: "Date", verbose: "Build date"};
+        timestamp_list.metadata.filterAttribute = "timestamp";
+
+        month_list.metadata = {type: "month", tag: "Date", verbose: "Build date"};
+        month_list.metadata.filterAttribute = "month";
 
         MashupPlatform.wiring.pushEvent("build-id-list", build_id_list);
         MashupPlatform.wiring.pushEvent("duration-list", duration_list);
@@ -49,6 +67,6 @@
         MashupPlatform.wiring.pushEvent("revision-list", revision_list);
         MashupPlatform.wiring.pushEvent("test-report-list", test_report_list);
         MashupPlatform.wiring.pushEvent("timestamp-list", timestamp_list);
+        MashupPlatform.wiring.pushEvent("month-list", month_list);
     });
-
 })();

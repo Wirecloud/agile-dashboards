@@ -1,7 +1,7 @@
 Build Splitter operator
 ======================
 
-The Build Splitter operator is a WireCloud operator that provides ...
+The Build Splitter operator is a WireCloud operator that provides the ability to split data form the builds harvested by the Jenkins Harvester.
 
 Build
 -----
@@ -42,20 +42,31 @@ If everything goes well, you will find a wgt file in the `dist` folder.
 
 ## Settings
 
-`Write here the preferences`
+`No settings`
 
 ## Wiring
 
-
 ### Input Endpoints
 
-`Write here the input wiring endpoints`
-
+- `Build List`: The list of builds to be splitted.
 
 ### Output Endpoints
 
+- `Build ID List`
 
-`Write here the output wiring endpoints`
+- `Duration List`
+
+- `Changes List`
+
+- `Cause List`
+
+- `Revision List`
+
+- `Test Report List`
+
+- `Timestamp List`
+
+- `Month List`
 
 ## Usage
 
