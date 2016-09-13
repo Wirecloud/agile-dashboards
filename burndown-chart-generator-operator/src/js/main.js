@@ -112,7 +112,24 @@
         return result;
     };
 
+    var dataHandler = function dataHandler(day) {
+        var start  = Date.parse(startDate);
+        var dayNumber = day.x - 1;
 
+        var dayLower = start + (dayNumber - 1) * DAY_LENGTH; //lowest timestamp of the day
+        var dayUpper = start + (dayNumber) * DAY_LENGTH; //highest timestamp of the day
+
+        var keys = [];
+
+        sprint.forEach (function (issue) {
+            var date = Date.parse(issue.resolutionDate) - DAY_LENGTH + 1;
+            if (date >= dayLower && date < dayUpper) {
+                keys.push(issue.key);
+            }
+        });
+
+        return [{type: "in", values: keys, attr: "key"}];
+    };
 
     var plot = function plot() {
 
@@ -178,14 +195,16 @@
             }
             ]
         };
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
+
+        options.dataHandler = dataHandler;
+        MashupPlatform.wiring.pushEvent("chart-options", options);
     };
 
 
     var cleanPlot = function cleanPlot(msg) {
         var options = {};
         options.title = {text: msg};
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
+        MashupPlatform.wiring.pushEvent("chart-options", options);
     };
 
     //Init the operator

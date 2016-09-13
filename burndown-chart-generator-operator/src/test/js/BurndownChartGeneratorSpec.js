@@ -25,7 +25,7 @@
                 BurndownChartGenerator.issueCallback([]);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args).toEqual({title: {text: "Input data is empty :("}});
             });
 
@@ -33,7 +33,7 @@
                 BurndownChartGenerator.issueCallback([{versions: ["hola"]}, {versions: ["mundo"]}]);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args).toEqual({title: {text: "All input issues must be from the same sprint"}});
             });
 
@@ -42,7 +42,7 @@
                 BurndownChartGenerator.issueCallback(issues.issues);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args.series.length).toBe(3);
                 expect(args.series[0].data).toEqual(issues.closed);
                 expect(args.series[2].data).toEqual(issues.progress);
@@ -54,7 +54,7 @@
                 BurndownChartGenerator.issueCallback(issues.issues);
                 var call = MashupPlatform.wiring.pushEvent.calls.first().args;
                 expect(call[0]).toBe("chart-options");
-                var args = JSON.parse(call[1]);
+                var args = call[1];
                 expect(args.series.length).toBe(3);
                 expect(args.series[0].data).toEqual(issues.closed);
                 expect(args.series[2].data).toEqual(issues.progress);
