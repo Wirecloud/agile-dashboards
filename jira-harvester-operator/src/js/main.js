@@ -219,7 +219,10 @@
         result.creator = issue.fields.creator.displayName;
         if (issue.fields.assignee) {
             result.assigneeId = issue.fields.assignee.name;
-            result.assignee = issue.fields.assignee.displayName;
+            result.assignee  = issue.fields.assignee.displayName;
+        } else {
+            result.assignee = "";
+            result.assigneeId = "";
         }
 
         result.status = issue.fields.status.name;

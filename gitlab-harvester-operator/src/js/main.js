@@ -289,6 +289,9 @@
         if (issue.assignee) {
             result.assigneeId = issue.assignee.username;
             result.assignee = issue.assignee.name;
+        } else {
+            result.assignee = "";
+            result.assigneeId = "";
         }
         //Status of the issue (closed / open / etc)
         result.status = issue.state;
