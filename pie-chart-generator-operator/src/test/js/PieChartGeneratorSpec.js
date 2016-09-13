@@ -39,8 +39,10 @@
 
             var call = MashupPlatform.wiring.pushEvent.calls.first().args;
             expect(call[0]).toBe("chart-options");
-            var args = JSON.parse(call[1]);
-            expect(args.series[0].data).toEqual([{name: "0", y: 1}, {name: "1", y: 2}, {name: "2", y: 3}, {name: "3", y: 1}]);
+            var args = call[1];
+            var expected = [{name: "0", y: 1}, {name: "1", y: 2}, {name: "2", y: 3}, {name: "3", y: 1}];
+            expected.metadata = {};
+            expect(args.series[0].data).toEqual(expected);
         });
 
         it ("Should work with label series", function () {
@@ -49,8 +51,10 @@
 
             var call = MashupPlatform.wiring.pushEvent.calls.first().args;
             expect(call[0]).toBe("chart-options");
-            var args = JSON.parse(call[1]);
-            expect(args.series[0].data).toEqual([{name: "label1", y: 2}, {name: "label2", y: 1}]);
+            var args = call[1];
+            var expected = [{name: "label1", y: 2}, {name: "label2", y: 1}];
+            expected.metadata = {};
+            expect(args.series[0].data).toEqual(expected);
         });
     });
 })();

@@ -9,7 +9,7 @@
 (function () {
 
     "use strict";
-
+    var series;
     var init = function init() {
         MashupPlatform.wiring.registerCallback("number-serie", numberSerieCallback);
         MashupPlatform.wiring.registerCallback("label-serie", labelSerieCallback);
@@ -19,7 +19,9 @@
         if (data) {
             var labelSerie = toNumberSerie(data);
             labelSerie = calculateSeries(labelSerie);
-            build_pie_chart(labelSerie);
+            series = labelSerie;
+            series.metadata = data.metadata || {};
+            build_pie_chart(series);
         }
     };
 
@@ -27,7 +29,9 @@
         if (data) {
             var numberSerie = data;
             numberSerie = calculateSeries(numberSerie);
-            build_pie_chart(numberSerie);
+            series = numberSerie;
+            series.metadata = data.metadata || {};
+            build_pie_chart(series);
         }
     };
 
@@ -53,6 +57,12 @@
             result.push({name: keys[i], y: data[keys[i]]});
         }
         return result;
+    };
+
+    var dataHandler = function dataHandler (pie) {
+        var filterBy = pie.name;
+        var meta = series.metadata;
+        return [{type: meta.filterAttributeType || "eq", value: filterBy, attr: meta.filterAttribute}];
     };
 
     var build_pie_chart = function build_pie_chart(series) {
@@ -84,8 +94,12 @@
             },
         };
 
+        if (series.metadata.filterAttribute) {
+            options.dataHandler = dataHandler;
+        }
+
         //Push the highcharts options
-        MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
+        MashupPlatform.wiring.pushEvent("chart-options", options);
     };
 
     init();
