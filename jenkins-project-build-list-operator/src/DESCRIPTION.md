@@ -1,0 +1,1 @@
+The Jenkins project build list table operator is a WireCloud operator that provides the ability to show on a table the list of Jenkins builds.

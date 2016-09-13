@@ -17,7 +17,7 @@ This operators harvest data from the online tools, such as Github.
 * [Github-harvester-operator](./github-harvester-operator)
 * [Gitlab-harvester-operator](./gitlab-harvester-operator)
 * [Jenkins-harvester-operator](./jenkins-harvester-operator)
-* [Jenkins-project-build-list-operator](./jenkins-project-build-list-widget)
+* [Jenkins-project-build-list-operator](./jenkins-project-build-list-operator)
 * [Jira-harvester-operator](./jira-harvester-operator)
 
 ## Data operators (Data Transformation phase)
