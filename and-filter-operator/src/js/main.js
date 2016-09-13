@@ -51,7 +51,7 @@
         attr = attr.split(".");
         for (var i = 0; i < attr.length; i++) {
             if (!item[attr[i]]) {
-                return null;
+                return item[attr[i]];
             }
             item = item[attr[i]] ;
         }
@@ -60,6 +60,10 @@
 
     var EQ_FILTER = function EQ_FILTER(attr, value, item) {
         return getProperty(item, attr) === value;
+    };
+
+    var NOT_FILTER = function NOT_FILTER (attr, value, item) {
+        return getProperty(item, attr) !== value;
     };
 
     var IN_FILTER = function IN_FILTER(attr, values, item) {
@@ -95,6 +99,9 @@
             case "some":
                 filter_funcs.push(SOME_FILTER.bind(null, filters[i].attr, filters[i].value));
                 break;
+            case "not":
+                filter_funcs.push(NOT_FILTER.bind(null, filters[i].attr, filters[i].value));
+                break;
             default:
             case "eq":
                 filter_funcs.push(EQ_FILTER.bind(null, filters[i].attr, filters[i].value));
@@ -108,7 +115,7 @@
     var filter = function filter() {
         filtered = [];
 
-        if (original_list == null) {
+        if (!original_list) {
             return;
         }
 

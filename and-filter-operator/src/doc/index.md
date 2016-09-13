@@ -15,6 +15,7 @@ No settings needed for this operator to wortk.
     - `in`: checks if the value of a given attribute is equal to a list of provided values. E.g.: `{"type": "in", "attr": "milestone", "values": ["Nov 2015", "Dec 2015", "Jan 2016"]}`.
     - `range`: checks if the value of a given attribute is within a range of numbers. E.g.: `{"type": "range", "attr": "level", "start": 1, "end": 4}`.
     - `eq`: checks if the value of a given attribute is equal to a given value. E.g.: `{"type": "eq", "attr": "state", "value": "closed"}`.
+    - `not`: checks if the value of a given attribute is not equal to a given value. E.g.: `{"type": "not", "attr": "state", "value": "closed"}`.
     - `some`: checks if any of the values of a given attribute is equal to a given value. E.g.: `{type: "some", "attr": changesList, "value": "change"}`
 
 ### Output Endpoints

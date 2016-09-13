@@ -1,6 +1,10 @@
+## v0.3.4
+
+- Adds "not" filter.
+
 ## v0.3.3
 
-Updated IssueTracker and webpage
+- Updated IssueTracker and webpage
 
 ## v0.3.2
 
