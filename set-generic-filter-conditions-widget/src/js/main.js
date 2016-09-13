@@ -79,11 +79,11 @@
         if (!attr || attr === "") {
             return item;
         }
-        //Search for the propertys
+        //Search for the properties
         attr = attr.split(".");
         for (var i = 0; i < attr.length; i++) {
             if (!item[attr[i]]) {
-                return null;
+                return item[attr[i]];
             }
             item = item[attr[i]] ;
         }

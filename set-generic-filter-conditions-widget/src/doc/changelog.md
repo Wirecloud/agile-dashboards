@@ -1,6 +1,6 @@
 ## v0.3.2
 
-Updated IssueTracker and webpage
+- Updated IssueTracker and webpage
 
 ## v0.3.1
 
