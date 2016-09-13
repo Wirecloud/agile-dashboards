@@ -21,7 +21,9 @@
             labelListCallback (list);
 
             expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("data-serie", [3, 1]);
-            expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("label-serie", ["label1", "label2"]);
+            var expected = ["label1", "label2"];
+            expected.metadata = {};
+            expect(MashupPlatform.wiring.pushEvent).toHaveBeenCalledWith("label-serie", expected);
         });
     });
 })();
