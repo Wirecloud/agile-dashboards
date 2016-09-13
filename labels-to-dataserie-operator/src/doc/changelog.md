@@ -1,6 +1,10 @@
+## v0.3.2
+
+- Keeps input metadata.
+
 ## v0.3.1
 
-Updated IssueTracker and webpage
+- Updated IssueTracker and webpage
 
 ## v0.3.0
 

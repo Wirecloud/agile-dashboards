@@ -42,6 +42,8 @@
             labelSerie.push(key);
             dataSerie.push(aux[key]);
         }
+
+        labelSerie.metadata = labels.metadata || {};
     };
 
     //Push current data
