@@ -1,6 +1,11 @@
+## v0.3.3
+
+- Adds dataHandler support.
+- Output is no longer sent in JSON format.
+
 ## v0.3.2
 
-Updated IssueTracker and webpage
+- Updated IssueTracker and webpage
 
 ## v0.3.1
 

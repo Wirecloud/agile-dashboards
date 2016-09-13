@@ -11,9 +11,24 @@
     "use strict";
 
     var issue_list = null;
+    var closedString;
+
+    var columnDataHandler = function columnDataHandler (col) {
+        var assignee = col.category;
+        return [{type: "eq", value: assignee, attr: "assignee"}];
+    };
+
+    var pieDataHandler = function pieDataHandler (pie) {
+        var status = pie.name;
+        if (status === "Closed") {
+            return [{type: "eq", value: closedString, attr: "status"}];
+        } else {
+            return [{type: "not", value: closedString, attr: "status"}];
+        }
+    };
 
     var build_pie_chart = function build_pie_chart(done, failed) {
-        return {
+        var options = {
             chart: {
                 type: 'pie'
             },
@@ -44,6 +59,10 @@
             },
         };
 
+        options.dataHandler = pieDataHandler;
+
+        return options;
+
     };
 
     var build_serie = function build_serie(attr, values) {
@@ -56,8 +75,10 @@
         return data;
     };
 
+
+
     var build_column_chart = function build_column_chart(users, data) {
-        return {
+        var options = {
             chart: {
                 type: 'column'
             },
@@ -99,6 +120,10 @@
                 data: build_serie('done', data)
             }]
         };
+
+        options.dataHandler = columnDataHandler;
+
+        return options;
     };
 
     var plot_chart = function plot_chart() {
@@ -117,6 +142,9 @@
 
             if (issue.status.toLowerCase() === 'closed') {
                 data[issue.assignee].done += 1;
+                if (!closedString) {
+                    closedString = issue.status;
+                }
             } else {
                 data[issue.assignee].failed += 1;
             }
@@ -124,9 +152,9 @@
 
         var users = Object.keys(data);
         if (users.length === 1) {
-            MashupPlatform.wiring.pushEvent('chart-options', JSON.stringify(build_pie_chart(data[users[0]].done, data[users[0]].failed)));
+            MashupPlatform.wiring.pushEvent('chart-options', build_pie_chart(data[users[0]].done, data[users[0]].failed));
         } else {
-            MashupPlatform.wiring.pushEvent('chart-options', JSON.stringify(build_column_chart(users, data)));
+            MashupPlatform.wiring.pushEvent('chart-options', build_column_chart(users, data));
         }
     };
 
