@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="set-generic-filter-conditions" version="0.3.2">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="set-generic-filter-conditions" version="0.3.2">
     <details>
         <title>Generic filter conditions</title>
         <authors>Alejandro Rodriguez</authors>

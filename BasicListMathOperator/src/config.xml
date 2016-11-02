@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="BasicListMathOperator" version="0.2.1">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="BasicListMathOperator" version="0.2.1">
     <details>
         <title>Basic List Arithmetic Operator</title>
         <authors>Alejandro Rodriguez &lt;alex.rodriguez@gmail.com&gt;</authors>

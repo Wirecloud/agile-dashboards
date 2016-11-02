@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWet" name="burndown-chart-generator" version="0.3.2">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="burndown-chart-generator" version="0.3.2">
     <details>
         <title>Burndown chart generator</title>
         <authors>Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
