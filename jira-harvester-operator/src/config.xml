@@ -22,7 +22,7 @@
         <preference name="component" label="Jira project component" description="Filter data by component" type="text" default="" />
 
         <preference name="username" label="Jira username" description="The username to authenticate with on the Jira instance" type="text" default="" />
-        <preference name="passwd" label="Jira Password" description="The password to authenticate with on the Jira instance" type="password" default="" />
+        <preference name="passwd" label="Jira Password" description="The password to authenticate with on the Jira instance" secure="true" type="password" default="" />
 
         <preference name="max" label="Max issues" description="The maximun number of issues to be harvested" type="number" default="100" />
     </preferences>

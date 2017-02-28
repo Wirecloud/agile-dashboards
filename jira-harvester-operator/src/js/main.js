@@ -10,12 +10,10 @@
     "use strict";
 
     var requestHeaders = {
-            Accept: "application/json",
-            "Content-Type": "Application/json",
-            Authorization: "Basic cmZlcm5hbmRlejpDMG53M3Rf"
-        };
+        Accept: "application/json",
+        "Content-Type": "Application/json"
+    };
 
-    var token;
     var baseURI;
     var projectId;
     var component;
@@ -29,13 +27,16 @@
 
         //On preferences update
         MashupPlatform.prefs.registerCallback(updatePrefs);
+
+        // Configure authentication
+        var user_ref = "username";
+        var pass_ref = "passwd";
+        requestHeaders["X-WireCloud-Secure-Data"] = 'action=basic_auth, user_ref=' + user_ref + ', pass_ref=' + pass_ref + ', type=operator';
+
         updatePrefs();
     };
 
     var updatePrefs = function updatePrefs() {
-        //Updates the Login credentials
-        token = btoa(MashupPlatform.prefs.get("username") + ":" + MashupPlatform.prefs.get("passwd"));
-        requestHeaders.Authorization = "Basic " + token;
 
         //Updates the jira instance URI
         baseURI = MashupPlatform.prefs.get("jira-url");

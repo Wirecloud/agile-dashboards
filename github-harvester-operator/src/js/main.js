@@ -13,8 +13,6 @@
     var milestones = [];
     var DAY_LENGTH = 86400000;
 
-    var oauth2_token;
-    var user, pass;
     var repoName;
     var username;
 
@@ -34,13 +32,9 @@
     };
 
     var updatePrefs = function updatePrefs() {
-        oauth2_token = MashupPlatform.prefs.get("oauth2-token").trim();
+        var oauth2_token = MashupPlatform.prefs.get("oauth2-token").trim();
         username = MashupPlatform.prefs.get("repo-owner").trim();
         repoName = MashupPlatform.prefs.get("repo-name").trim();
-
-        //Updates the Login credentials
-        user = MashupPlatform.prefs.get("username");
-        pass = MashupPlatform.prefs.get("passwd");
 
         //Build the request headers
         requestHeaders = {
@@ -49,12 +43,13 @@
 
         //Choose authentication method if any
         if (oauth2_token !== '') {
-            requestHeaders.Authorization = 'token ' + oauth2_token;
-        } else if (user !== "" && pass !== "") {
-            var token = btoa(user + ":" + pass); //Build the basic authentication token
-            requestHeaders.Authorization = "Basic " + token;
+            requestHeaders.Authorization = 'token {oauth2-token}';
+            requestHeaders["X-WireCloud-Secure-Data"] = 'action=header, header=Authorization, var_ref=oauth2-token';
+        } else if (username !== "") {
+            var user_ref = "username";
+            var pass_ref = "passwd";
+            requestHeaders["X-WireCloud-Secure-Data"] = 'action=basic_auth, user_ref=' + user_ref + ', pass_ref=' + pass_ref + ', type=operator';
         }
-
 
         request_github_info();
     };
@@ -184,7 +179,7 @@
         return new Promise (function (fulfill, reject) {
             MashupPlatform.http.makeRequest("https://api.github.com/repos/" + username + "/" + repoName + "/issues", {
                 method: 'GET',
-                supportsAccessControl: true,
+                supportsAccessControl: false,
                 parameters: {
                     state: 'all',
                     per_page: pageSize,

@@ -26,13 +26,17 @@
         //Register callbacks
         MashupPlatform.prefs.registerCallback(newPreferences);
         MashupPlatform.wiring.registerStatusCallback(pushInfo);
+
+        // build authorization headers
+        requestHeaders["PRIVATE-TOKEN"] = "{private-token}";
+        requestHeaders.Authorization = "{oauth2-token}";
+        // Replace the headers with the secure preferences
+        requestHeaders["X-WireCloud-Secure-Data"] = 'action=header, header=Authorization, var_ref=oauth2-token&action=header, header=PRIVATE-TOKEN, var_ref=private-token';
+
         newPreferences();
     };
 
     var newPreferences = function newPreferences () {
-        //Updates de AUTH tokens
-        requestHeaders["PRIVATE-TOKEN"] = MashupPlatform.prefs.get("private-token");
-        requestHeaders.Authorization = MashupPlatform.prefs.get("oauth2-token");
 
         //Updates de gitlab instance URI
         baseURI = MashupPlatform.prefs.get("gitlab-url") + "/api/v3";
@@ -165,7 +169,7 @@
     var getProjectId = function getProjectId(projectName) {
         MashupPlatform.http.makeRequest (baseURI + "/projects", {
             method: 'GET',
-            supportsAccessControl: true,
+            supportsAccessControl: false,
             parameters: {
                 state: 'all',
                 per_page: 100
@@ -191,7 +195,7 @@
         return new Promise (function (fulfill, reject) {
             MashupPlatform.http.makeRequest (baseURI + "/projects/" + projectID + "/issues", {
                 method: 'GET',
-                supportsAccessControl: true,
+                supportsAccessControl: false,
                 parameters: {
                     state: 'all',
                     per_page: pageSize,
@@ -220,7 +224,7 @@
         return new Promise (function (fulfill, reject) {
             MashupPlatform.http.makeRequest(baseURI + "/projects/" + projectID + "/repository/commits", {
                 method: 'GET',
-                supportsAccessControl: true,
+                supportsAccessControl: false,
                 parameters: {
                     per_page: pageSize,
                     page: page
