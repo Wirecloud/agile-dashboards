@@ -58,15 +58,16 @@
         };
 
         var oauth2_token = MashupPlatform.prefs.get("oauth2-token").trim();
-        var user = MashupPlatform.prefs.get("username").trim();
-        var pass = MashupPlatform.prefs.get("passwd").trim();
+        var username = MashupPlatform.prefs.get("username").trim();
 
         //Choose authentication method if any
         if (oauth2_token !== '') {
-            requestHeaders.Authorization = 'token ' + oauth2_token;
-        } else if (user !== "" && pass !== "") {
-            var token = btoa(user + ":" + pass); //Build the basic authentication token
-            requestHeaders.Authorization = "Basic " + token;
+            requestHeaders.Authorization = 'token {oauth2-token}';
+            requestHeaders["X-WireCloud-Secure-Data"] = 'action=header, header=Authorization, var_ref=oauth2-token';
+        } else if (username !== "") {
+            var user_ref = "username";
+            var pass_ref = "passwd";
+            requestHeaders["X-WireCloud-Secure-Data"] = 'action=basic_auth, user_ref=' + user_ref + ', pass_ref=' + pass_ref + ', type=operator';
         }
 
         //Harvest the commit

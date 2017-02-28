@@ -16,9 +16,9 @@
     </details>
 
     <preferences>
-        <preference name="oauth2-token" label="OAuth2 Token" description="Oauth2 token. This is the recommended authentication type" type="text" default="" />
+        <preference name="oauth2-token" label="OAuth2 Token" description="Oauth2 token. This is the recommended authentication type" secure="true" type="password" default="" />
         <preference name="username" label="Github login username" description="Username to be used for basic authentication. Not needed if an Oauth2 token is provided" type="text" default="" />
-        <preference name="passwd" label="Password" type="password" description="Password to be used for basic authentication. Not needed if an Oauth2 token is provided" default="" />
+        <preference name="passwd" label="Password" secure="true" type="password" description="Password to be used for basic authentication. Not needed if an Oauth2 token is provided" default="" />
     </preferences>
 
     <wiring>
