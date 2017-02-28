@@ -20,7 +20,7 @@
     </requirements>
 
     <persistentvariables>
-        <variable name="chosenValues" type="text"/>
+        <variable name="chosenValues" type="text" multiuser="true" />
     </persistentvariables>
 
     <wiring>
