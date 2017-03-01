@@ -1,3 +1,7 @@
+## v0.3.4
+
+- Add secure preferences
+
 ## v0.3.3
 
 Updated IssueTracker and webpage

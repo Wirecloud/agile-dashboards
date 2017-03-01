@@ -1,3 +1,8 @@
+## v0.3.6
+
+- Fix issue pagination repeating issues.
+- Add secure preferences.
+
 ## v0.3.5
 
 Updated IssueTracker and webpage

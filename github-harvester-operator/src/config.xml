@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="github-harvester" version="0.3.4">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="github-harvester" version="0.3.5">
     <details>
         <title>GitHub Harvester</title>
         <authors>Álvaro Arranz</authors>
