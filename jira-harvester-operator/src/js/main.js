@@ -84,7 +84,7 @@
     };
 
     var harvestIssues = function harvestIssues () {
-        var page = 1;
+        var page = 0;
         issues = [];
         var leftIssues = MashupPlatform.prefs.get("max");
 
@@ -156,7 +156,7 @@
                 supportsAccessControl: false,
                 parameters: {
                     jql: jql,
-                    startAt: page,
+                    startAt: page * 100,
                     maxResults: pageSize,
                     expand: "changelog"
                 },
