@@ -79,6 +79,15 @@
                 });
 
                 harvestIssues();
+            },
+            on404: function (response) {
+                MashupPlatform.operator.log("Error 404: Not Found");
+            },
+            on401: function (response) {
+                MashupPlatform.operator.log("Error 401: Authentication failed");
+            },
+            onFailure: function (response) {
+                MashupPlatform.operator.log("Unexpected response from the server");
             }
         });
     };
@@ -174,7 +183,16 @@
                     issues = issues.concat(normalizeData(data.issues));
                     fulfill(true);
                 },
-                onError: function (response) {
+                on404: function (response) {
+                    MashupPlatform.operator.log("Error 404: Not Found");
+                    reject(false);
+                },
+                on401: function (response) {
+                    MashupPlatform.operator.log("Error 401: Authentication failed");
+                    reject(false);
+                },
+                onFailure: function (response) {
+                    MashupPlatform.operator.log("Unexpected response from the server");
                     reject(false);
                 }
             });

@@ -1,6 +1,7 @@
 ## v0.3.4
 
 - Add secure preferences
+- Add REST queries error logs
 
 ## v0.3.3
 

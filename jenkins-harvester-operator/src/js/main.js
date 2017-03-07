@@ -84,6 +84,15 @@
                 build_info.metadata.filters = filters;
 
                 MashupPlatform.wiring.pushEvent("build-list", build_info);
+            },
+            on404: function (response) {
+                MashupPlatform.operator.log("Error 404: Not Found");
+            },
+            on401: function (response) {
+                MashupPlatform.operator.log("Error 401: Authentication failed");
+            },
+            onFailure: function (response) {
+                MashupPlatform.operator.log("Unexpected response from the server");
             }
         });
     };

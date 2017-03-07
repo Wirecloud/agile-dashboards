@@ -83,6 +83,15 @@
                 var data = JSON.parse(response.responseText);
                 outputCommit = normalizeCommit (data);
                 MashupPlatform.wiring.pushEvent("commit", outputCommit);
+            },
+            on404: function (response) {
+                MashupPlatform.operator.log("Error 404: Not Found");
+            },
+            on401: function (response) {
+                MashupPlatform.operator.log("Error 401: Authentication failed");
+            },
+            onFailure: function (response) {
+                MashupPlatform.operator.log("Unexpected response from the server");
             }
         });
     };

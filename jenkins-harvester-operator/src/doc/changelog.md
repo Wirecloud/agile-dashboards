@@ -1,6 +1,10 @@
+## v0.3.3
+
+- Add REST queries error logs
+
 ## v0.3.2
 
-Updated IssueTracker and webpage
+- Updated IssueTracker and webpage
 
 ## v0.3.1
 

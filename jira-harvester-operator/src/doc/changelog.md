@@ -2,6 +2,7 @@
 
 - Fix issue pagination repeating issues.
 - Add secure preferences.
+- Add REST queries error logs
 
 ## v0.3.5
 

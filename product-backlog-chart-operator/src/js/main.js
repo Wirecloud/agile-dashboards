@@ -11,10 +11,12 @@
     "use strict";
 
     var data = null;
+    var series_cache = null;
 
     var init = function init() {
         MashupPlatform.wiring.registerCallback("issues", function (d) {
             data = d;
+            series_cache = calculateSeries();
             plot();
         });
     };
@@ -115,6 +117,24 @@
         return a;
     };
 
+    var highchartsDataHandler = function highchartsDataHandler (graph) {
+        var month = graph.x;
+
+        var filters;
+
+        series_cache[0].data.forEach( function () {
+
+        })
+
+
+
+            return [{type: "eq", value: closedString, attr: "status"}];
+
+            return [{type: "not", value: closedString, attr: "status"}];
+
+        return filters;
+
+    };
 
     var plot = function plot() {
         //Wait for data
@@ -122,7 +142,6 @@
             return;
         }
         var options;
-        var series = calculateSeries();
         options = {
             title: {
                 text: MashupPlatform.prefs.get('title')
@@ -136,8 +155,10 @@
             legend: {
                 enabled: true
             },
-            series: series
+            series: series_cache
         };
+
+
 
         MashupPlatform.wiring.pushEvent("chart-options", JSON.stringify(options));
     };
