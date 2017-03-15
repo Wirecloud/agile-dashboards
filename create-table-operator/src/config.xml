@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="create-table" version="0.1.0">
+
+    <details>
+        <title>Create Table Operator</title>
+        <homepage>https://github.com/Wirecloud/create-table-operator</homepage>
+        <authors>Alejandro Rodríguez &lt;alex.rodriguez@conwet.com&gt;</authors>
+        <email>alex.rodriguez@conwet.com</email>
+        <image></image>
+        <smartphoneimage></smartphoneimage>
+        <description>Create a popup table</description>
+        <longdescription>DESCRIPTION.md</longdescription>
+        <changelog>doc/changelog.md</changelog>
+        <doc>doc/userguide.md</doc>
+        <license>Apache2</license>
+        <issuetracker>https://github.com/Wirecloud/create-table-operator/issues</issuetracker>
+    </details>
+
+    <requirements>
+        <feature name="DashboardManagement"/>
+        <feature name="ComponentManagement"/>
+    </requirements>
+
+    <preferences>
+        <preference name="newOne" label="Create new popup" description="Create a new popup each time input is received" type="boolean" default="false"/>
+    </preferences>
+
+    <wiring>
+        <inputendpoint name="dataset" type="text" label="Data and Structure" description="A JSON or an object with two fields: structure (for the structure of the data) and data (the data ifself)" actionlabel="Data and Structure" friendcode="dataset"/>
+    </wiring>
+
+    <scripts>
+        <script src="js/main.js"/>
+    </scripts>
+
+</operator>
