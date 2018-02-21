@@ -160,8 +160,7 @@ module.exports = function (grunt) {
                 options: {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],
-                    vendor: ['node_modules/jquery/dist/jquery.js',
-                        'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
+                    vendor: [
                         'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
                         'src/test/vendor/*.js'
                     ]
