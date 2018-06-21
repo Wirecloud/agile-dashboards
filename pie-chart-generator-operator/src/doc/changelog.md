@@ -1,3 +1,12 @@
+# CHANGELOG
+
+## v0.3.4
+
+- Adds 3D format.
+- Allow point select.
+- Change PlotOptions.
+- Update README content (correction some problems).
+
 ## v0.3.3
 
 - Adds dataHandler support.
