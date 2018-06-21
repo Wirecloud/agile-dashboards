@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 Generates a pie chart from a dataset
 

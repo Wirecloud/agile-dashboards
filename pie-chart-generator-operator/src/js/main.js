@@ -15,7 +15,7 @@
         MashupPlatform.wiring.registerCallback("label-serie", labelSerieCallback);
     };
 
-    var labelSerieCallback = function labelSerieCallback (data) {
+    var labelSerieCallback = function labelSerieCallback(data) {
         if (data) {
             var labelSerie = toNumberSerie(data);
             labelSerie = calculateSeries(labelSerie);
@@ -25,7 +25,7 @@
         }
     };
 
-    var numberSerieCallback = function numberSerieCallback (data) {
+    var numberSerieCallback = function numberSerieCallback(data) {
         if (data) {
             var numberSerie = data;
             numberSerie = calculateSeries(numberSerie);
@@ -35,10 +35,10 @@
         }
     };
 
-    var toNumberSerie = function toNumberSerie (serie) {
+    var toNumberSerie = function toNumberSerie(serie) {
         var result = [];
 
-        serie.forEach (function (data) {
+        serie.forEach(function (data) {
             if (result[data]) {
                 result[data] += 1;
             } else {
@@ -54,21 +54,33 @@
 
         var keys = Object.keys(data);
         for (var i = 0; i < keys.length; i++) {
-            result.push({name: keys[i], y: data[keys[i]]});
+            result.push({
+                name: keys[i],
+                y: data[keys[i]]
+            });
         }
         return result;
     };
 
-    var dataHandler = function dataHandler (pie) {
+    var dataHandler = function dataHandler(pie) {
         var filterBy = pie.name;
         var meta = series.metadata;
-        return [{type: meta.filterAttributeType || "eq", value: filterBy, attr: meta.filterAttribute}];
+        return [{
+            type: meta.filterAttributeType || "eq",
+            value: filterBy,
+            attr: meta.filterAttribute
+        }];
     };
 
     var build_pie_chart = function build_pie_chart(series) {
         var options = {
             chart: {
-                type: 'pie'
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
             },
             title: {
                 text: MashupPlatform.prefs.get('title')
@@ -80,7 +92,10 @@
                 data: series
             }],
             plotOptions: {
-                series: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
                     dataLabels: {
                         enabled: true,
                         format: '{point.name}: {point.percentage:.1f}%'

@@ -1,10 +1,8 @@
-Pie Chart Generator operator
-======================
+# Pie Chart Generator operator
 
 The Pie Chart Generator operator is a WireCloud operator that provides the ability to draw pie charts.
 
-Build
------
+## Build
 
 Be sure to have installed [Node.js](http://node.js) in your system. For example, you can install it on Ubuntu and Debian running the following commands:
 
