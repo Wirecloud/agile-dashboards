@@ -77,6 +77,7 @@
                 enabled: false
             },
             series: [{
+                animation: MashupPlatform.prefs.get('animation'),
                 data: series
             }],
             plotOptions: {
